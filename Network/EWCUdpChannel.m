@@ -194,14 +194,10 @@ static void HandleSocketCallback(CFSocketRef s,
         
         // what was sent
         CFDataRef dataRef = (CFDataRef)data;
-        CFIndex dataLen = CFDataGetLength(dataRef);
-        UInt8 *bytes = malloc(dataLen);
-        CFDataGetBytes(dataRef, CFRangeMake(0, dataLen), bytes);
-        
+        NSData *bytes = (__bridge_transfer NSData *)CFDataCreateCopy(kCFAllocatorDefault, dataRef);
+
         // notify overridden handler
-        [self handlePacketData:bytes length:(UInt32)dataLen fromAddress:&remoteaddr];
-        
-        free(bytes);
+        [self handlePacketData:bytes fromAddress:&remoteaddr];
     } else if (type == kCFSocketWriteCallBack) {
         canWrite_ = YES;
         
@@ -227,9 +223,9 @@ static void HandleSocketCallback(CFSocketRef s,
     }
 }
 
-- (void)sendPacketTo:(struct sockaddr_in *)address data:(UInt8 *)data length:(UInt32)length {
+- (void)sendPacketData:(NSData *)data toAddress:(struct sockaddr_in *)address {
     // wrap the data and address for transmission
-    CFDataRef dataRef = CFDataCreate(kCFAllocatorDefault, data, length);
+    CFDataRef dataRef = (__bridge_retained CFDataRef)[data copy];
     CFDataRef addrRef = CFDataCreate(kCFAllocatorDefault, (UInt8 *)address, sizeof(*address));
     
     // buffer the data until we're allowed to send
@@ -249,7 +245,7 @@ static void HandleSocketCallback(CFSocketRef s,
     return 0;
 }
 
-- (void)handlePacketData:(UInt8 *)data length:(UInt32)length fromAddress:(struct sockaddr_in *)address {
+- (void)handlePacketData:(NSData *)data fromAddress:(struct sockaddr_in *)address {
     NSLog(@"subclass must override (void)handlePacketData:fromAddress:");
 }
 

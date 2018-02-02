@@ -25,9 +25,9 @@
     return NO;
 }
 
-- (void)handlePacketData:(UInt8 *)data length:(UInt32)length fromAddress:(struct sockaddr_in *)address {
+- (void)handlePacketData:(NSData *)data fromAddress:(struct sockaddr_in *)address {
     // echo back to sender
-    [self sendPacketTo:address data:data length:length];
+    [self sendPacketData:data toAddress:address];
 }
 
 @end

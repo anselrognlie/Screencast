@@ -30,7 +30,7 @@
     
     self.data = data;
     self.address = address;
-    
+
     return self;
 }
 

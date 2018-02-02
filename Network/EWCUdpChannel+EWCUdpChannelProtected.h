@@ -10,9 +10,8 @@
 
 @interface EWCUdpChannel (EWCUdpChannelProtected)
 
-- (void)sendPacketTo:(struct sockaddr_in *)address
-                data:(UInt8 *)data
-              length:(UInt32)length;
+- (void)sendPacketData:(NSData *)data
+              toAddress:(struct sockaddr_in *)address;
 
 @end
 
