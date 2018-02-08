@@ -11,7 +11,9 @@
 @interface EWCUdpChannel (EWCUdpChannelProtected)
 
 - (void)sendPacketData:(NSData *)data
-              toAddress:(struct sockaddr_in *)address;
+              toAddress:(struct sockaddr_in const *)address;
+- (void)broadcastPacketData:(NSData *)data
+              port:(uint16_t)port;
 
 @end
 

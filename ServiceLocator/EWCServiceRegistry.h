@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #import "../Network/EWCUdpChannel.h"
+#import "EWCServiceRegistryProtocolHandler.h"
 
-@interface EWCServiceRegistry : EWCUdpChannel
+@interface EWCServiceRegistry : EWCUdpChannel <EWCServiceRegistryProtocolHandler>
 
 @end

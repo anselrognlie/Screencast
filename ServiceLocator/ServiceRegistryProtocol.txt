@@ -29,7 +29,10 @@ Registry service identifier:
 [UUID] service id
 
 [operation] OP_SVCLOC (0x04)
-[sin_addr_in] location of requested service
+[short] count of service providers
+[in_addr_t] address of requested service
+[short] service port
+... repeat previous 2 field * count
 
 Reply to registration
 

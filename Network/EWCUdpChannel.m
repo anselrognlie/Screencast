@@ -31,6 +31,7 @@ static void HandleSocketCallback(CFSocketRef s,
 
 @implementation EWCUdpChannel {
     BOOL canWrite_;
+    struct sockaddr_in boundAddr_;
 }
 
 // initializer /////////////////////////////////////////////////
@@ -43,6 +44,8 @@ static void HandleSocketCallback(CFSocketRef s,
     _runLoop = nil;
     canWrite_ = NO;
     self.transmitBuffer = [NSMutableArray<EWCBufferedPacket *> array];
+
+    memset(&boundAddr_, 0, sizeof(boundAddr_));
     
     return self;
 }
@@ -69,6 +72,17 @@ static void HandleSocketCallback(CFSocketRef s,
 
 - (void)stop {
     [self stopSocket];
+}
+
+- (void)getBoundAddress:(struct sockaddr *)address length:(socklen_t *)length {
+    // make sure the passed in addr has at least the length required for
+    // a sockaddr_in
+
+    if (*length < sizeof(boundAddr_)) { return; }
+
+    // update out params
+    *length = sizeof(boundAddr_);
+    *(struct sockaddr_in *)address = boundAddr_;
 }
 
 // private methods ///////////////////////////////////////////////////////
@@ -168,7 +182,11 @@ static void HandleSocketCallback(CFSocketRef s,
         close(localSocket);
         return 0;
     }
-    
+
+    // get the actual bound addr
+    socklen_t socklen = sizeof(boundAddr_);
+    status = getsockname(localSocket, (struct sockaddr *)&boundAddr_, &socklen);
+
     return localSocket;
 }
 
@@ -223,7 +241,7 @@ static void HandleSocketCallback(CFSocketRef s,
     }
 }
 
-- (void)sendPacketData:(NSData *)data toAddress:(struct sockaddr_in *)address {
+- (void)sendPacketData:(NSData *)data toAddress:(struct sockaddr_in const *)address {
     // wrap the data and address for transmission
     CFDataRef dataRef = (__bridge_retained CFDataRef)[data copy];
     CFDataRef addrRef = CFDataCreate(kCFAllocatorDefault, (UInt8 *)address, sizeof(*address));
@@ -236,6 +254,20 @@ static void HandleSocketCallback(CFSocketRef s,
     
     // attempt to send buffered data
     [self sendBufferedData];
+}
+
+- (void)broadcastPacketData:(NSData *)data port:(uint16_t)port {
+    // do nothing if we aren't enabled for broadcast
+    if (! self.enableBroadcast) { return; }
+
+    // populate a broadcast address on the supplied port
+    struct sockaddr_in addr;
+    memset(&addr, 0, sizeof(struct sockaddr_in));
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(port);
+    addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
+
+    [self sendPacketData:data toAddress:&addr];
 }
 
 // protected overrides //////////////////////////////////////////////

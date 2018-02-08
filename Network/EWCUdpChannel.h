@@ -10,8 +10,10 @@
 
 @interface EWCUdpChannel : NSObject
 
-- (void) start;
-- (void) startOnRunLoop:(NSRunLoop *)runLoop;
-- (void) stop;
+- (void)start;
+- (void)startOnRunLoop:(NSRunLoop *)runLoop;
+- (void)stop;
+
+- (void)getBoundAddress:(struct sockaddr *)address length:(socklen_t *)length;
 
 @end
