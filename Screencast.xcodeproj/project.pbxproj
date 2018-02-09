@@ -15,6 +15,8 @@
 		FD4FE81B202AA06B00EB534F /* EWCServiceRegistryAcknowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE81A202AA06B00EB534F /* EWCServiceRegistryAcknowledge.m */; };
 		FD4FE821202BC5C500EB534F /* EWCServiceRegistryClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE820202BC5C500EB534F /* EWCServiceRegistryClient.m */; };
 		FD4FE82B202C544900EB534F /* EWCStringLimiter.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE82A202C544900EB534F /* EWCStringLimiter.m */; };
+		FD6D0773202D182700BC0D47 /* EWCServiceRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6D0772202D182700BC0D47 /* EWCServiceRegistration.m */; };
+		FD6D0776202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6D0775202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m */; };
 		FD92445B201F119100A5B093 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92445A201F119100A5B093 /* AppDelegate.m */; };
 		FD92445E201F119100A5B093 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92445D201F119100A5B093 /* ViewController.m */; };
 		FD924460201F119100A5B093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD92445F201F119100A5B093 /* Assets.xcassets */; };
@@ -66,6 +68,10 @@
 		FD4FE823202BDE1100EB534F /* EWCDataHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCDataHelper.h; sourceTree = "<group>"; };
 		FD4FE829202C544900EB534F /* EWCStringLimiter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCStringLimiter.h; sourceTree = "<group>"; };
 		FD4FE82A202C544900EB534F /* EWCStringLimiter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCStringLimiter.m; sourceTree = "<group>"; };
+		FD6D0771202D182700BC0D47 /* EWCServiceRegistration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistration.h; sourceTree = "<group>"; };
+		FD6D0772202D182700BC0D47 /* EWCServiceRegistration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistration.m; sourceTree = "<group>"; };
+		FD6D0774202D1B3100BC0D47 /* EWCServiceRegistrationBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistrationBridge.h; sourceTree = "<group>"; };
+		FD6D0775202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistrationBridge.m; sourceTree = "<group>"; };
 		FD924456201F119100A5B093 /* Screencast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Screencast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD924459201F119100A5B093 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD92445A201F119100A5B093 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -226,6 +232,10 @@
 				FD4FE81C202B1A9B00EB534F /* EWCServiceRegistryProtocolHandler.h */,
 				FD4FE81D202BC3E700EB534F /* EWCServiceRegistryProtocolOpcode.h */,
 				FD4FE823202BDE1100EB534F /* EWCDataHelper.h */,
+				FD6D0771202D182700BC0D47 /* EWCServiceRegistration.h */,
+				FD6D0772202D182700BC0D47 /* EWCServiceRegistration.m */,
+				FD6D0774202D1B3100BC0D47 /* EWCServiceRegistrationBridge.h */,
+				FD6D0775202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m */,
 			);
 			path = ServiceLocator;
 			sourceTree = "<group>";
@@ -380,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD6D0776202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m in Sources */,
 				FD92445E201F119100A5B093 /* ViewController.m in Sources */,
 				FD924466201F119100A5B093 /* main.m in Sources */,
 				FD4FE8142029973800EB534F /* EWCServiceRegistryProtocol.m in Sources */,
@@ -390,6 +401,7 @@
 				FD42C29B2023E62F00BAB4E7 /* EWCCFTypeRef.c in Sources */,
 				FD4FE80E20297BEF00EB534F /* EWCServiceRegistryRegisterRequest.m in Sources */,
 				FD924492201FED2E00A5B093 /* EWCUdpChannel.m in Sources */,
+				FD6D0773202D182700BC0D47 /* EWCServiceRegistration.m in Sources */,
 				FD92445B201F119100A5B093 /* AppDelegate.m in Sources */,
 				FD4FE8182029A48300EB534F /* EWCPair.m in Sources */,
 				FD4FE81B202AA06B00EB534F /* EWCServiceRegistryAcknowledge.m in Sources */,
