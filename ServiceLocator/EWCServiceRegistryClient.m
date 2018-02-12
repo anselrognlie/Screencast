@@ -45,15 +45,21 @@
     return YES;
 }
 
-- (void)handlePacketData:(NSData *)data fromAddress:(struct sockaddr_in *)address {
+- (void)handlePacketData:(NSData *)data fromAddress:(EWCAddressIpv4 *)address {
     EWCServiceRegistryProtocol *protocol = EWCServiceRegistryProtocol.protocol;
     [protocol handlePacketData:data fromAddress:address handler:self];
 }
 
-- (void)processAcknowledge:(EWCServiceRegistryAcknowledge *)packet {
+- (void)processAcknowledge:(EWCServiceRegistryAcknowledge *)packet
+               fromAddress:(EWCAddressIpv4 *)address {
+    NSLog(@"registered. will expire in %d seconds", packet.timeout);
+
+    [self.clientHandler receivedRegistrationAcknowledgementPacket:packet
+                                                     fromaAddress:address];
 }
 
-- (void)processRegisterRequest:(EWCServiceRegistryRegisterRequest *)packet {
+- (void)processRegisterRequest:(EWCServiceRegistryRegisterRequest *)packet
+                   fromAddress:(EWCAddressIpv4 *)address {
 }
 
 @end

@@ -42,19 +42,9 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
     return NO;
 }
 
-- (void)handlePacketData:(NSData *)data fromAddress:(struct sockaddr_in *)address {
+- (void)handlePacketData:(NSData *)data fromAddress:(EWCAddressIpv4 *)address {
     EWCServiceRegistryProtocol *protocol = EWCServiceRegistryProtocol.protocol;
     [protocol handlePacketData:data fromAddress:address handler:self];
-}
-
-// delete this override
-- (void)start {
-    [super start];
-
-    struct sockaddr_in boundAddr;
-    socklen_t socklen = sizeof(boundAddr);
-    [self getBoundAddress:(struct sockaddr *)&boundAddr length:&socklen];
-    NSLog(@"bound port: %d", ntohs(boundAddr.sin_port));
 }
 
 - (EWCServiceRegistration *)registerRequest:(EWCServiceRegistryRegisterRequest *)request {
@@ -110,8 +100,7 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
 
     // if current record already exists, just extend timeout
     reg = [self getRegistrationFromEntry:serviceEntry
-                                 addressIpv4:request.addressIpv4
-                                    port:request.port];
+                                 address:request.address];
     if (reg) {
         reg.whenAdded = [NSDate date];
     } else {
@@ -134,12 +123,10 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
 }
 
 - (EWCServiceRegistration *)getRegistrationFromEntry:(EWCRegistrationList *)serviceEntry
-                                         addressIpv4:(in_addr_t)address
-                                                port:(uint16_t)port {
+                                             address:(EWCAddressIpv4 *)address {
     __block EWCServiceRegistration *reg = nil;
     [serviceEntry enumerateObjectsUsingBlock:^(EWCServiceRegistration * _Nonnull record, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (record.addressIpv4 == address &&
-            record.port == port) {
+        if ([record.address isEqual:address]) {
             reg = record;
             *stop = YES;
         }
@@ -150,30 +137,50 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
 
 // Handlers for protocol ////////////////////////////////////////////////
 
-- (void)processAcknowledge:(EWCServiceRegistryAcknowledge *)packet {
+- (void)processAcknowledge:(EWCServiceRegistryAcknowledge *)packet
+               fromAddress:(EWCAddressIpv4 *)address {
 }
 
-- (void)processRegisterRequest:(EWCServiceRegistryRegisterRequest *)packet {
-    in_addr_t addr = packet.addressIpv4;
+- (void)processRegisterRequest:(EWCServiceRegistryRegisterRequest *)packet
+                   fromAddress:(EWCAddressIpv4 *)address {
+    in_addr_t addr = packet.address.addressIpv4;
     uint8_t *byte = (uint8_t *)&addr;
     NSLog(@"service %@ at %d.%d.%d.%d:%d (%@)",
           packet.serviceId,
           byte[3], byte[2], byte[1], byte[0],
-          packet.port,
+          packet.address.port,
           packet.providerName);
 
     EWCServiceRegistration *reg = [self registerRequest:packet];
-    addr = reg.addressIpv4;
+    addr = reg.address.addressIpv4;
     NSLog(@"request registered:");
     NSLog(@"service %@ at %d.%d.%d.%d:%d (%@) on %@",
           reg.serviceId,
           byte[3], byte[2], byte[1], byte[0],
-          reg.port,
+          reg.address.port,
           reg.providerName,
           reg.whenAdded);
 
     // send reply to requester
-    NSLog(@"MUST REPLY TO REQUESTER");
+    [self acknowledgeRegistrationAtTime:reg.whenAdded toAddress:address];
+}
+
+- (void)acknowledgeRegistrationAtTime:(NSDate *)whenAdded
+                            toAddress:(EWCAddressIpv4 *)address {
+    // calculate the interval
+    NSDate *now = [NSDate date];
+    NSTimeInterval interval = [now timeIntervalSinceDate:whenAdded];
+    interval = self.recordTimeoutSeconds - interval;
+
+    // make an ack packet
+    EWCServiceRegistryAcknowledge *ack;
+    ack = [EWCServiceRegistryAcknowledge packetWithTimeout:interval];
+
+    // convert to data
+    NSData *data = [ack getData];
+
+    // send it back to the requestor
+    [self sendPacketData:data toAddress:address];
 }
 
 @end

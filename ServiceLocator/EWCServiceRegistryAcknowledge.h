@@ -10,6 +10,10 @@
 
 @interface EWCServiceRegistryAcknowledge : NSObject<EWCServiceRegistryPacket>
 
++ (instancetype)packetWithTimeout:(NSTimeInterval)timeout;
+
+- (instancetype)initWithTimeout:(NSTimeInterval)timeout;
+
 @property uint16_t timeout;
 @property uint16_t block;
 

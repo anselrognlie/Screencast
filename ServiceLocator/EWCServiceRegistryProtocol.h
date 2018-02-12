@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "../Network/EWCAddressIpv4.h"
+
 // service port
 static const uint16_t EWCServiceRegistryPort = 13887;
 
@@ -17,14 +19,14 @@ static const uint16_t EWCServiceRegistryPort = 13887;
 
 typedef BOOL (^EWCServiceRegistryRecognizer)(NSData* data);
 typedef NSObject<EWCServiceRegistryPacket> *(^EWCServiceRegistryParser)(NSData* data,
-                                                                        struct sockaddr_in const *fromAddress);
+                                                                        EWCAddressIpv4 *fromAddress);
 
 @interface EWCServiceRegistryProtocol : NSObject
 
 @property (class, readonly) EWCServiceRegistryProtocol *protocol;
 
 - (void)handlePacketData:(NSData *)data
-             fromAddress:(struct sockaddr_in const *)address
+             fromAddress:(EWCAddressIpv4 *)address
                  handler:(NSObject<EWCServiceRegistryProtocolHandler> *)handler;
 
 - (int)registerPacketParser:(EWCServiceRegistryParser)parser

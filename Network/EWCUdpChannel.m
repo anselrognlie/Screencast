@@ -199,23 +199,25 @@ static void HandleSocketCallback(CFSocketRef s,
         NSLog(@"received packet.");
         
         // who connected
-        struct sockaddr_in remoteaddr;
+        struct sockaddr_in remoteSocket;
         uint8 *octet;
-        if (CFDataGetLength(addr) != sizeof(remoteaddr)) {
+        if (CFDataGetLength(addr) != sizeof(remoteSocket)) {
             return;
         }
-        CFDataGetBytes(addr, CFRangeMake(0, sizeof(remoteaddr)), (UInt8 *)&remoteaddr);
-        in_addr_t ipaddr = ntohl(remoteaddr.sin_addr.s_addr);
+        CFDataGetBytes(addr, CFRangeMake(0, sizeof(remoteSocket)), (UInt8 *)&remoteSocket);
+        in_addr_t ipaddr = ntohl(remoteSocket.sin_addr.s_addr);
         octet = (uint8 *)&ipaddr;
         NSLog(@"remote addr: %d.%d.%d.%d:%d", octet[3], octet[2], octet[1], octet[0],
-              ntohs(remoteaddr.sin_port));
+              ntohs(remoteSocket.sin_port));
         
         // what was sent
         CFDataRef dataRef = (CFDataRef)data;
         NSData *bytes = (__bridge_transfer NSData *)CFDataCreateCopy(kCFAllocatorDefault, dataRef);
 
+        EWCAddressIpv4 *address = [EWCAddressIpv4 addressWithAddress:&remoteSocket];
+
         // notify overridden handler
-        [self handlePacketData:bytes fromAddress:&remoteaddr];
+        [self handlePacketData:bytes fromAddress:address];
     } else if (type == kCFSocketWriteCallBack) {
         canWrite_ = YES;
         
@@ -241,10 +243,17 @@ static void HandleSocketCallback(CFSocketRef s,
     }
 }
 
-- (void)sendPacketData:(NSData *)data toAddress:(struct sockaddr_in const *)address {
+- (void)sendPacketData:(NSData *)data toAddress:(EWCAddressIpv4 *)address {
+    // populate the subsystem format address
+    struct sockaddr_in addr;
+    memset(&addr, 0, sizeof(struct sockaddr_in));
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(address.port);
+    addr.sin_addr.s_addr = htonl(address.addressIpv4);
+
     // wrap the data and address for transmission
     CFDataRef dataRef = (__bridge_retained CFDataRef)[data copy];
-    CFDataRef addrRef = CFDataCreate(kCFAllocatorDefault, (UInt8 *)address, sizeof(*address));
+    CFDataRef addrRef = CFDataCreate(kCFAllocatorDefault, (UInt8 *)&addr, sizeof(addr));
     
     // buffer the data until we're allowed to send
     [self.transmitBuffer addObject:[EWCBufferedPacket packetWithData:dataRef address:addrRef]];
@@ -260,14 +269,10 @@ static void HandleSocketCallback(CFSocketRef s,
     // do nothing if we aren't enabled for broadcast
     if (! self.enableBroadcast) { return; }
 
-    // populate a broadcast address on the supplied port
-    struct sockaddr_in addr;
-    memset(&addr, 0, sizeof(struct sockaddr_in));
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(port);
-    addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
+    EWCAddressIpv4 *address = [EWCAddressIpv4 addressWithAddressIpv4:INADDR_BROADCAST
+                                                                port:port];
 
-    [self sendPacketData:data toAddress:&addr];
+    [self sendPacketData:data toAddress:address];
 }
 
 // protected overrides //////////////////////////////////////////////
@@ -277,7 +282,7 @@ static void HandleSocketCallback(CFSocketRef s,
     return 0;
 }
 
-- (void)handlePacketData:(NSData *)data fromAddress:(struct sockaddr_in *)address {
+- (void)handlePacketData:(NSData *)data fromAddress:(EWCAddressIpv4 *)address {
     NSLog(@"subclass must override (void)handlePacketData:fromAddress:");
 }
 

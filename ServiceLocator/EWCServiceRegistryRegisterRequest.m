@@ -13,6 +13,7 @@
 #import "EWCServiceRegistryProtocolOpcode.h"
 #import "EWCDataHelper.h"
 #import "../Foundation/EWCStringLimiter.h"
+#import "../Network/EWCAddressIpv4.h"
 
 struct EWCRawRegisterRequest {
     uint16_t operation;
@@ -42,26 +43,25 @@ static size_t GetMinRawPacketSize(void);
 + (instancetype)packetWithServiceId:(NSUUID *)serviceId
                        providerName:(NSString *)providerName
                                port:(uint16_t)port {
+    EWCAddressIpv4 *address = [EWCAddressIpv4 addressWithPort:port];
+
     return [[EWCServiceRegistryRegisterRequest alloc]
             initWithServiceId:serviceId
             providerName:providerName
-            addressIpv4:0
-            port:port];
+            address:address];
 }
 
 + (instancetype)packetWithServiceId:(NSUUID *)serviceId
                        providerName:(NSString *)providerName
-                        addressIpv4:(in_addr_t)addressIpv4
-                               port:(uint16_t)port {
+                        address:(EWCAddressIpv4 *)address {
     return [[EWCServiceRegistryRegisterRequest alloc]
             initWithServiceId:serviceId
             providerName:providerName
-            addressIpv4:addressIpv4
-            port:port];
+            address:address];
 }
 
 + (NSObject<EWCServiceRegistryPacket> *)parsePacketData:(NSData *)data
-                                            fromAddress:(struct sockaddr_in const *)address {
+                                            fromAddress:(EWCAddressIpv4 *)address {
     EWCServiceRegistryRegisterRequest *packet = nil;
 
     // perform trivial check again
@@ -91,14 +91,16 @@ static size_t GetMinRawPacketSize(void);
 
     if (checksum == request->checksum) {
         // we have a valid packet, so we need to create a packet instance and populate it
-        packet = [EWCServiceRegistryRegisterRequest new];
-        packet.addressIpv4 = ntohl(address->sin_addr.s_addr);
-        packet.port = request->port;
-        packet.providerName = [NSString stringWithUTF8String:request->providerName];
+        EWCAddressIpv4 *serviceAddress = [address copy];
+        serviceAddress.port = request->port;
 
-        NSUUID *uuid = [[NSUUID alloc] initWithUUIDBytes:request->serviceUuid];
-        packet.serviceId = uuid;
+        NSUUID *serviceId =[[NSUUID alloc] initWithUUIDBytes:request->serviceUuid];
 
+        NSString *providerName = [NSString stringWithUTF8String:request->providerName];
+
+        packet = [EWCServiceRegistryRegisterRequest packetWithServiceId:serviceId
+                                                           providerName:providerName
+                                                                address:serviceAddress];
     }
 
     // free the work memory
@@ -126,24 +128,23 @@ static size_t GetMinRawPacketSize(void);
 - (instancetype)initWithServiceId:(NSUUID *)serviceId
                      providerName:(NSString *)providerName
                              port:(uint16_t)port {
+    EWCAddressIpv4 *address = [EWCAddressIpv4 addressWithPort:port];
+
     return [self initWithServiceId:serviceId
                       providerName:providerName
-                       addressIpv4:0
-                              port:port];
+                           address:address];
 }
 
 - (instancetype)initWithServiceId:(NSUUID *)serviceId
                      providerName:(NSString *)providerName
-                      addressIpv4:(in_addr_t)addressIpv4
-                             port:(uint16_t)port {
+                          address:(EWCAddressIpv4 *)address {
     self = [super init];
 
     rawProviderName_ = malloc(1);
     *rawProviderName_ = 0;
     rawProviderNameLength_ = 0;
 
-    self.port = port;
-    self.addressIpv4 = addressIpv4;
+    self.address = address;
     self.serviceId = [serviceId copy];
     self.providerName = [providerName copy];
 
@@ -194,7 +195,7 @@ static size_t GetMinRawPacketSize(void);
 
     request->operation = EWCRegisterRequestOpcode;
     [self.serviceId getUUIDBytes:request->serviceUuid];
-    request->port = self.port;
+    request->port = self.address.port;
     request->nameByteCount = rawProviderNameLength_ + 1;  // include null count
     memcpy((char *)request->providerName, rawProviderName_, rawProviderNameLength_ + 1);
     request->checksum = CalculateChecksum(request);
@@ -218,8 +219,9 @@ static size_t GetMinRawPacketSize(void);
     return data;
 }
 
-- (void)processWithHandler:(NSObject<EWCServiceRegistryProtocolHandler> *)handler {
-    [handler processRegisterRequest:self];
+- (void)processWithHandler:(NSObject<EWCServiceRegistryProtocolHandler> *)handler
+               fromAddress:(EWCAddressIpv4 *)address {
+    [handler processRegisterRequest:self fromAddress:address];
 }
 
 @end
@@ -275,7 +277,7 @@ static int registrationToken = 0;
 __attribute__((constructor))
 static void EWCServiceRegistryRegisterRequest_initialize() {
     EWCServiceRegistryProtocol *protocol = EWCServiceRegistryProtocol.protocol;
-    registrationToken = [protocol registerPacketParser:^(NSData *data, struct sockaddr_in const *address){
+    registrationToken = [protocol registerPacketParser:^(NSData *data, EWCAddressIpv4 *address){
         return [EWCServiceRegistryRegisterRequest parsePacketData:data fromAddress:address];
     }
                                             recognizer:^(NSData *data){

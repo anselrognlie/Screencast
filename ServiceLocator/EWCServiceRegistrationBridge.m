@@ -15,8 +15,7 @@
 
 + (EWCServiceRegistration *)registrationWithRequest:(EWCServiceRegistryRegisterRequest *)request {
     return [EWCServiceRegistration registrationWithServiceId:request.serviceId
-                                                 addressIpv4:request.addressIpv4
-                                                        port:request.port
+                                                     address:request.address
                                                 providerName:request.providerName];
 }
 

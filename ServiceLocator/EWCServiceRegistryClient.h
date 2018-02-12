@@ -10,8 +10,11 @@
 
 #import "../Network/EWCUdpChannel.h"
 #import "EWCServiceRegistryProtocolHandler.h"
+#import "EWCServiceRegistryClientDelegate.h"
 
 @interface EWCServiceRegistryClient : EWCUdpChannel <EWCServiceRegistryProtocolHandler>
+
+@property (weak) NSObject<EWCServiceRegistryClientDelegate> *clientHandler;
 
 - (void)registerService:(NSUUID *)serviceId
            providerName:(NSString *)providerName

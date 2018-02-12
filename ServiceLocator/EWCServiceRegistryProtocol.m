@@ -43,7 +43,7 @@ static int registeredProtocols = 0;
 }
 
 - (void)handlePacketData:(NSData *)data
-             fromAddress:(struct sockaddr_in const *)address
+             fromAddress:(EWCAddressIpv4 *)address
                  handler:(NSObject<EWCServiceRegistryProtocolHandler> *)handler {
     // extract the packet
     NSObject<EWCServiceRegistryPacket> *packet = [self parsePacketData:data fromAddress:address];
@@ -52,11 +52,11 @@ static int registeredProtocols = 0;
     NSLog(@"packet has type: %d", packet.opcode);
 
     // inform the packet to process using the handler
-    [packet processWithHandler:handler];
+    [packet processWithHandler:handler fromAddress:address];
 }
 
 - (NSObject<EWCServiceRegistryPacket> *)parsePacketData:(NSData *)data
-                                            fromAddress:(struct sockaddr_in const *)address {
+                                            fromAddress:(EWCAddressIpv4 *)address {
     __block NSObject<EWCServiceRegistryPacket> *packet = nil;
 
     // for each registered handler, check whether the data matches, then try to parse

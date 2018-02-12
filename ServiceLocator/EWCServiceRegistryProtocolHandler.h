@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "../Network/EWCAddressIpv4.h"
 #import "EWCServiceRegistryRegisterRequest.h"
 #import "EWCServiceRegistryAcknowledge.h"
 
 @protocol EWCServiceRegistryProtocolHandler <NSObject>
 
-- (void)processRegisterRequest:(EWCServiceRegistryRegisterRequest *)packet;
-- (void)processAcknowledge:(EWCServiceRegistryAcknowledge *)packet;
+- (void)processRegisterRequest:(EWCServiceRegistryRegisterRequest *)packet
+                   fromAddress:(EWCAddressIpv4 *)address;
+- (void)processAcknowledge:(EWCServiceRegistryAcknowledge *)packet
+               fromAddress:(EWCAddressIpv4 *)address;
 
 @end

@@ -8,24 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-#import <netinet/in.h>
+#import "../Network/EWCAddressIpv4.h"
 
 @interface EWCServiceRegistration : NSObject
 
 @property NSUUID *serviceId;
-@property in_addr_t addressIpv4;
-@property uint16_t port;
+@property EWCAddressIpv4 *address;
 @property NSString *providerName;
 @property NSDate *whenAdded;
 
 + (instancetype)registrationWithServiceId:(NSUUID *)serviceId
-                              addressIpv4:(in_addr_t)address
-                                     port:(uint16_t)port
+                                  address:(EWCAddressIpv4 *)address
                              providerName:(NSString *)name;
 
 - (instancetype)initWithServiceId:(NSUUID *)serviceId
-                      addressIpv4:(in_addr_t)address
-                             port:(uint16_t)port
+                          address:(EWCAddressIpv4 *)address
                      providerName:(NSString *)name;
 
 @end

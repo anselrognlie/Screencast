@@ -8,12 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class EWCAddressIpv4;
+
 // forward decl
 @protocol EWCServiceRegistryProtocolHandler;
 
 @protocol EWCServiceRegistryPacket<NSObject>
 
 @property (readonly) uint16_t opcode;
-- (void)processWithHandler:(NSObject<EWCServiceRegistryProtocolHandler> *)handler;
+
+- (void)processWithHandler:(NSObject<EWCServiceRegistryProtocolHandler> *)handler
+               fromAddress:(EWCAddressIpv4 *)address;
 
 @end

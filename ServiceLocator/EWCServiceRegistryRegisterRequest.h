@@ -9,35 +9,32 @@
 #import <Foundation/Foundation.h>
 
 #import "EWCServiceRegistryPacket.h"
-#import <netinet/in.h>
+#import "../Network/EWCAddressIpv4.h"
 
 @interface EWCServiceRegistryRegisterRequest : NSObject<EWCServiceRegistryPacket>
 
 // client use
 + (instancetype)packetWithServiceId:(NSUUID *)serviceId
-providerName:(NSString *)providerName
-port:(uint16_t)port;
+                       providerName:(NSString *)providerName
+                               port:(uint16_t)port;
 
 // server use
 + (instancetype)packetWithServiceId:(NSUUID *)serviceId
-providerName:(NSString *)providerName
-addressIpv4:(in_addr_t)addressIpv4
-port:(uint16_t)port;
+                       providerName:(NSString *)providerName
+                            address:(EWCAddressIpv4 *)address;
 
 // client use
 - (instancetype)initWithServiceId:(NSUUID *)serviceId
-providerName:(NSString *)providerName
-port:(uint16_t)port;
+                     providerName:(NSString *)providerName
+                             port:(uint16_t)port;
 
 // server
 - (instancetype)initWithServiceId:(NSUUID *)serviceId
-providerName:(NSString *)providerName
-addressIpv4:(in_addr_t)addressIpv4
-port:(uint16_t)port;
+                     providerName:(NSString *)providerName
+                          address:(EWCAddressIpv4 *)address;
 
 @property NSUUID *serviceId;
-@property uint16_t port;
-@property in_addr_t addressIpv4;
+@property EWCAddressIpv4 *address;
 @property NSString *providerName;
 
 - (NSData *)getData;

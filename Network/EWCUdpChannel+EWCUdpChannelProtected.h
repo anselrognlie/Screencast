@@ -8,10 +8,12 @@
 
 #import "EWCUdpChannel.h"
 
+#import "../Network/EWCAddressIpv4.h"
+
 @interface EWCUdpChannel (EWCUdpChannelProtected)
 
 - (void)sendPacketData:(NSData *)data
-              toAddress:(struct sockaddr_in const *)address;
+              toAddress:(EWCAddressIpv4 *)address;
 - (void)broadcastPacketData:(NSData *)data
               port:(uint16_t)port;
 

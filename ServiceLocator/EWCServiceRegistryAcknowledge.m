@@ -30,8 +30,20 @@ static size_t GetRawPacketSize(void);
     uint16_t blockOrTimeout_;
 }
 
++ (instancetype)packetWithTimeout:(NSTimeInterval)timeout {
+    return [[EWCServiceRegistryAcknowledge alloc] initWithTimeout:timeout];
+}
+
+- (instancetype)initWithTimeout:(NSTimeInterval)timeout {
+    self = [super init];
+
+    self.timeout = timeout;
+
+    return self;
+}
+
 + (NSObject<EWCServiceRegistryPacket> *)parsePacketData:(NSData *)data
-                                  fromAddress:(struct sockaddr_in const *)address {
+                                  fromAddress:(EWCAddressIpv4 *)address {
     EWCServiceRegistryAcknowledge *packet = nil;
 
     // perform trivial check again
@@ -119,8 +131,9 @@ static size_t GetRawPacketSize(void);
     return data;
 }
 
-- (void)processWithHandler:(NSObject<EWCServiceRegistryProtocolHandler> *)handler {
-    [handler processAcknowledge:self];
+- (void)processWithHandler:(NSObject<EWCServiceRegistryProtocolHandler> *)handler
+               fromAddress:(EWCAddressIpv4 *)address {
+    [handler processAcknowledge:self fromAddress:address];
 }
 
 @end
@@ -170,7 +183,7 @@ static int registrationToken = 0;
 __attribute__((constructor))
 static void EWCServiceRegistryAcknowledge_initialize() {
     EWCServiceRegistryProtocol *protocol = EWCServiceRegistryProtocol.protocol;
-    registrationToken = [protocol registerPacketParser:^(NSData *data, struct sockaddr_in const *address){
+    registrationToken = [protocol registerPacketParser:^(NSData *data, EWCAddressIpv4 *address){
         return [EWCServiceRegistryAcknowledge parsePacketData:data fromAddress:address];
     }
                         recognizer:^(NSData *data){
