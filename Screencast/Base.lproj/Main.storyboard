@@ -738,6 +738,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="queryButtonClicked:" target="XfG-lQ-9wD" id="EzU-cx-H0K"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bT9-BK-6ER">
                                 <rect key="frame" x="120" y="232" width="66" height="17"/>

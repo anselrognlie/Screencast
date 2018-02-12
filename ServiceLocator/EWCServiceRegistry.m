@@ -220,9 +220,11 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
           packet.address.port);
 
     [self unregisterRequest:packet];
+}
 
-    // send reply to requester
-    //[self acknowledgeRegistrationAtTime:reg.whenAdded toAddress:address];
+- (void)processQueryRequest:(EWCServiceRegistryQueryRequest *)packet
+                fromAddress:(EWCAddressIpv4 *)address {
+    NSLog(@"query request");
 }
 
 @end

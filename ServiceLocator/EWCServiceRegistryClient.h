@@ -23,4 +23,6 @@
 - (void)unregisterService:(NSUUID *)serviceId
                      port:(uint16_t)port;
 
+- (void)queryService:(NSUUID *)serviceId;
+
 @end

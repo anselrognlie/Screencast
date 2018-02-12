@@ -12,6 +12,7 @@
 #import "EWCServiceRegistryRegisterRequest.h"
 #import "EWCServiceRegistryAcknowledge.h"
 #import "EWCServiceRegistryUnregisterRequest.h"
+#import "EWCServiceRegistryQueryRequest.h"
 
 @protocol EWCServiceRegistryProtocolHandler <NSObject>
 
@@ -20,6 +21,8 @@
 - (void)processAcknowledge:(EWCServiceRegistryAcknowledge *)packet
                fromAddress:(EWCAddressIpv4 *)address;
 - (void)processUnregisterRequest:(EWCServiceRegistryUnregisterRequest *)packet
-                   fromAddress:(EWCAddressIpv4 *)address;
+                     fromAddress:(EWCAddressIpv4 *)address;
+- (void)processQueryRequest:(EWCServiceRegistryQueryRequest *)packet
+                fromAddress:(EWCAddressIpv4 *)address;
 
 @end
