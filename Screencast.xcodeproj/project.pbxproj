@@ -28,6 +28,7 @@
 		FD92448C201F12E500A5B093 /* EWCServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92448B201F12E500A5B093 /* EWCServiceRegistry.m */; };
 		FD92448E201F166900A5B093 /* ServiceRegistryProtocol.txt in Resources */ = {isa = PBXBuildFile; fileRef = FD92448D201F166900A5B093 /* ServiceRegistryProtocol.txt */; };
 		FD924492201FED2E00A5B093 /* EWCUdpChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD924491201FED2E00A5B093 /* EWCUdpChannel.m */; };
+		FDC38DDA203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC38DD9203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		FD92448D201F166900A5B093 /* ServiceRegistryProtocol.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ServiceRegistryProtocol.txt; sourceTree = "<group>"; };
 		FD924490201FED2E00A5B093 /* EWCUdpChannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCUdpChannel.h; sourceTree = "<group>"; };
 		FD924491201FED2E00A5B093 /* EWCUdpChannel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCUdpChannel.m; sourceTree = "<group>"; };
+		FDC38DD8203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryUnregisterRequest.h; sourceTree = "<group>"; };
+		FDC38DD9203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryUnregisterRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,8 @@
 				FD4FE80D20297BEF00EB534F /* EWCServiceRegistryRegisterRequest.m */,
 				FD4FE819202AA06B00EB534F /* EWCServiceRegistryAcknowledge.h */,
 				FD4FE81A202AA06B00EB534F /* EWCServiceRegistryAcknowledge.m */,
+				FDC38DD8203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.h */,
+				FDC38DD9203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.m */,
 			);
 			name = Packet;
 			sourceTree = "<group>";
@@ -408,6 +413,7 @@
 				FD4FE821202BC5C500EB534F /* EWCServiceRegistryClient.m in Sources */,
 				FD42C29B2023E62F00BAB4E7 /* EWCCFTypeRef.c in Sources */,
 				FD4FE80E20297BEF00EB534F /* EWCServiceRegistryRegisterRequest.m in Sources */,
+				FDC38DDA203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.m in Sources */,
 				FD924492201FED2E00A5B093 /* EWCUdpChannel.m in Sources */,
 				FD6D0773202D182700BC0D47 /* EWCServiceRegistration.m in Sources */,
 				FD92445B201F119100A5B093 /* AppDelegate.m in Sources */,

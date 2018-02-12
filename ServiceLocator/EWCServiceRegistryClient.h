@@ -20,4 +20,7 @@
            providerName:(NSString *)providerName
                    port:(uint16_t)port;
 
+- (void)unregisterService:(NSUUID *)serviceId
+                     port:(uint16_t)port;
+
 @end

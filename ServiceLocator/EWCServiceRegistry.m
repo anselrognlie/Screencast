@@ -57,6 +57,13 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
     return reg;
 }
 
+- (void)unregisterRequest:(EWCServiceRegistryUnregisterRequest *)request {
+    // clean any expired records
+    [self cleanupRecords];
+
+    [self removeRecordForRequest:request];
+}
+
 - (void)cleanupRecords {
     NSMutableArray<NSUUID *> *emptyServices = [NSMutableArray<NSUUID *> array];
     NSDate *now = [NSDate date];
@@ -96,7 +103,7 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
     EWCServiceRegistration *reg = nil;
 
     // get any existing entry for the service (creating new if needed)
-    EWCRegistrationList *serviceEntry = [self getEntryForService:request.serviceId];
+    EWCRegistrationList *serviceEntry = [self getOrCreateEntryForService:request.serviceId];
 
     // if current record already exists, just extend timeout
     reg = [self getRegistrationFromEntry:serviceEntry
@@ -112,13 +119,18 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
     return reg;
 }
 
-- (EWCRegistrationList *)getEntryForService:(NSUUID *)serviceId {
+- (EWCRegistrationList *)getOrCreateEntryForService:(NSUUID *)serviceId {
     EWCRegistrationList *records = self.services[serviceId];
     if (records == nil) {
         records = [EWCRegistrationList array];
         self.services[serviceId] = records;
     }
 
+    return records;
+}
+
+- (EWCRegistrationList *)getEntryForService:(NSUUID *)serviceId {
+    EWCRegistrationList *records = self.services[serviceId];
     return records;
 }
 
@@ -133,6 +145,39 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
     }];
 
     return reg;
+}
+
+- (void)acknowledgeRegistrationAtTime:(NSDate *)whenAdded
+                            toAddress:(EWCAddressIpv4 *)address {
+    // calculate the interval
+    NSDate *now = [NSDate date];
+    NSTimeInterval interval = [now timeIntervalSinceDate:whenAdded];
+    interval = self.recordTimeoutSeconds - interval;
+
+    // make an ack packet
+    EWCServiceRegistryAcknowledge *ack;
+    ack = [EWCServiceRegistryAcknowledge packetWithTimeout:interval];
+
+    // convert to data
+    NSData *data = [ack getData];
+
+    // send it back to the requestor
+    [self sendPacketData:data toAddress:address];
+}
+
+- (void)removeRecordForRequest:(EWCServiceRegistryUnregisterRequest *)request {
+    // get any existing entry for the service (creating new if needed)
+    EWCRegistrationList *serviceEntry = [self getEntryForService:request.serviceId];
+
+    if (! serviceEntry) { return; }
+
+    // if we can find a record for this, remove it from the list
+    EWCServiceRegistration *reg = [self getRegistrationFromEntry:serviceEntry
+                                                         address:request.address];
+    if (reg) {
+        [serviceEntry removeObject:reg];
+        NSLog(@"removed record");
+    }
 }
 
 // Handlers for protocol ////////////////////////////////////////////////
@@ -165,22 +210,19 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
     [self acknowledgeRegistrationAtTime:reg.whenAdded toAddress:address];
 }
 
-- (void)acknowledgeRegistrationAtTime:(NSDate *)whenAdded
-                            toAddress:(EWCAddressIpv4 *)address {
-    // calculate the interval
-    NSDate *now = [NSDate date];
-    NSTimeInterval interval = [now timeIntervalSinceDate:whenAdded];
-    interval = self.recordTimeoutSeconds - interval;
+- (void)processUnregisterRequest:(EWCServiceRegistryUnregisterRequest *)packet
+                     fromAddress:(EWCAddressIpv4 *)address {
+    in_addr_t addr = packet.address.addressIpv4;
+    uint8_t *byte = (uint8_t *)&addr;
+    NSLog(@"unregister %@ at %d.%d.%d.%d:%d",
+          packet.serviceId,
+          byte[3], byte[2], byte[1], byte[0],
+          packet.address.port);
 
-    // make an ack packet
-    EWCServiceRegistryAcknowledge *ack;
-    ack = [EWCServiceRegistryAcknowledge packetWithTimeout:interval];
+    [self unregisterRequest:packet];
 
-    // convert to data
-    NSData *data = [ack getData];
-
-    // send it back to the requestor
-    [self sendPacketData:data toAddress:address];
+    // send reply to requester
+    //[self acknowledgeRegistrationAtTime:reg.whenAdded toAddress:address];
 }
 
 @end

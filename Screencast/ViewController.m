@@ -113,6 +113,19 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     NSLog(@"published");
 }
 
+- (void)unpublishService {
+    NSUUID *serviceId = self.currentServiceId;
+    uint16_t port = self.currentPort;
+    NSString *provider = self.machineName;
+
+    if (! provider) { return; }
+    if (! serviceId) { return; }
+    if (! port) { return; }
+
+    [self.publisher unregisterService:serviceId port:port];
+    NSLog(@"unpublished");
+}
+
 - (void)scheduleNameLookupAndThen:(void(^)(void))continuation {
     dispatch_queue_t dq = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
@@ -194,6 +207,10 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 
 - (IBAction)registerButtonClicked:(NSButton *)sender {
     [self publishService];
+}
+
+- (IBAction)unregisterButtonClicked:(NSButton *)sender {
+    [self unpublishService];
 }
 
 @end

@@ -727,6 +727,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="unregisterButtonClicked:" target="XfG-lQ-9wD" id="NG6-BN-130"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gjf-xv-mD7" userLabel="Query Button">
                                 <rect key="frame" x="14" y="156" width="104" height="32"/>

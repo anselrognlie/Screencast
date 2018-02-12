@@ -35,6 +35,20 @@
     [self broadcastPacketData:data port:EWCServiceRegistryPort];
 }
 
+- (void)unregisterService:(NSUUID *)serviceId
+                     port:(uint16_t)port {
+    // get a register request
+    EWCServiceRegistryUnregisterRequest *request;
+    request = [EWCServiceRegistryUnregisterRequest packetWithServiceId:serviceId
+                                                                  port:port];
+
+    // convert to data
+    NSData *data = [request getData];
+
+    // send it
+    [self broadcastPacketData:data port:EWCServiceRegistryPort];
+}
+
 - (uint16_t) listenerPort {
     // just use a dynamic port
     return 0;
@@ -60,6 +74,10 @@
 
 - (void)processRegisterRequest:(EWCServiceRegistryRegisterRequest *)packet
                    fromAddress:(EWCAddressIpv4 *)address {
+}
+
+- (void)processUnregisterRequest:(EWCServiceRegistryUnregisterRequest *)packet
+                     fromAddress:(EWCAddressIpv4 *)address {
 }
 
 @end
