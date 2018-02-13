@@ -96,4 +96,16 @@
                 fromAddress:(EWCAddressIpv4 *)address {
 }
 
+- (void)processLocationResponse:(EWCServiceRegistryLocationResponse *)packet
+                    fromAddress:(EWCAddressIpv4 *)address {
+    NSLog(@"location response:");
+    NSLog(@"    serviceId: %@", packet.serviceId);
+    uint32_t addr = packet.address.addressIpv4;
+    uint8_t *byte = (uint8_t *)&addr;
+    NSLog(@"    at %d.%d.%d.%d:%d (%@)",
+          byte[3], byte[2], byte[1], byte[0],
+          packet.address.port,
+          packet.providerName);
+}
+
 @end

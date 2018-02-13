@@ -20,6 +20,8 @@ Registry service identifier:
 [operation] OP_REGREQ (0x01)
 [UUID] service id
 [short] service location (port only, ip address is the src addr of the packet)
+[uint8_t] name byte length
+[char...] name bytes
 
 [operation] OP_UNREGREQ (0x02)
 [UUID] service id
@@ -28,11 +30,14 @@ Registry service identifier:
 [operation] OP_SVCQRY (0x03)
 [UUID] service id
 
+// multiple individual responses are sent
+// the client shoud just be prepared to update any UI with results as they
+// are received
 [operation] OP_SVCLOC (0x04)
-[short] count of service providers
 [in_addr_t] address of requested service
 [short] service port
-... repeat previous 2 field * count
+[uint8_t] name byte length
+[char...] name bytes
 
 Reply to registration
 

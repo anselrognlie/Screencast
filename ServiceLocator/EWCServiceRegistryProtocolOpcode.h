@@ -13,5 +13,6 @@ static const uint16_t EWCAcknowledgeOpcode = 0;
 static const uint16_t EWCRegisterRequestOpcode = 1;
 static const uint16_t EWCUnregisterRequestOpcode = 2;
 static const uint16_t EWCQueryRequestOpcode = 3;
+static const uint16_t EWCLocationResponseOpcode = 4;
 
 #endif /* EWCServiceRegistryProtocolOpcode_h */

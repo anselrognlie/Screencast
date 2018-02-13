@@ -180,6 +180,23 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
     }
 }
 
+- (void)sendServiceRecords:(EWCRegistrationList *)records
+                 toAddress:(EWCAddressIpv4 *)address {
+    // generate a response for each record and send it to the supplied address
+    // possible performance optimization: run interation in bg task, but send
+    // from main thread.  Would need to duplicate the record list to prevent
+    // it from being modified during bg iteration
+    
+    for (EWCServiceRegistration *reg in records) {
+        EWCServiceRegistryLocationResponse *packet = nil;
+        packet = [EWCServiceRegistryLocationResponse packetWithServiceId:reg.serviceId
+                                                            providerName:reg.providerName
+                                                                 address:reg.address];
+
+        [self sendPacketData:[packet getData] toAddress:address];
+    }
+}
+
 // Handlers for protocol ////////////////////////////////////////////////
 
 - (void)processAcknowledge:(EWCServiceRegistryAcknowledge *)packet
@@ -225,6 +242,16 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
 - (void)processQueryRequest:(EWCServiceRegistryQueryRequest *)packet
                 fromAddress:(EWCAddressIpv4 *)address {
     NSLog(@"query request");
+
+    // get registered records for the supplied service id
+    EWCRegistrationList *records = [self getEntryForService:packet.serviceId];
+
+    // send results to the client
+    [self sendServiceRecords:records toAddress:address];
+}
+
+- (void)processLocationResponse:(EWCServiceRegistryLocationResponse *)packet
+                fromAddress:(EWCAddressIpv4 *)address {
 }
 
 @end
