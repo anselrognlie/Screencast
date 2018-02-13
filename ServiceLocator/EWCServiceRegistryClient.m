@@ -81,7 +81,7 @@
     NSLog(@"registered. will expire in %d seconds", packet.timeout);
 
     [self.clientHandler receivedRegistrationAcknowledgementPacket:packet
-                                                     fromaAddress:address];
+                                                      fromAddress:address];
 }
 
 - (void)processRegisterRequest:(EWCServiceRegistryRegisterRequest *)packet
@@ -106,6 +106,9 @@
           byte[3], byte[2], byte[1], byte[0],
           packet.address.port,
           packet.providerName);
+
+    [self.clientHandler receivedLocationResponsePacket:packet
+                                           fromAddress:address];
 }
 
 @end

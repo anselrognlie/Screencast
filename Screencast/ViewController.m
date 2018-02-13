@@ -25,6 +25,8 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 @property NSString *machineName;
 @property NSUUID *currentServiceId;
 @property uint16_t currentPort;
+@property (unsafe_unretained) IBOutlet NSTextView *resultText;
+@property NSString *queryResult;
 
 @end
 
@@ -43,14 +45,11 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     self.machineName = nil;
 
     // schedule a local name lookup
-    [self scheduleNameLookupAndThen:^{
-        //[self publishService];
-    }];
+    [self scheduleNameLookupAndThen:^{}];
 
     [self populateUI];
     
     [self start];
-    //[self publishService];
 }
 
 - (void)populateUI {
@@ -129,6 +128,10 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 
     if (! serviceId) { return; }
 
+    // clear the current result
+    self.queryResult = nil;
+    [self updateQueryResult];
+
     [self.publisher queryService:serviceId];
     NSLog(@"queried");
 }
@@ -148,10 +151,48 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     });
 }
 
+- (void)updateQueryResult {
+    NSTextView *resultField = self.resultText;
+    NSString *msg = self.queryResult;
+    if (! msg) {
+        msg = [NSString string];
+    }
+
+
+    if (resultField) {
+        resultField.string = msg;
+    }
+}
+
 // EWCServiceRegistryClientDelegate methods /////////////////////////////////////
 
-- (void)receivedRegistrationAcknowledgementPacket:(EWCServiceRegistryAcknowledge *)packet fromaAddress:(EWCAddressIpv4 *)address {
+- (void)receivedRegistrationAcknowledgementPacket:(EWCServiceRegistryAcknowledge *)packet
+                                      fromAddress:(EWCAddressIpv4 *)address {
     NSLog(@"view controller ack callback");
+}
+
+- (void)receivedLocationResponsePacket:(EWCServiceRegistryLocationResponse *)packet
+                           fromAddress:(EWCAddressIpv4 *)address {
+    NSLog(@"view controller location callback");
+
+    uint32_t addr = packet.address.addressIpv4;
+    uint8_t *byte = (uint8_t *)&addr;
+    NSString *msg = [NSString stringWithFormat:@"%@\n  at %d.%d.%d.%d:%d (%@)",
+        packet.serviceId,
+        byte[3], byte[2], byte[1], byte[0],
+        packet.address.port,
+        packet.providerName];
+
+    NSString *currMsg = self.queryResult;
+    if (! currMsg) {
+        currMsg = msg;
+    } else {
+        currMsg = [NSString stringWithFormat:@"%@\n%@", currMsg, msg];
+    }
+
+    self.queryResult = currMsg;
+
+    [self updateQueryResult];
 }
 
 // control accessors /////////////////////////////////////////////////////////

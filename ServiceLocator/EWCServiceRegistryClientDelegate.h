@@ -10,10 +10,14 @@
 
 @class EWCAddressIpv4;
 @class EWCServiceRegistryAcknowledge;
+@class EWCServiceRegistryLocationResponse;
 
 @protocol EWCServiceRegistryClientDelegate <NSObject>
 
 - (void)receivedRegistrationAcknowledgementPacket:(EWCServiceRegistryAcknowledge *)packet
-                                     fromaAddress:(EWCAddressIpv4 *)address;
+                                      fromAddress:(EWCAddressIpv4 *)address;
+
+- (void)receivedLocationResponsePacket:(EWCServiceRegistryLocationResponse *)packet
+                           fromAddress:(EWCAddressIpv4 *)address;
 
 @end
