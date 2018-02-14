@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "../Network/EWCAddressIpv4.h"
+#import "EWCLib/Network/EWCAddressIpv4.h"
 
 // service port
 static const uint16_t EWCServiceRegistryPort = 13887;

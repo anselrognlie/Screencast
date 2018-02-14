@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "EWCServiceRegistryPacket.h"
-#import "../Network/EWCAddressIpv4.h"
+#import "EWCLib/Network/EWCAddressIpv4.h"
 
 @interface EWCServiceRegistryQueryRequest : NSObject<EWCServiceRegistryPacket>
 

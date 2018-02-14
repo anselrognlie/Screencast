@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "../Network/EWCUdpChannel.h"
+#import "EWCLib/Network/EWCUdpChannel.h"
 #import "EWCServiceRegistryProtocolHandler.h"
 #import "EWCServiceRegistryClientDelegate.h"
 

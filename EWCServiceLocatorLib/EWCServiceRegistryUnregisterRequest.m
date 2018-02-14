@@ -1,45 +1,57 @@
 //
-//  EWCServiceRegistryQueryRequest.m
+//  EWCServiceRegistryUnregisterRequest.m
 //  Screencast
 //
 //  Created by Ansel Rognlie on 2018/02/12.
 //  Copyright © 2018 Ansel Rognlie. All rights reserved.
 //
 
-#import "EWCServiceRegistryQueryRequest.h"
+#import "EWCServiceRegistryUnregisterRequest.h"
 
 #import "EWCServiceRegistryProtocol.h"
 #import "EWCServiceRegistryProtocolHandler.h"
 #import "EWCServiceRegistryProtocolOpcode.h"
 #import "EWCDataHelper.h"
-#import "../Network/EWCAddressIpv4.h"
+#import "EWCLib/Network/EWCAddressIpv4.h"
 
-struct EWCRawQueryRequest {
+struct EWCRawUnregisterRequest {
     uint16_t operation;
     uint8_t serviceUuid[16];  // 128 bits
+    uint16_t port;
     uint8_t checksum;
 };
 
-typedef struct EWCRawQueryRequest EWCRawPacket;
+typedef struct EWCRawUnregisterRequest EWCRawPacket;
 
 static uint8_t CalculateChecksum(EWCRawPacket const *data);
 static BOOL IsRawPacket(NSData * data);
 static size_t GetRawPacketSize(void);
 
-@interface EWCServiceRegistryQueryRequest()
+@interface EWCServiceRegistryUnregisterRequest()
 @end
 
-@implementation EWCServiceRegistryQueryRequest {
+@implementation EWCServiceRegistryUnregisterRequest {
 }
 
-+ (instancetype)packetWithServiceId:(NSUUID *)serviceId {
-    return [[EWCServiceRegistryQueryRequest alloc]
-            initWithServiceId:serviceId];
++ (instancetype)packetWithServiceId:(NSUUID *)serviceId
+                               port:(uint16_t)port {
+    EWCAddressIpv4 *address = [EWCAddressIpv4 addressWithPort:port];
+
+    return [[EWCServiceRegistryUnregisterRequest alloc]
+            initWithServiceId:serviceId
+            address:address];
+}
+
++ (instancetype)packetWithServiceId:(NSUUID *)serviceId
+                            address:(EWCAddressIpv4 *)address {
+    return [[EWCServiceRegistryUnregisterRequest alloc]
+            initWithServiceId:serviceId
+            address:address];
 }
 
 + (NSObject<EWCServiceRegistryPacket> *)parsePacketData:(NSData *)data
                                             fromAddress:(EWCAddressIpv4 *)address {
-    EWCServiceRegistryQueryRequest *packet = nil;
+    EWCServiceRegistryUnregisterRequest *packet = nil;
 
     // perform trivial check again
     if (! IsRawPacket(data)) { return packet; }
@@ -50,19 +62,26 @@ static size_t GetRawPacketSize(void);
     EWC_EXTRACT_BEGIN
     EWC_EXTRACT_DATA(request->operation, data);
     EWC_EXTRACT_DATA(request->serviceUuid, data);
+    EWC_EXTRACT_DATA(request->port, data);
     EWC_EXTRACT_DATA(request->checksum, data);
     EWC_EXTRACT_END
 
     // fix the byte order where necessary
     request->operation = ntohs(request->operation);
+    request->port = ntohs(request->port);
 
     // perform and verify the checksum calculation
     uint8_t checksum = CalculateChecksum(request);
 
     if (checksum == request->checksum) {
+        // we have a valid packet, so we need to create a packet instance and populate it
+        EWCAddressIpv4 *serviceAddress = [address copy];
+        serviceAddress.port = request->port;
+
         NSUUID *serviceId =[[NSUUID alloc] initWithUUIDBytes:request->serviceUuid];
 
-        packet = [EWCServiceRegistryQueryRequest packetWithServiceId:serviceId];
+        packet = [EWCServiceRegistryUnregisterRequest packetWithServiceId:serviceId
+                                                                  address:serviceAddress];
     }
 
     // free the work memory
@@ -72,25 +91,36 @@ static size_t GetRawPacketSize(void);
     return packet;
 }
 
-+ (BOOL)isQueryRequest:(NSData *)data {
++ (BOOL)isUnregisterRequest:(NSData *)data {
     return IsRawPacket(data);
 }
 
 - (instancetype)init {
-    return [[EWCServiceRegistryQueryRequest alloc]
-            initWithServiceId:nil];
+    return [[EWCServiceRegistryUnregisterRequest alloc]
+            initWithServiceId:nil
+            port:0];
 }
 
-- (instancetype)initWithServiceId:(NSUUID *)serviceId {
+- (instancetype)initWithServiceId:(NSUUID *)serviceId
+                             port:(uint16_t)port {
+    EWCAddressIpv4 *address = [EWCAddressIpv4 addressWithPort:port];
+
+    return [self initWithServiceId:serviceId
+                           address:address];
+}
+
+- (instancetype)initWithServiceId:(NSUUID *)serviceId
+                          address:(EWCAddressIpv4 *)address {
     self = [super init];
 
+    self.address = address;
     self.serviceId = [serviceId copy];
 
     return self;
 }
 
 - (uint16_t)opcode {
-    return EWCQueryRequestOpcode;
+    return EWCUnregisterRequestOpcode;
 }
 
 - (NSData *)getData {
@@ -99,13 +129,16 @@ static size_t GetRawPacketSize(void);
 
     request->operation = self.opcode;
     [self.serviceId getUUIDBytes:request->serviceUuid];
+    request->port = self.address.port;
     request->checksum = CalculateChecksum(request);
 
     request->operation = htons(request->operation);
+    request->port = htons(request->port);
 
     NSMutableData *data = [NSMutableData dataWithCapacity:GetRawPacketSize()];
     EWC_APPEND_DATA(data, request->operation);
     EWC_APPEND_DATA(data, request->serviceUuid);
+    EWC_APPEND_DATA(data, request->port);
     EWC_APPEND_DATA(data, request->checksum);
 
     free(request);
@@ -115,7 +148,7 @@ static size_t GetRawPacketSize(void);
 
 - (void)processWithHandler:(NSObject<EWCServiceRegistryProtocolHandler> *)handler
                fromAddress:(EWCAddressIpv4 *)address {
-    [handler processQueryRequest:self fromAddress:address];
+    [handler processUnregisterRequest:self fromAddress:address];
 }
 
 @end
@@ -127,6 +160,7 @@ static uint8_t CalculateChecksum(EWCRawPacket const *data) {
     // must calculate field by field do to possibility of padding altering result
     EWC_UPDATE_CHECKSUM(checksum, data->operation);
     EWC_UPDATE_CHECKSUM(checksum, data->serviceUuid);
+    EWC_UPDATE_CHECKSUM(checksum, data->port);
 
     return checksum;
 }
@@ -136,7 +170,7 @@ static BOOL IsRawPacket(NSData * data) {
     // then it can only be a register request
     // note that the packet may still be malformed and return an invalid packet
 
-    NSLog(@"is query request?");
+    NSLog(@"is unregister request?");
 
     // check length
     if (data.length != GetRawPacketSize()) { return NO; }
@@ -146,7 +180,7 @@ static BOOL IsRawPacket(NSData * data) {
     [data getBytes:&opcode length:sizeof(opcode)];
     opcode = ntohs(opcode);
 
-    if (opcode != EWCQueryRequestOpcode) { return NO; }
+    if (opcode != EWCUnregisterRequestOpcode) { return NO; }
 
     return YES;
 }
@@ -156,6 +190,7 @@ static size_t GetRawPacketSize(void) {
 
     EWC_UPDATE_SIZE(size, EWCRawPacket, operation);
     EWC_UPDATE_SIZE(size, EWCRawPacket, serviceUuid);
+    EWC_UPDATE_SIZE(size, EWCRawPacket, port);
     EWC_UPDATE_SIZE(size, EWCRawPacket, checksum);
 
     return size;
@@ -164,18 +199,18 @@ static size_t GetRawPacketSize(void) {
 static int registrationToken = 0;
 
 __attribute__((constructor))
-static void EWCServiceRegistryQueryRequest_initialize() {
+static void EWCServiceRegistryUnregisterRequest_initialize() {
     EWCServiceRegistryProtocol *protocol = EWCServiceRegistryProtocol.protocol;
     registrationToken = [protocol registerPacketParser:^(NSData *data, EWCAddressIpv4 *address){
-        return [EWCServiceRegistryQueryRequest parsePacketData:data fromAddress:address];
+        return [EWCServiceRegistryUnregisterRequest parsePacketData:data fromAddress:address];
     }
                                             recognizer:^(NSData *data){
-                                                return [EWCServiceRegistryQueryRequest isQueryRequest:data];
+                                                return [EWCServiceRegistryUnregisterRequest isUnregisterRequest:data];
                                             }];
 }
 
 __attribute__((destructor))
-static void EWCServiceRegistryQueryRequest_destroy() {
+static void EWCServiceRegistryUnregisterRequest_destroy() {
     EWCServiceRegistryProtocol *protocol = EWCServiceRegistryProtocol.protocol;
     [protocol unregisterPacketParser:registrationToken];
 }

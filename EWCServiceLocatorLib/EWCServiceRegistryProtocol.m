@@ -8,7 +8,7 @@
 
 #import "EWCServiceRegistryProtocol.h"
 
-#import "../Container/EWCPair.h"
+#import "EWCLib/Container/EWCPair.h"
 #import "EWCServiceRegistryProtocolHandler.h"
 
 typedef EWCPair<EWCServiceRegistryParser, EWCServiceRegistryRecognizer> EWCRegistryPair;

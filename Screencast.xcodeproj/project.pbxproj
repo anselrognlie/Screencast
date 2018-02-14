@@ -7,50 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FD42C2972023E07A00BAB4E7 /* EWCBufferedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = FD42C2962023E07A00BAB4E7 /* EWCBufferedPacket.m */; };
-		FD42C29B2023E62F00BAB4E7 /* EWCCFTypeRef.c in Sources */ = {isa = PBXBuildFile; fileRef = FD42C29A2023E62F00BAB4E7 /* EWCCFTypeRef.c */; };
-		FD4FE80E20297BEF00EB534F /* EWCServiceRegistryRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE80D20297BEF00EB534F /* EWCServiceRegistryRegisterRequest.m */; };
-		FD4FE8142029973800EB534F /* EWCServiceRegistryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE8132029973800EB534F /* EWCServiceRegistryProtocol.m */; };
-		FD4FE8182029A48300EB534F /* EWCPair.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE8172029A48300EB534F /* EWCPair.m */; };
-		FD4FE81B202AA06B00EB534F /* EWCServiceRegistryAcknowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE81A202AA06B00EB534F /* EWCServiceRegistryAcknowledge.m */; };
-		FD4FE821202BC5C500EB534F /* EWCServiceRegistryClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE820202BC5C500EB534F /* EWCServiceRegistryClient.m */; };
-		FD4FE82B202C544900EB534F /* EWCStringLimiter.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE82A202C544900EB534F /* EWCStringLimiter.m */; };
-		FD6D0773202D182700BC0D47 /* EWCServiceRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6D0772202D182700BC0D47 /* EWCServiceRegistration.m */; };
-		FD6D0776202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6D0775202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m */; };
-		FD6D077A202FF9CC00BC0D47 /* EWCAddressIpv4.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6D0779202FF9CC00BC0D47 /* EWCAddressIpv4.m */; };
-		FD92445B201F119100A5B093 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92445A201F119100A5B093 /* AppDelegate.m */; };
-		FD92445E201F119100A5B093 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92445D201F119100A5B093 /* ViewController.m */; };
-		FD924460201F119100A5B093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD92445F201F119100A5B093 /* Assets.xcassets */; };
-		FD924463201F119100A5B093 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD924461201F119100A5B093 /* Main.storyboard */; };
-		FD924466201F119100A5B093 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD924465201F119100A5B093 /* main.m */; };
+		FD18636720345D8F00233413 /* EWCStringLimiter.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE82A202C544900EB534F /* EWCStringLimiter.m */; };
+		FD18636820345D8F00233413 /* EWCPair.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE8172029A48300EB534F /* EWCPair.m */; };
+		FD18636920345D8F00233413 /* EWCCFTypeRef.c in Sources */ = {isa = PBXBuildFile; fileRef = FD42C29A2023E62F00BAB4E7 /* EWCCFTypeRef.c */; };
+		FD18636A20345D8F00233413 /* EWCUdpChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD924491201FED2E00A5B093 /* EWCUdpChannel.m */; };
+		FD18636B20345D8F00233413 /* EWCBufferedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = FD42C2962023E07A00BAB4E7 /* EWCBufferedPacket.m */; };
+		FD18636C20345D8F00233413 /* EWCAddressIpv4.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6D0779202FF9CC00BC0D47 /* EWCAddressIpv4.m */; };
+		FD18637C20345F5100233413 /* EWCServiceRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = FD18637A20345F5000233413 /* EWCServiceRegistration.h */; };
+		FD18637D20345F5100233413 /* EWCServiceRegistryPacket.h in Headers */ = {isa = PBXBuildFile; fileRef = FD18637B20345F5000233413 /* EWCServiceRegistryPacket.h */; };
+		FD18637E20345FE300233413 /* EWCServiceRegistryRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE80D20297BEF00EB534F /* EWCServiceRegistryRegisterRequest.m */; };
+		FD18637F20345FE300233413 /* EWCServiceRegistryAcknowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE81A202AA06B00EB534F /* EWCServiceRegistryAcknowledge.m */; };
+		FD18638020345FE300233413 /* EWCServiceRegistryUnregisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC38DD9203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.m */; };
+		FD18638120345FE300233413 /* EWCServiceRegistryQueryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC38DDC2031AF8800CB52D3 /* EWCServiceRegistryQueryRequest.m */; };
+		FD18638220345FE300233413 /* EWCServiceRegistryLocationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC38DDF2032711800CB52D3 /* EWCServiceRegistryLocationResponse.m */; };
+		FD18638320345FE300233413 /* EWCServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92448B201F12E500A5B093 /* EWCServiceRegistry.m */; };
+		FD18638420345FE300233413 /* EWCServiceRegistryClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE820202BC5C500EB534F /* EWCServiceRegistryClient.m */; };
+		FD18638520345FE300233413 /* EWCServiceRegistryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE8132029973800EB534F /* EWCServiceRegistryProtocol.m */; };
+		FD18638620345FE300233413 /* EWCServiceRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6D0772202D182700BC0D47 /* EWCServiceRegistration.m */; };
+		FD18638720345FE300233413 /* EWCServiceRegistrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6D0775202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m */; };
+		FD1863932034616500233413 /* libEWCLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD18635E20345CE700233413 /* libEWCLib.a */; };
+		FD1863942034616A00233413 /* libEWCServiceLocatorLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD18637120345DE700233413 /* libEWCServiceLocatorLib.a */; };
 		FD924471201F119200A5B093 /* ScreencastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD924470201F119200A5B093 /* ScreencastTests.m */; };
 		FD92447C201F119200A5B093 /* ScreencastUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92447B201F119200A5B093 /* ScreencastUITests.m */; };
-		FD92448C201F12E500A5B093 /* EWCServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92448B201F12E500A5B093 /* EWCServiceRegistry.m */; };
-		FD92448E201F166900A5B093 /* ServiceRegistryProtocol.txt in Resources */ = {isa = PBXBuildFile; fileRef = FD92448D201F166900A5B093 /* ServiceRegistryProtocol.txt */; };
-		FD924492201FED2E00A5B093 /* EWCUdpChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD924491201FED2E00A5B093 /* EWCUdpChannel.m */; };
-		FDC38DDA203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC38DD9203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.m */; };
-		FDC38DDD2031AF8800CB52D3 /* EWCServiceRegistryQueryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC38DDC2031AF8800CB52D3 /* EWCServiceRegistryQueryRequest.m */; };
-		FDC38DE02032711800CB52D3 /* EWCServiceRegistryLocationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC38DDF2032711800CB52D3 /* EWCServiceRegistryLocationResponse.m */; };
+		FDA5446F20341746001D0D0D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA5446E20341746001D0D0D /* AppDelegate.m */; };
+		FDA5447220341746001D0D0D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA5447120341746001D0D0D /* ViewController.m */; };
+		FDA5447420341746001D0D0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDA5447320341746001D0D0D /* Assets.xcassets */; };
+		FDA5447720341746001D0D0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDA5447520341746001D0D0D /* Main.storyboard */; };
+		FDA5447A20341746001D0D0D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA5447920341746001D0D0D /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FD92446D201F119200A5B093 /* PBXContainerItemProxy */ = {
+		FD18638820345FF300233413 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FD92444E201F119100A5B093 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = FD924455201F119100A5B093;
-			remoteInfo = Screencast;
+			remoteGlobalIDString = FD18635D20345CE700233413;
+			remoteInfo = EWCLib;
 		};
-		FD924478201F119200A5B093 /* PBXContainerItemProxy */ = {
+		FD18638A203460B800233413 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FD92444E201F119100A5B093 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = FD924455201F119100A5B093;
-			remoteInfo = Screencast;
+			remoteGlobalIDString = FD18635D20345CE700233413;
+			remoteInfo = EWCLib;
+		};
+		FD18638C203460B800233413 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD92444E201F119100A5B093 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD18637020345DE700233413;
+			remoteInfo = EWCServiceLocatorLib;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD18635E20345CE700233413 /* libEWCLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEWCLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD18637120345DE700233413 /* libEWCServiceLocatorLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEWCServiceLocatorLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD18637A20345F5000233413 /* EWCServiceRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistration.h; sourceTree = "<group>"; };
+		FD18637B20345F5000233413 /* EWCServiceRegistryPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryPacket.h; sourceTree = "<group>"; };
 		FD42C28D202339F300BAB4E7 /* EWCUdpChannel+EWCUdpChannelProtected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EWCUdpChannel+EWCUdpChannelProtected.h"; sourceTree = "<group>"; };
 		FD42C2952023E07A00BAB4E7 /* EWCBufferedPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCBufferedPacket.h; sourceTree = "<group>"; };
 		FD42C2962023E07A00BAB4E7 /* EWCBufferedPacket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCBufferedPacket.m; sourceTree = "<group>"; };
@@ -58,7 +72,6 @@
 		FD42C29A2023E62F00BAB4E7 /* EWCCFTypeRef.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = EWCCFTypeRef.c; sourceTree = "<group>"; };
 		FD4FE80C20297BEF00EB534F /* EWCServiceRegistryRegisterRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryRegisterRequest.h; sourceTree = "<group>"; };
 		FD4FE80D20297BEF00EB534F /* EWCServiceRegistryRegisterRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryRegisterRequest.m; sourceTree = "<group>"; };
-		FD4FE80F20297D4F00EB534F /* EWCServiceRegistryPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryPacket.h; sourceTree = "<group>"; };
 		FD4FE8122029973800EB534F /* EWCServiceRegistryProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryProtocol.h; sourceTree = "<group>"; };
 		FD4FE8132029973800EB534F /* EWCServiceRegistryProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryProtocol.m; sourceTree = "<group>"; };
 		FD4FE8162029A48300EB534F /* EWCPair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCPair.h; sourceTree = "<group>"; };
@@ -72,23 +85,12 @@
 		FD4FE823202BDE1100EB534F /* EWCDataHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCDataHelper.h; sourceTree = "<group>"; };
 		FD4FE829202C544900EB534F /* EWCStringLimiter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCStringLimiter.h; sourceTree = "<group>"; };
 		FD4FE82A202C544900EB534F /* EWCStringLimiter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCStringLimiter.m; sourceTree = "<group>"; };
-		FD6D0771202D182700BC0D47 /* EWCServiceRegistration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistration.h; sourceTree = "<group>"; };
 		FD6D0772202D182700BC0D47 /* EWCServiceRegistration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistration.m; sourceTree = "<group>"; };
 		FD6D0774202D1B3100BC0D47 /* EWCServiceRegistrationBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistrationBridge.h; sourceTree = "<group>"; };
 		FD6D0775202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistrationBridge.m; sourceTree = "<group>"; };
 		FD6D0777202FF7F200BC0D47 /* EWCServiceRegistryClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryClientDelegate.h; sourceTree = "<group>"; };
 		FD6D0778202FF9CC00BC0D47 /* EWCAddressIpv4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCAddressIpv4.h; sourceTree = "<group>"; };
 		FD6D0779202FF9CC00BC0D47 /* EWCAddressIpv4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCAddressIpv4.m; sourceTree = "<group>"; };
-		FD924456201F119100A5B093 /* Screencast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Screencast.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD924459201F119100A5B093 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		FD92445A201F119100A5B093 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FD92445C201F119100A5B093 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FD92445D201F119100A5B093 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		FD92445F201F119100A5B093 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FD924462201F119100A5B093 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FD924464201F119100A5B093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FD924465201F119100A5B093 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FD924467201F119100A5B093 /* Screencast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Screencast.entitlements; sourceTree = "<group>"; };
 		FD92446C201F119200A5B093 /* ScreencastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreencastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD924470201F119200A5B093 /* ScreencastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreencastTests.m; sourceTree = "<group>"; };
 		FD924472201F119200A5B093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,6 +102,16 @@
 		FD92448D201F166900A5B093 /* ServiceRegistryProtocol.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ServiceRegistryProtocol.txt; sourceTree = "<group>"; };
 		FD924490201FED2E00A5B093 /* EWCUdpChannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCUdpChannel.h; sourceTree = "<group>"; };
 		FD924491201FED2E00A5B093 /* EWCUdpChannel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCUdpChannel.m; sourceTree = "<group>"; };
+		FDA5446B20341746001D0D0D /* ServiceLocatorTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServiceLocatorTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDA5446D20341746001D0D0D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FDA5446E20341746001D0D0D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FDA5447020341746001D0D0D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		FDA5447120341746001D0D0D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FDA5447320341746001D0D0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FDA5447620341746001D0D0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FDA5447820341746001D0D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDA5447920341746001D0D0D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FDA5447B20341746001D0D0D /* ServiceLocatorTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServiceLocatorTest.entitlements; sourceTree = "<group>"; };
 		FDC38DD8203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryUnregisterRequest.h; sourceTree = "<group>"; };
 		FDC38DD9203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryUnregisterRequest.m; sourceTree = "<group>"; };
 		FDC38DDB2031AF8800CB52D3 /* EWCServiceRegistryQueryRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryQueryRequest.h; sourceTree = "<group>"; };
@@ -109,7 +121,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FD924453201F119100A5B093 /* Frameworks */ = {
+		FD18635B20345CE700233413 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD18636E20345DE700233413 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -130,9 +149,60 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FDA5446820341746001D0D0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD1863942034616A00233413 /* libEWCServiceLocatorLib.a in Frameworks */,
+				FD1863932034616500233413 /* libEWCLib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD18635F20345CE700233413 /* EWCLib */ = {
+			isa = PBXGroup;
+			children = (
+				FD4FE828202C540200EB534F /* Foundation */,
+				FD4FE8152029A46F00EB534F /* Container */,
+				FD42C2982023E5FB00BAB4E7 /* CoreFoundation */,
+				FD92448F201FED0C00A5B093 /* Network */,
+			);
+			path = EWCLib;
+			sourceTree = "<group>";
+		};
+		FD18637220345DE700233413 /* EWCServiceLocatorLib */ = {
+			isa = PBXGroup;
+			children = (
+				FD92448D201F166900A5B093 /* ServiceRegistryProtocol.txt */,
+				FD4FE81E202BC55300EB534F /* Packet */,
+				FD92448A201F12E500A5B093 /* EWCServiceRegistry.h */,
+				FD92448B201F12E500A5B093 /* EWCServiceRegistry.m */,
+				FD4FE81F202BC5C500EB534F /* EWCServiceRegistryClient.h */,
+				FD4FE820202BC5C500EB534F /* EWCServiceRegistryClient.m */,
+				FD18637B20345F5000233413 /* EWCServiceRegistryPacket.h */,
+				FD4FE8122029973800EB534F /* EWCServiceRegistryProtocol.h */,
+				FD4FE8132029973800EB534F /* EWCServiceRegistryProtocol.m */,
+				FD4FE81C202B1A9B00EB534F /* EWCServiceRegistryProtocolHandler.h */,
+				FD4FE81D202BC3E700EB534F /* EWCServiceRegistryProtocolOpcode.h */,
+				FD4FE823202BDE1100EB534F /* EWCDataHelper.h */,
+				FD18637A20345F5000233413 /* EWCServiceRegistration.h */,
+				FD6D0772202D182700BC0D47 /* EWCServiceRegistration.m */,
+				FD6D0774202D1B3100BC0D47 /* EWCServiceRegistrationBridge.h */,
+				FD6D0775202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m */,
+				FD6D0777202FF7F200BC0D47 /* EWCServiceRegistryClientDelegate.h */,
+			);
+			path = EWCServiceLocatorLib;
+			sourceTree = "<group>";
+		};
+		FD1863922034616500233413 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FD42C2982023E5FB00BAB4E7 /* CoreFoundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,42 +250,26 @@
 		FD92444D201F119100A5B093 = {
 			isa = PBXGroup;
 			children = (
-				FD4FE828202C540200EB534F /* Foundation */,
-				FD4FE8152029A46F00EB534F /* Container */,
-				FD42C2982023E5FB00BAB4E7 /* CoreFoundation */,
-				FD92448F201FED0C00A5B093 /* Network */,
-				FD924489201F125600A5B093 /* ServiceLocator */,
-				FD924458201F119100A5B093 /* Screencast */,
 				FD92446F201F119200A5B093 /* ScreencastTests */,
 				FD92447A201F119200A5B093 /* ScreencastUITests */,
+				FDA5446C20341746001D0D0D /* ServiceLocatorTest */,
+				FD18635F20345CE700233413 /* EWCLib */,
+				FD18637220345DE700233413 /* EWCServiceLocatorLib */,
 				FD924457201F119100A5B093 /* Products */,
+				FD1863922034616500233413 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		FD924457201F119100A5B093 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FD924456201F119100A5B093 /* Screencast.app */,
 				FD92446C201F119200A5B093 /* ScreencastTests.xctest */,
 				FD924477201F119200A5B093 /* ScreencastUITests.xctest */,
+				FDA5446B20341746001D0D0D /* ServiceLocatorTest.app */,
+				FD18635E20345CE700233413 /* libEWCLib.a */,
+				FD18637120345DE700233413 /* libEWCServiceLocatorLib.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		FD924458201F119100A5B093 /* Screencast */ = {
-			isa = PBXGroup;
-			children = (
-				FD924459201F119100A5B093 /* AppDelegate.h */,
-				FD92445A201F119100A5B093 /* AppDelegate.m */,
-				FD92445C201F119100A5B093 /* ViewController.h */,
-				FD92445D201F119100A5B093 /* ViewController.m */,
-				FD92445F201F119100A5B093 /* Assets.xcassets */,
-				FD924461201F119100A5B093 /* Main.storyboard */,
-				FD924464201F119100A5B093 /* Info.plist */,
-				FD924465201F119100A5B093 /* main.m */,
-				FD924467201F119100A5B093 /* Screencast.entitlements */,
-			);
-			path = Screencast;
 			sourceTree = "<group>";
 		};
 		FD92446F201F119200A5B093 /* ScreencastTests */ = {
@@ -236,30 +290,6 @@
 			path = ScreencastUITests;
 			sourceTree = "<group>";
 		};
-		FD924489201F125600A5B093 /* ServiceLocator */ = {
-			isa = PBXGroup;
-			children = (
-				FD92448D201F166900A5B093 /* ServiceRegistryProtocol.txt */,
-				FD4FE81E202BC55300EB534F /* Packet */,
-				FD92448A201F12E500A5B093 /* EWCServiceRegistry.h */,
-				FD92448B201F12E500A5B093 /* EWCServiceRegistry.m */,
-				FD4FE81F202BC5C500EB534F /* EWCServiceRegistryClient.h */,
-				FD4FE820202BC5C500EB534F /* EWCServiceRegistryClient.m */,
-				FD4FE80F20297D4F00EB534F /* EWCServiceRegistryPacket.h */,
-				FD4FE8122029973800EB534F /* EWCServiceRegistryProtocol.h */,
-				FD4FE8132029973800EB534F /* EWCServiceRegistryProtocol.m */,
-				FD4FE81C202B1A9B00EB534F /* EWCServiceRegistryProtocolHandler.h */,
-				FD4FE81D202BC3E700EB534F /* EWCServiceRegistryProtocolOpcode.h */,
-				FD4FE823202BDE1100EB534F /* EWCDataHelper.h */,
-				FD6D0771202D182700BC0D47 /* EWCServiceRegistration.h */,
-				FD6D0772202D182700BC0D47 /* EWCServiceRegistration.m */,
-				FD6D0774202D1B3100BC0D47 /* EWCServiceRegistrationBridge.h */,
-				FD6D0775202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m */,
-				FD6D0777202FF7F200BC0D47 /* EWCServiceRegistryClientDelegate.h */,
-			);
-			path = ServiceLocator;
-			sourceTree = "<group>";
-		};
 		FD92448F201FED0C00A5B093 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,25 +304,78 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		FDA5446C20341746001D0D0D /* ServiceLocatorTest */ = {
+			isa = PBXGroup;
+			children = (
+				FDA5446D20341746001D0D0D /* AppDelegate.h */,
+				FDA5446E20341746001D0D0D /* AppDelegate.m */,
+				FDA5447020341746001D0D0D /* ViewController.h */,
+				FDA5447120341746001D0D0D /* ViewController.m */,
+				FDA5447320341746001D0D0D /* Assets.xcassets */,
+				FDA5447820341746001D0D0D /* Info.plist */,
+				FDA5447520341746001D0D0D /* Main.storyboard */,
+				FDA5447920341746001D0D0D /* main.m */,
+				FDA5447B20341746001D0D0D /* ServiceLocatorTest.entitlements */,
+			);
+			path = ServiceLocatorTest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		FD18635C20345CE700233413 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD18636F20345DE700233413 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD18637C20345F5100233413 /* EWCServiceRegistration.h in Headers */,
+				FD18637D20345F5100233413 /* EWCServiceRegistryPacket.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		FD924455201F119100A5B093 /* Screencast */ = {
+		FD18635D20345CE700233413 /* EWCLib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FD924480201F119200A5B093 /* Build configuration list for PBXNativeTarget "Screencast" */;
+			buildConfigurationList = FD18636420345CE700233413 /* Build configuration list for PBXNativeTarget "EWCLib" */;
 			buildPhases = (
-				FD924452201F119100A5B093 /* Sources */,
-				FD924453201F119100A5B093 /* Frameworks */,
-				FD924454201F119100A5B093 /* Resources */,
+				FD18635A20345CE700233413 /* Sources */,
+				FD18635B20345CE700233413 /* Frameworks */,
+				FD18635C20345CE700233413 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Screencast;
-			productName = Screencast;
-			productReference = FD924456201F119100A5B093 /* Screencast.app */;
-			productType = "com.apple.product-type.application";
+			name = EWCLib;
+			productName = EWCLib;
+			productReference = FD18635E20345CE700233413 /* libEWCLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FD18637020345DE700233413 /* EWCServiceLocatorLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD18637720345DE700233413 /* Build configuration list for PBXNativeTarget "EWCServiceLocatorLib" */;
+			buildPhases = (
+				FD18636D20345DE700233413 /* Sources */,
+				FD18636E20345DE700233413 /* Frameworks */,
+				FD18636F20345DE700233413 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD18638920345FF300233413 /* PBXTargetDependency */,
+			);
+			name = EWCServiceLocatorLib;
+			productName = EWCServiceLocatorLib;
+			productReference = FD18637120345DE700233413 /* libEWCServiceLocatorLib.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		FD92446B201F119200A5B093 /* ScreencastTests */ = {
 			isa = PBXNativeTarget;
@@ -305,7 +388,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				FD92446E201F119200A5B093 /* PBXTargetDependency */,
 			);
 			name = ScreencastTests;
 			productName = ScreencastTests;
@@ -323,12 +405,30 @@
 			buildRules = (
 			);
 			dependencies = (
-				FD924479201F119200A5B093 /* PBXTargetDependency */,
 			);
 			name = ScreencastUITests;
 			productName = ScreencastUITests;
 			productReference = FD924477201F119200A5B093 /* ScreencastUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		FDA5446A20341746001D0D0D /* ServiceLocatorTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDA5447C20341746001D0D0D /* Build configuration list for PBXNativeTarget "ServiceLocatorTest" */;
+			buildPhases = (
+				FDA5446720341746001D0D0D /* Sources */,
+				FDA5446820341746001D0D0D /* Frameworks */,
+				FDA5446920341746001D0D0D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD18638B203460B800233413 /* PBXTargetDependency */,
+				FD18638D203460B800233413 /* PBXTargetDependency */,
+			);
+			name = ServiceLocatorTest;
+			productName = ServiceLocatorTest;
+			productReference = FDA5446B20341746001D0D0D /* ServiceLocatorTest.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -339,14 +439,13 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Ansel Rognlie";
 				TargetAttributes = {
-					FD924455201F119100A5B093 = {
+					FD18635D20345CE700233413 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.Sandbox = {
-								enabled = 1;
-							};
-						};
+					};
+					FD18637020345DE700233413 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
 					};
 					FD92446B201F119200A5B093 = {
 						CreatedOnToolsVersion = 9.2;
@@ -357,6 +456,10 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						TestTargetID = FD924455201F119100A5B093;
+					};
+					FDA5446A20341746001D0D0D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -373,24 +476,16 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FD924455201F119100A5B093 /* Screencast */,
 				FD92446B201F119200A5B093 /* ScreencastTests */,
 				FD924476201F119200A5B093 /* ScreencastUITests */,
+				FDA5446A20341746001D0D0D /* ServiceLocatorTest */,
+				FD18635D20345CE700233413 /* EWCLib */,
+				FD18637020345DE700233413 /* EWCServiceLocatorLib */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FD924454201F119100A5B093 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FD924460201F119100A5B093 /* Assets.xcassets in Resources */,
-				FD92448E201F166900A5B093 /* ServiceRegistryProtocol.txt in Resources */,
-				FD924463201F119100A5B093 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FD92446A201F119200A5B093 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -405,32 +500,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FDA5446920341746001D0D0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDA5447420341746001D0D0D /* Assets.xcassets in Resources */,
+				FDA5447720341746001D0D0D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		FD924452201F119100A5B093 /* Sources */ = {
+		FD18635A20345CE700233413 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD6D0776202D1B3100BC0D47 /* EWCServiceRegistrationBridge.m in Sources */,
-				FD92445E201F119100A5B093 /* ViewController.m in Sources */,
-				FD924466201F119100A5B093 /* main.m in Sources */,
-				FD6D077A202FF9CC00BC0D47 /* EWCAddressIpv4.m in Sources */,
-				FD4FE8142029973800EB534F /* EWCServiceRegistryProtocol.m in Sources */,
-				FDC38DE02032711800CB52D3 /* EWCServiceRegistryLocationResponse.m in Sources */,
-				FD42C2972023E07A00BAB4E7 /* EWCBufferedPacket.m in Sources */,
-				FDC38DDD2031AF8800CB52D3 /* EWCServiceRegistryQueryRequest.m in Sources */,
-				FD4FE82B202C544900EB534F /* EWCStringLimiter.m in Sources */,
-				FD92448C201F12E500A5B093 /* EWCServiceRegistry.m in Sources */,
-				FD4FE821202BC5C500EB534F /* EWCServiceRegistryClient.m in Sources */,
-				FD42C29B2023E62F00BAB4E7 /* EWCCFTypeRef.c in Sources */,
-				FD4FE80E20297BEF00EB534F /* EWCServiceRegistryRegisterRequest.m in Sources */,
-				FDC38DDA203186B700CB52D3 /* EWCServiceRegistryUnregisterRequest.m in Sources */,
-				FD924492201FED2E00A5B093 /* EWCUdpChannel.m in Sources */,
-				FD6D0773202D182700BC0D47 /* EWCServiceRegistration.m in Sources */,
-				FD92445B201F119100A5B093 /* AppDelegate.m in Sources */,
-				FD4FE8182029A48300EB534F /* EWCPair.m in Sources */,
-				FD4FE81B202AA06B00EB534F /* EWCServiceRegistryAcknowledge.m in Sources */,
+				FD18636720345D8F00233413 /* EWCStringLimiter.m in Sources */,
+				FD18636820345D8F00233413 /* EWCPair.m in Sources */,
+				FD18636920345D8F00233413 /* EWCCFTypeRef.c in Sources */,
+				FD18636A20345D8F00233413 /* EWCUdpChannel.m in Sources */,
+				FD18636B20345D8F00233413 /* EWCBufferedPacket.m in Sources */,
+				FD18636C20345D8F00233413 /* EWCAddressIpv4.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD18636D20345DE700233413 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD18637E20345FE300233413 /* EWCServiceRegistryRegisterRequest.m in Sources */,
+				FD18637F20345FE300233413 /* EWCServiceRegistryAcknowledge.m in Sources */,
+				FD18638020345FE300233413 /* EWCServiceRegistryUnregisterRequest.m in Sources */,
+				FD18638120345FE300233413 /* EWCServiceRegistryQueryRequest.m in Sources */,
+				FD18638220345FE300233413 /* EWCServiceRegistryLocationResponse.m in Sources */,
+				FD18638320345FE300233413 /* EWCServiceRegistry.m in Sources */,
+				FD18638420345FE300233413 /* EWCServiceRegistryClient.m in Sources */,
+				FD18638520345FE300233413 /* EWCServiceRegistryProtocol.m in Sources */,
+				FD18638620345FE300233413 /* EWCServiceRegistration.m in Sources */,
+				FD18638720345FE300233413 /* EWCServiceRegistrationBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,26 +558,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FDA5446720341746001D0D0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDA5447220341746001D0D0D /* ViewController.m in Sources */,
+				FDA5447A20341746001D0D0D /* main.m in Sources */,
+				FDA5446F20341746001D0D0D /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		FD92446E201F119200A5B093 /* PBXTargetDependency */ = {
+		FD18638920345FF300233413 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FD924455201F119100A5B093 /* Screencast */;
-			targetProxy = FD92446D201F119200A5B093 /* PBXContainerItemProxy */;
+			target = FD18635D20345CE700233413 /* EWCLib */;
+			targetProxy = FD18638820345FF300233413 /* PBXContainerItemProxy */;
 		};
-		FD924479201F119200A5B093 /* PBXTargetDependency */ = {
+		FD18638B203460B800233413 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FD924455201F119100A5B093 /* Screencast */;
-			targetProxy = FD924478201F119200A5B093 /* PBXContainerItemProxy */;
+			target = FD18635D20345CE700233413 /* EWCLib */;
+			targetProxy = FD18638A203460B800233413 /* PBXContainerItemProxy */;
+		};
+		FD18638D203460B800233413 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD18637020345DE700233413 /* EWCServiceLocatorLib */;
+			targetProxy = FD18638C203460B800233413 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		FD924461201F119100A5B093 /* Main.storyboard */ = {
+		FDA5447520341746001D0D0D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FD924462201F119100A5B093 /* Base */,
+				FDA5447620341746001D0D0D /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -477,6 +600,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FD18636520345CE700233413 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FD18636620345CE700233413 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FD18637820345DE700233413 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = .;
+			};
+			name = Debug;
+		};
+		FD18637920345DE700233413 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = .;
+			};
+			name = Release;
+		};
 		FD92447E201F119200A5B093 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -580,36 +749,6 @@
 			};
 			name = Release;
 		};
-		FD924481201F119200A5B093 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Screencast/Screencast.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = RU9C9DUDK9;
-				INFOPLIST_FILE = Screencast/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ebbyware.Screencast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		FD924482201F119200A5B093 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Screencast/Screencast.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = RU9C9DUDK9;
-				INFOPLIST_FILE = Screencast/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ebbyware.Screencast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		FD924484201F119200A5B093 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -668,23 +807,66 @@
 			};
 			name = Release;
 		};
+		FDA5447D20341746001D0D0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ServiceLocatorTest/ServiceLocatorTest.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = ServiceLocatorTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ebbyware.ServiceLocatorTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = .;
+			};
+			name = Debug;
+		};
+		FDA5447E20341746001D0D0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ServiceLocatorTest/ServiceLocatorTest.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = ServiceLocatorTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ebbyware.ServiceLocatorTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = .;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FD18636420345CE700233413 /* Build configuration list for PBXNativeTarget "EWCLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD18636520345CE700233413 /* Debug */,
+				FD18636620345CE700233413 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD18637720345DE700233413 /* Build configuration list for PBXNativeTarget "EWCServiceLocatorLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD18637820345DE700233413 /* Debug */,
+				FD18637920345DE700233413 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FD924451201F119100A5B093 /* Build configuration list for PBXProject "Screencast" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FD92447E201F119200A5B093 /* Debug */,
 				FD92447F201F119200A5B093 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FD924480201F119200A5B093 /* Build configuration list for PBXNativeTarget "Screencast" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FD924481201F119200A5B093 /* Debug */,
-				FD924482201F119200A5B093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -703,6 +885,15 @@
 			buildConfigurations = (
 				FD924487201F119200A5B093 /* Debug */,
 				FD924488201F119200A5B093 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDA5447C20341746001D0D0D /* Build configuration list for PBXNativeTarget "ServiceLocatorTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDA5447D20341746001D0D0D /* Debug */,
+				FDA5447E20341746001D0D0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

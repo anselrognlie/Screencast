@@ -8,8 +8,8 @@
 
 #import "ViewController.h"
 
-#import "EWCServiceRegistry.h"
-#import "EWCServiceRegistryClient.h"
+#import "EWCServiceLocatorLib/EWCServiceRegistry.h"
+#import "EWCServiceLocatorLib/EWCServiceRegistryClient.h"
 
 static const NSInteger TAG_SERVICEID_TEXTFIELD  = 1;
 static const NSInteger TAG_PORT_TEXTFIELD  = 2;
