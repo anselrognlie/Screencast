@@ -82,8 +82,8 @@ static int registrationToken = 0;
     EWC_EXTRACT_END
 
     // fix the byte order where necessary
-    request->operation = ntohs(request->operation);
-    request->port = ntohs(request->port);
+    EWC_NTOHS(request->operation);
+    EWC_NTOHS(request->port);
 
     // perform and verify the checksum calculation
     uint8_t checksum = CalculateChecksum(request);
@@ -147,8 +147,8 @@ static int registrationToken = 0;
     request->port = self.address.port;
     request->checksum = CalculateChecksum(request);
 
-    request->operation = htons(request->operation);
-    request->port = htons(request->port);
+    EWC_HTONS(request->operation);
+    EWC_HTONS(request->port);
 
     NSMutableData *data = [NSMutableData dataWithCapacity:GetRawPacketSize()];
     EWC_APPEND_DATA(data, request->operation);
@@ -193,7 +193,7 @@ static BOOL IsRawPacket(NSData * data) {
     // get the first 2 bytes of the data to see whether this matches
     uint16_t opcode;
     [data getBytes:&opcode length:sizeof(opcode)];
-    opcode = ntohs(opcode);
+    EWC_NTOHS(opcode);
 
     if (opcode != EWCUnregisterRequestOpcode) { return NO; }
 

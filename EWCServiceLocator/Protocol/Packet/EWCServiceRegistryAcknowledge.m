@@ -75,8 +75,8 @@ static int registrationToken = 0;
     EWC_EXTRACT_END
 
     // fix the byte order where necessary
-    ack->operation = ntohs(ack->operation);
-    ack->blockOrTimeout = ntohs(ack->blockOrTimeout);
+    EWC_NTOHS(ack->operation);
+    EWC_NTOHS(ack->blockOrTimeout);
 
     // perform and verify the checksum calculation
     uint8_t checksum = CalculateChecksum(ack);
@@ -130,12 +130,12 @@ static int registrationToken = 0;
     // fill in raw packet structure with available data
     struct EWCRawAcknowledge *ack = malloc(sizeof(*ack));
 
-    ack->operation = EWCAcknowledgeOpcode;
+    ack->operation = self.opcode;
     ack->blockOrTimeout = self.block;
     ack->checksum = CalculateChecksum(ack);
 
-    ack->operation = htons(ack->operation);
-    ack->blockOrTimeout = htons(ack->blockOrTimeout);
+    EWC_HTONS(ack->operation);
+    EWC_HTONS(ack->blockOrTimeout);
 
     NSMutableData *data = [NSMutableData dataWithCapacity:GetRawPacketSize()];
     EWC_APPEND_DATA(data, ack->operation);
@@ -177,7 +177,7 @@ static BOOL IsRawPacket(NSData * data) {
     // get the first 2 bytes of the data to see whether this matches
     uint16_t opcode;
     [data getBytes:&opcode length:sizeof(opcode)];
-    opcode = ntohs(opcode);
+    EWC_NTOHS(opcode);
 
     if (opcode != EWCAcknowledgeOpcode) { return NO; }
 

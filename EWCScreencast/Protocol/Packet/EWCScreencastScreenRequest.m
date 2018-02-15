@@ -1,30 +1,29 @@
 //
-//  EWCServiceRegistryRegisterRequest.m
-//  Screencast
+//  EWCScreencastScreenRequest.m
+//  EWCScreencast
 //
-//  Created by Ansel Rognlie on 2018/02/06.
+//  Created by Ansel Rognlie on 2018/02/16.
 //  Copyright © 2018 Ansel Rognlie. All rights reserved.
 //
 
-#import "EWCServiceRegistryRegisterRequest.h"
+#import "EWCScreencastScreenRequest.h"
 
-#import "EWCServiceRegistryProtocol.h"
-#import "EWCServiceRegistryProtocolHandler.h"
-#import "EWCServiceRegistryProtocolOpcode.h"
-#import "EWCDataHelper.h"
+#import "EWCScreencastProtocol.h"
+#import "EWCScreencastProtocolHandler.h"
+#import "EWCScreencastProtocolOpcode.h"
+#import "EWCCore/Network/EWCDataHelper.h"
 #import "EWCCore/Foundation/EWCStringLimiter.h"
 #import "EWCCore/Network/EWCAddressIpv4.h"
 
-struct EWCRawRegisterRequest {
+struct EWCRawScreenRequest {
     uint16_t operation;
-    uint8_t serviceUuid[16];  // 128 bits
-    uint16_t port;
+    uint16_t screenId;
     uint8_t nameByteCount;  // includes null byte
     uint8_t checksum;
     char providerName[0];
 };
 
-typedef struct EWCRawRegisterRequest EWCRawPacket;
+typedef struct EWCRawScreenRequest EWCRawPacket;
 
 const static uint8_t EWCMaxNameLength = 128;
 
@@ -32,52 +31,39 @@ static uint8_t CalculateChecksum(EWCRawPacket const *data);
 static BOOL IsRawPacket(NSData * data);
 static size_t GetMinRawPacketSize(void);
 
-@interface EWCServiceRegistryRegisterRequest()
+@interface EWCScreencastScreenRequest()
 @end
 
 static int registrationToken = 0;
 
-@implementation EWCServiceRegistryRegisterRequest {
+@implementation EWCScreencastScreenRequest {
     char *rawProviderName_;
     int rawProviderNameLength_;  // number of bytes excluding null
 }
 
-+ (void)registerPacket:(EWCServiceRegistryProtocol *)protocol {
++ (void)registerPacket:(EWCScreencastProtocol *)protocol {
     registrationToken = [protocol registerPacketParser:^(NSData *data, EWCAddressIpv4 *address){
-        return [EWCServiceRegistryRegisterRequest parsePacketData:data fromAddress:address];
+        return [EWCScreencastScreenRequest parsePacketData:data fromAddress:address];
     }
                                             recognizer:^(NSData *data){
-                                                return [EWCServiceRegistryRegisterRequest isRegisterRequest:data];
+                                                return [EWCScreencastScreenRequest isScreenRequest:data];
                                             }];
 }
 
-+ (void)unregisterPacket:(EWCServiceRegistryProtocol *)protocol {
++ (void)unregisterPacket:(EWCScreencastProtocol *)protocol {
     [protocol unregisterPacketParser:registrationToken];
 }
 
-+ (instancetype)packetWithServiceId:(NSUUID *)serviceId
-                       providerName:(NSString *)providerName
-                               port:(uint16_t)port {
-    EWCAddressIpv4 *address = [EWCAddressIpv4 addressWithPort:port];
-
-    return [[EWCServiceRegistryRegisterRequest alloc]
-            initWithServiceId:serviceId
-            providerName:providerName
-            address:address];
++ (instancetype)packetWithProviderName:(NSString *)providerName
+                            lastScreen:(uint16_t)screenId {
+    return [[EWCScreencastScreenRequest alloc]
+            initWithProviderName:providerName
+            lastScreen:screenId];
 }
 
-+ (instancetype)packetWithServiceId:(NSUUID *)serviceId
-                       providerName:(NSString *)providerName
-                        address:(EWCAddressIpv4 *)address {
-    return [[EWCServiceRegistryRegisterRequest alloc]
-            initWithServiceId:serviceId
-            providerName:providerName
-            address:address];
-}
-
-+ (NSObject<EWCServiceRegistryPacket> *)parsePacketData:(NSData *)data
++ (NSObject<EWCScreencastPacket> *)parsePacketData:(NSData *)data
                                             fromAddress:(EWCAddressIpv4 *)address {
-    EWCServiceRegistryRegisterRequest *packet = nil;
+    EWCScreencastScreenRequest *packet = nil;
 
     // perform trivial check again
     if (! IsRawPacket(data)) { return packet; }
@@ -87,8 +73,7 @@ static int registrationToken = 0;
     EWCRawPacket *request = malloc(sizeof(*request));
     EWC_EXTRACT_BEGIN
     EWC_EXTRACT_DATA(request->operation, data);
-    EWC_EXTRACT_DATA(request->serviceUuid, data);
-    EWC_EXTRACT_DATA(request->port, data);
+    EWC_EXTRACT_DATA(request->screenId, data);
     EWC_EXTRACT_DATA(request->nameByteCount, data);
     EWC_EXTRACT_DATA(request->checksum, data);
 
@@ -99,23 +84,17 @@ static int registrationToken = 0;
 
     // fix the byte order where necessary
     EWC_NTOHS(request->operation);
-    EWC_NTOHS(request->port);
+    EWC_NTOHS(request->screenId);
 
     // perform and verify the checksum calculation
     uint8_t checksum = CalculateChecksum(request);
 
     if (checksum == request->checksum) {
-        // we have a valid packet, so we need to create a packet instance and populate it
-        EWCAddressIpv4 *serviceAddress = [address copy];
-        serviceAddress.port = request->port;
-
-        NSUUID *serviceId =[[NSUUID alloc] initWithUUIDBytes:request->serviceUuid];
-
+        // we have a valid packet
         NSString *providerName = [NSString stringWithUTF8String:request->providerName];
 
-        packet = [EWCServiceRegistryRegisterRequest packetWithServiceId:serviceId
-                                                           providerName:providerName
-                                                                address:serviceAddress];
+        packet = [EWCScreencastScreenRequest packetWithProviderName:providerName
+                                                         lastScreen:request->screenId];
     }
 
     // free the work memory
@@ -125,7 +104,7 @@ static int registrationToken = 0;
     return packet;
 }
 
-+ (BOOL)isRegisterRequest:(NSData *)data {
++ (BOOL)isScreenRequest:(NSData *)data {
     return IsRawPacket(data);
 }
 
@@ -134,40 +113,27 @@ static int registrationToken = 0;
 }
 
 - (instancetype)init {
-    return [[EWCServiceRegistryRegisterRequest alloc]
-            initWithServiceId:nil
-            providerName:nil
-            port:0];
+    return [[EWCScreencastScreenRequest alloc]
+            initWithProviderName:nil
+            lastScreen:0];
 }
 
-- (instancetype)initWithServiceId:(NSUUID *)serviceId
-                     providerName:(NSString *)providerName
-                             port:(uint16_t)port {
-    EWCAddressIpv4 *address = [EWCAddressIpv4 addressWithPort:port];
-
-    return [self initWithServiceId:serviceId
-                      providerName:providerName
-                           address:address];
-}
-
-- (instancetype)initWithServiceId:(NSUUID *)serviceId
-                     providerName:(NSString *)providerName
-                          address:(EWCAddressIpv4 *)address {
+- (instancetype)initWithProviderName:(NSString *)providerName
+                          lastScreen:(uint16_t)screenId {
     self = [super init];
 
     rawProviderName_ = malloc(1);
     *rawProviderName_ = 0;
     rawProviderNameLength_ = 0;
 
-    self.address = address;
-    self.serviceId = [serviceId copy];
+    self.screenId = screenId;
     self.providerName = [providerName copy];
 
     return self;
 }
 
 - (uint16_t)opcode {
-    return EWCRegisterRequestOpcode;
+    return EWCScreenRequestOpcode;
 }
 
 - (NSString *)providerName {
@@ -209,22 +175,20 @@ static int registrationToken = 0;
     EWCRawPacket *request = malloc(sizeof(*request) + rawProviderNameLength_);
 
     request->operation = self.opcode;
-    [self.serviceId getUUIDBytes:request->serviceUuid];
-    request->port = self.address.port;
+    request->screenId = self.screenId;
     request->nameByteCount = rawProviderNameLength_ + 1;  // include null count
     memcpy((char *)request->providerName, rawProviderName_, rawProviderNameLength_ + 1);
     request->checksum = CalculateChecksum(request);
 
     EWC_HTONS(request->operation);
-    EWC_HTONS(request->port);
+    EWC_HTONS(request->screenId);
 
     size_t minCapacity = GetMinRawPacketSize();
     minCapacity += rawProviderNameLength_;
 
     NSMutableData *data = [NSMutableData dataWithCapacity:GetMinRawPacketSize()];
     EWC_APPEND_DATA(data, request->operation);
-    EWC_APPEND_DATA(data, request->serviceUuid);
-    EWC_APPEND_DATA(data, request->port);
+    EWC_APPEND_DATA(data, request->screenId);
     EWC_APPEND_DATA(data, request->nameByteCount);
     EWC_APPEND_DATA(data, request->checksum);
     EWC_APPEND_DATA_LEN(data, request->providerName, request->nameByteCount);
@@ -234,9 +198,9 @@ static int registrationToken = 0;
     return data;
 }
 
-- (void)processWithHandler:(NSObject<EWCServiceRegistryProtocolHandler> *)handler
+- (void)processWithHandler:(NSObject<EWCScreencastProtocolHandler> *)handler
                fromAddress:(EWCAddressIpv4 *)address {
-    [handler processRegisterRequest:self fromAddress:address];
+    [handler processScreenRequest:self fromAddress:address];
 }
 
 @end
@@ -247,8 +211,7 @@ static uint8_t CalculateChecksum(EWCRawPacket const *data) {
 
     // must calculate field by field do to possibility of padding altering result
     EWC_UPDATE_CHECKSUM(checksum, data->operation);
-    EWC_UPDATE_CHECKSUM(checksum, data->serviceUuid);
-    EWC_UPDATE_CHECKSUM(checksum, data->port);
+    EWC_UPDATE_CHECKSUM(checksum, data->screenId);
     EWC_UPDATE_CHECKSUM(checksum, data->nameByteCount);
     EWC_UPDATE_CHECKSUM_LEN(checksum, data->providerName, data->nameByteCount);
 
@@ -257,10 +220,10 @@ static uint8_t CalculateChecksum(EWCRawPacket const *data) {
 
 static BOOL IsRawPacket(NSData * data) {
     // if the opcode field is 1 and the length is correct,
-    // then it can only be a register request
+    // then it can only be a sreen request
     // note that the packet may still be malformed and return an invalid packet
 
-    NSLog(@"is register request?");
+    NSLog(@"is screen request?");
 
     // check length
     if (data.length < GetMinRawPacketSize()) { return NO; }
@@ -270,7 +233,7 @@ static BOOL IsRawPacket(NSData * data) {
     [data getBytes:&opcode length:sizeof(opcode)];
     EWC_NTOHS(opcode);
 
-    if (opcode != EWCRegisterRequestOpcode) { return NO; }
+    if (opcode != EWCScreenRequestOpcode) { return NO; }
 
     return YES;
 }
@@ -279,8 +242,7 @@ static size_t GetMinRawPacketSize(void) {
     size_t size = 0;
 
     EWC_UPDATE_SIZE(size, EWCRawPacket, operation);
-    EWC_UPDATE_SIZE(size, EWCRawPacket, serviceUuid);
-    EWC_UPDATE_SIZE(size, EWCRawPacket, port);
+    EWC_UPDATE_SIZE(size, EWCRawPacket, screenId);
     EWC_UPDATE_SIZE(size, EWCRawPacket, nameByteCount);
     EWC_UPDATE_SIZE(size, EWCRawPacket, checksum);
 

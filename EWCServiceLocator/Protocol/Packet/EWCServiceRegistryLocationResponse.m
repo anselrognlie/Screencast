@@ -89,9 +89,9 @@ static int registrationToken = 0;
     EWC_EXTRACT_END
 
     // fix the byte order where necessary
-    request->operation = ntohs(request->operation);
-    request->addressIpv4 = ntohl(request->addressIpv4);
-    request->port = ntohs(request->port);
+    EWC_NTOHS(request->operation);
+    EWC_NTOHL(request->addressIpv4);
+    EWC_NTOHS(request->port);
 
     // perform and verify the checksum calculation
     uint8_t checksum = CalculateChecksum(request);
@@ -191,7 +191,7 @@ static int registrationToken = 0;
     // fill in raw packet structure with available data
     struct EWCRawLocationResponse *request = malloc(sizeof(*request) + rawProviderNameLength_);
 
-    request->operation = EWCLocationResponseOpcode;
+    request->operation = self.opcode;
     [self.serviceId getUUIDBytes:request->serviceUuid];
     request->port = self.address.port;
     request->addressIpv4 = self.address.addressIpv4;
@@ -199,9 +199,9 @@ static int registrationToken = 0;
     memcpy((char *)request->providerName, rawProviderName_, rawProviderNameLength_ + 1);
     request->checksum = CalculateChecksum(request);
 
-    request->operation = htons(request->operation);
-    request->addressIpv4 = htonl(request->addressIpv4);
-    request->port = htons(request->port);
+    EWC_HTONS(request->operation);
+    EWC_HTONL(request->addressIpv4);
+    EWC_HTONS(request->port);
 
     size_t minCapacity = GetMinRawPacketSize();
     minCapacity += rawProviderNameLength_;
@@ -255,7 +255,7 @@ static BOOL IsRawPacket(NSData * data) {
     // get the first 2 bytes of the data to see whether this matches
     uint16_t opcode;
     [data getBytes:&opcode length:sizeof(opcode)];
-    opcode = ntohs(opcode);
+    EWC_NTOHS(opcode);
 
     if (opcode != EWCLocationResponseOpcode) { return NO; }
 

@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class EWCScreencastScreenRequest;
+@class EWCScreencastPrepareForData;
+@class EWCAddressIpv4;
+
 @protocol EWCScreencastProtocolHandler <NSObject>
+
+- (void)processScreenRequest:(EWCScreencastScreenRequest *)packet
+                 fromAddress:(EWCAddressIpv4 *)address;
+- (void)processPrepareForData:(EWCScreencastPrepareForData *)packet
+                  fromAddress:(EWCAddressIpv4 *)address; 
 
 @end

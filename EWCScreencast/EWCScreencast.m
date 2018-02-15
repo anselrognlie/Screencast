@@ -22,4 +22,12 @@
     [protocol handlePacketData:data fromAddress:address handler:self];
 }
 
+- (void)processPrepareForData:(EWCScreencastPrepareForData *)packet fromAddress:(EWCAddressIpv4 *)address {
+
+}
+
+- (void)processScreenRequest:(EWCScreencastScreenRequest *)packet fromAddress:(EWCAddressIpv4 *)address {
+    
+}
+
 @end

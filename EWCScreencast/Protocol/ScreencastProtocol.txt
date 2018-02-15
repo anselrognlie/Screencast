@@ -1,0 +1,50 @@
+
+Screencast startup:
+
+1. create a UDP listening port at 13888
+2. initialize empty capture cache
+3. register service with service locator (external to service)
+
+Listening for requests:
+
+1. receive request for current screen
+
+Registration data:
+
+Registry service identifier:
+
+// 892BA8F1-1E59-469C-8FB1-C0F1E4E926D6
+#define EWC_UUID_SCREENCAST CFUUIDGetConstantUUIDWithBytes(kCFAllocatorSystemDefault, 0x89, 0x2B, 0xA8, 0xF1, 0x1E, 0x59, 0x46, 0x9C, 0x8F, 0xB1, 0xC0, 0xF1, 0xE4, 0xE9, 0x26, 0xD6)
+
+// request for screen from client
+[operation] OP_SCRNREQ (0x01)
+[short] most recent screen (0 indicates no screen yet)
+[uint8_t] name byte length
+[char...] name bytes
+
+
+// response from server to prepare for screen data
+// sent from a new data port
+[operation] OP_DATAPREP (0x02)
+[short] screen id
+[uint32] screen data byte count
+
+// ack the data prep back to the new data port
+[operation] OP_ACK (0x00)
+[uint16] block#
+
+// send data in blocks of 400 bytes
+// may be 0 bytes if final byte of file that has multiple of 400 bytes size
+[operation] OP_DATA (0x03)
+[short] block#
+[uint8] #bytes
+[uint8*] up to 400 bytes of data (<400 only if end of file)
+
+// ack each data packet, including final data packet
+
+[short] OP_ERR (0xff)
+[short] code
+[short] error message length (excluding final null)
+[utf8] error message
+[byte] 0
+

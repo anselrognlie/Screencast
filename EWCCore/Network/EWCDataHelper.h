@@ -49,4 +49,24 @@ EWC_EXTRACT_DATA_LEN(value, nsdata, sizeof(value)) \
 #define EWC_EXTRACT_END \
 } while (0);
 
+#define EWC_NTOHS(value) \
+do { \
+    (value) = ntohs(value); \
+} while (0) \
+
+#define EWC_NTOHL(value) \
+do { \
+    (value) = ntohl(value); \
+} while (0) \
+
+#define EWC_HTONS(value) \
+do { \
+    (value) = htons(value); \
+} while (0) \
+
+#define EWC_HTONL(value) \
+do { \
+    (value) = htonl(value); \
+} while (0) \
+
 #endif /* EWCDataHelper_h */
