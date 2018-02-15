@@ -1,14 +1,13 @@
 //
 //  ViewController.m
-//  Screencast
+//  ServiceLocatorApp
 //
-//  Created by Ansel Rognlie on 2018/01/29.
+//  Created by Ansel Rognlie on 2018/02/15.
 //  Copyright © 2018 Ansel Rognlie. All rights reserved.
 //
 
 #import "ViewController.h"
 
-#import "EWCServiceLocator/EWCServiceRegistry.h"
 #import "EWCServiceLocator/EWCServiceRegistryClient.h"
 
 static const NSInteger TAG_SERVICEID_TEXTFIELD  = 1;
@@ -19,14 +18,14 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 
 @interface ViewController()
 
-@property EWCServiceRegistry *registry;
 @property EWCServiceRegistryClient *publisher;
 
 @property NSString *machineName;
 @property NSUUID *currentServiceId;
 @property uint16_t currentPort;
-@property (unsafe_unretained) IBOutlet NSTextView *resultText;
+@property (unsafe_unretained) IBOutlet UITextView *resultText;
 @property NSString *queryResult;
+@property UIColor *textColor;
 
 @end
 
@@ -37,10 +36,9 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 - (void)dealloc{
     [self stop];
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     stopped_ = YES;
     self.machineName = nil;
 
@@ -48,36 +46,29 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     [self scheduleNameLookupAndThen:^{}];
 
     [self populateUI];
-    
+
     [self start];
 }
 
 - (void)populateUI {
-    NSTextField *field = [self getServiceIdTextField];
-    field.stringValue = [NSString stringWithUTF8String:DEFAULT_SERVICEID_STRING];
-    [self changedServiceIdTextField:field];
+    UITextField *field = [self getServiceIdTextField];
+    self.textColor = field.textColor;
+    field.text = [NSString stringWithUTF8String:DEFAULT_SERVICEID_STRING];
+    [self serviceIdChanged:field];
 
     field = [self getPortTextField];
-    field.stringValue = [NSString stringWithFormat:@"%d", DEFAULT_PORT];
-    [self changedPortTextField:field];
+    field.text = [NSString stringWithFormat:@"%d", DEFAULT_PORT];
+    [self portChanged:field];
 }
 
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-    
-    // Update the view, if already loaded.
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-
-- (void)viewWillDisappear {
-    // don't stop everything, since this happens even on minimize
-}
-
 
 - (void)start {
     if (! stopped_) { return; }
-    
-    self.registry = [EWCServiceRegistry new];
-    [self.registry start];
+
     self.publisher = [EWCServiceRegistryClient new];
     self.publisher.clientHandler = self;
     [self.publisher start];
@@ -85,12 +76,6 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 
 - (void)stop {
     if (stopped_) { return; }
-    
-    EWCServiceRegistry *tmp = self.registry;
-    self.registry = nil;
-    if (tmp) {
-        [tmp stop];
-    }
 
     EWCServiceRegistryClient *tmpClient = self.publisher;
     self.publisher = nil;
@@ -140,8 +125,8 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     dispatch_queue_t dq = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
     dispatch_async(dq, ^{
-        NSHost *host = [NSHost currentHost];
-        NSString *hostName = host.localizedName;
+        UIDevice *host = UIDevice.currentDevice;
+        NSString *hostName = host.name;
         NSLog(@"got hostname");
 
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -152,7 +137,7 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 }
 
 - (void)updateQueryResult {
-    NSTextView *resultField = self.resultText;
+    UITextView *resultField = self.resultText;
     NSString *msg = self.queryResult;
     if (! msg) {
         msg = [NSString string];
@@ -160,7 +145,7 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 
 
     if (resultField) {
-        resultField.string = msg;
+        resultField.text = msg;
     }
 }
 
@@ -197,74 +182,58 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 
 // control accessors /////////////////////////////////////////////////////////
 
-- (NSTextField *)getServiceIdTextField {
+- (UITextField *)getServiceIdTextField {
     return [self.view viewWithTag:TAG_SERVICEID_TEXTFIELD];
 }
 
-- (NSTextField *)getPortTextField {
+- (UITextField *)getPortTextField {
     return [self.view viewWithTag:TAG_PORT_TEXTFIELD];
 }
 
 // control handlers //////////////////////////////////////////////////////////
 
-- (void)controlTextDidChange:(NSNotification *)obj {
-    // which control?
-    NSTextField *field = obj.object;
-    switch (field.tag) {
-        case TAG_SERVICEID_TEXTFIELD:
-            [self changedServiceIdTextField:field];
-        break;
-
-        case TAG_PORT_TEXTFIELD:
-            [self changedPortTextField:field];
-        break;
-    }
-}
-
-- (void)changedServiceIdTextField:(NSTextField *)field {
-    // try to interpret the contents as a NSUUID
-    NSUUID *serviceId = [[NSUUID alloc] initWithUUIDString:field.stringValue];
-
-    self.currentServiceId = serviceId;
-    if (! serviceId) {
-        field.textColor = [NSColor redColor];
-    } else {
-        field.textColor = [NSColor textColor];
-    }
-}
-
-- (void)changedPortTextField:(NSTextField *)field {
-    // try to interpret the contents as a word
-    uint16_t port = (uint16_t)field.intValue;
-
-    if ([field.stringValue isEqualToString:[NSString stringWithFormat:@"%d", port]]) {
-        self.currentPort = port;
-        field.textColor = [NSColor textColor];
-    } else {
-        self.currentPort = 0;
-        field.textColor = [NSColor redColor];
-    }
-}
-
-- (IBAction)generateButtonClicked:(NSButton *)sender {
+- (IBAction)generateButtonClicked:(UIButton *)sender {
     NSUUID *newId = [NSUUID new];
-    NSTextField *field = [self getServiceIdTextField];
-    field.stringValue = [NSString stringWithFormat:@"%@", newId];
-    [self changedServiceIdTextField:field];
-}
-- (IBAction)serviceIdChanged:(UITextField *)sender {
+    UITextField *field = [self getServiceIdTextField];
+    field.text = [NSString stringWithFormat:@"%@", newId];
+    [self serviceIdChanged:field];
 }
 
-- (IBAction)registerButtonClicked:(NSButton *)sender {
+- (IBAction)registerButtonClicked:(UIButton *)sender {
     [self publishService];
 }
 
-- (IBAction)unregisterButtonClicked:(NSButton *)sender {
+- (IBAction)unregisterButtonClicked:(UIButton *)sender {
     [self unpublishService];
 }
 
-- (IBAction)queryButtonClicked:(NSButton *)sender {
+- (IBAction)queryButtonClicked:(UIButton *)sender {
     [self queryService];
+}
+
+- (IBAction)serviceIdChanged:(UITextField *)field {
+    // try to interpret the contents as a NSUUID
+    NSUUID *serviceId = [[NSUUID alloc] initWithUUIDString:field.text];
+
+    self.currentServiceId = serviceId;
+    if (! serviceId) {
+        field.textColor = [UIColor redColor];
+    } else {
+        field.textColor = self.textColor;
+    }
+}
+
+- (IBAction)portChanged:(UITextField *)field {
+    // try to interpret the contents as a word
+    uint16_t port = (uint16_t)field.text.intValue;
+
+    if ([field.text isEqualToString:[NSString stringWithFormat:@"%d", port]]) {
+        self.currentPort = port;
+        field.textColor = self.textColor;
+    } else {
+        self.currentPort = 0;
+        field.textColor = [UIColor redColor];
+    }
 }
 
 @end

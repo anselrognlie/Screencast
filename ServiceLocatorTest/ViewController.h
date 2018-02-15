@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "EWCServiceLocatorLib/EWCServiceRegistryClientDelegate.h"
+#import "EWCServiceLocator/EWCServiceRegistryClientDelegate.h"
 
 @interface ViewController : NSViewController<EWCServiceRegistryClientDelegate>
 

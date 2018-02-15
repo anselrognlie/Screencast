@@ -4,20 +4,45 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>EWCCore.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>EWCCoreIOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>EWCLib copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>EWCLib.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>EWCServiceLocatorLib.xcscheme</key>
+		<key>EWCServiceLocator.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>5</integer>
+		</dict>
+		<key>EWCServiceLocatorIOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Screencast.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>ServiceLocatorApp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>ServiceLocatorTest.xcscheme</key>
 		<dict>
@@ -27,6 +52,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>FD18635D20345CE700233413</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>FD18637020345DE700233413</key>
 		<dict>
 			<key>primary</key>
@@ -48,6 +78,16 @@
 			<true/>
 		</dict>
 		<key>FDA5446A20341746001D0D0D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FDBC290E2035156D007B975D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FDBC2933203515F9007B975D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
