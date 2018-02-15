@@ -11,7 +11,6 @@
 
 #import <netinet/in.h>
 #import "EWCServiceRegistryProtocol.h"
-#import "Packet/EWCServiceRegistryRegisterRequest.h"
 
 @interface EWCServiceRegistryClient()
 @end

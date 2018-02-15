@@ -9,7 +9,6 @@
 #import "EWCServiceRegistry.h"
 #import "EWCCore/Network/EWCUdpChannel+EWCUdpChannelProtected.h"
 
-#import <netinet/in.h>
 #import "EWCServiceRegistryProtocol.h"
 #import "EWCServiceRegistration.h"
 #import "EWCServiceRegistrationBridge.h"

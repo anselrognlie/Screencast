@@ -19,16 +19,6 @@
 		FD93E59220351C9F00FD5EC5 /* libEWCServiceLocator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBC29A120351A3A007B975D /* libEWCServiceLocator.a */; };
 		FD93E59720351CF400FD5EC5 /* libEWCCoreIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBC297C20351948007B975D /* libEWCCoreIOS.a */; };
 		FD93E59820351CF400FD5EC5 /* libEWCServiceLocatorIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD93E55920351BC400FD5EC5 /* libEWCServiceLocatorIOS.a */; };
-		FD93E59920353F0D00FD5EC5 /* EWCServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E56820351C4200FD5EC5 /* EWCServiceRegistry.m */; };
-		FD93E59A20353F0D00FD5EC5 /* EWCServiceRegistrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E56920351C4200FD5EC5 /* EWCServiceRegistrationBridge.m */; };
-		FD93E59B20353F0D00FD5EC5 /* EWCServiceRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E56B20351C4200FD5EC5 /* EWCServiceRegistration.m */; };
-		FD93E59C20353F0D00FD5EC5 /* EWCServiceRegistryClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E56C20351C4200FD5EC5 /* EWCServiceRegistryClient.m */; };
-		FD93E59E20353F0D00FD5EC5 /* EWCServiceRegistryUnregisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E57420351C4200FD5EC5 /* EWCServiceRegistryUnregisterRequest.m */; };
-		FD93E59F20353F0D00FD5EC5 /* EWCServiceRegistryLocationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E57620351C4200FD5EC5 /* EWCServiceRegistryLocationResponse.m */; };
-		FD93E5A020353F0D00FD5EC5 /* EWCServiceRegistryRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E57820351C4200FD5EC5 /* EWCServiceRegistryRegisterRequest.m */; };
-		FD93E5A120353F0D00FD5EC5 /* EWCServiceRegistryQueryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E57920351C4200FD5EC5 /* EWCServiceRegistryQueryRequest.m */; };
-		FD93E5A220353F0D00FD5EC5 /* EWCServiceRegistryAcknowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E57B20351C4200FD5EC5 /* EWCServiceRegistryAcknowledge.m */; };
-		FD93E5A320353F0D00FD5EC5 /* EWCServiceRegistryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E57F20351C4200FD5EC5 /* EWCServiceRegistryProtocol.m */; };
 		FD93E5A420353FB800FD5EC5 /* EWCServiceRegistryRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29D220351AA3007B975D /* EWCServiceRegistryRegisterRequest.m */; };
 		FD93E5A520353FB800FD5EC5 /* EWCServiceRegistryLocationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29D020351AA3007B975D /* EWCServiceRegistryLocationResponse.m */; };
 		FD93E5A620353FB800FD5EC5 /* EWCServiceRegistryAcknowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29D520351AA3007B975D /* EWCServiceRegistryAcknowledge.m */; };
@@ -39,17 +29,34 @@
 		FD93E5AB20353FB800FD5EC5 /* EWCServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29D820351AA3007B975D /* EWCServiceRegistry.m */; };
 		FD93E5AC20353FB800FD5EC5 /* EWCServiceRegistryClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29C820351AA2007B975D /* EWCServiceRegistryClient.m */; };
 		FD93E5AD20353FB800FD5EC5 /* EWCServiceRegistryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29CA20351AA3007B975D /* EWCServiceRegistryProtocol.m */; };
+		FD93E5B52035A55100FD5EC5 /* EWCScreencast.h in Headers */ = {isa = PBXBuildFile; fileRef = FD93E5B42035A55100FD5EC5 /* EWCScreencast.h */; };
+		FD93E5B72035A55100FD5EC5 /* EWCScreencast.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5B62035A55100FD5EC5 /* EWCScreencast.m */; };
+		FD93E5BC2035A7EA00FD5EC5 /* libEWCCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBC296F2035185D007B975D /* libEWCCore.a */; };
+		FD93E5C02035A87400FD5EC5 /* EWCScreencastProtocolHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = FD93E5BF2035A87400FD5EC5 /* EWCScreencastProtocolHandler.h */; };
+		FD93E5C32035A8B600FD5EC5 /* EWCScreencastProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = FD93E5C12035A8B600FD5EC5 /* EWCScreencastProtocol.h */; };
+		FD93E5C42035A8B600FD5EC5 /* EWCScreencastProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5C22035A8B600FD5EC5 /* EWCScreencastProtocol.m */; };
+		FD93E5C62035AB9C00FD5EC5 /* EWCScreencastPacket.h in Headers */ = {isa = PBXBuildFile; fileRef = FD93E5C52035AB9C00FD5EC5 /* EWCScreencastPacket.h */; };
+		FD93E5E62035AFA300FD5EC5 /* EWCServiceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5CC2035AFA300FD5EC5 /* EWCServiceRegistry.m */; };
+		FD93E5E72035AFA300FD5EC5 /* EWCServiceRegistrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5D02035AFA300FD5EC5 /* EWCServiceRegistrationBridge.m */; };
+		FD93E5E82035AFA300FD5EC5 /* EWCServiceRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5D12035AFA300FD5EC5 /* EWCServiceRegistration.m */; };
+		FD93E5E92035AFA300FD5EC5 /* EWCServiceRegistryUnregisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5D72035AFA300FD5EC5 /* EWCServiceRegistryUnregisterRequest.m */; };
+		FD93E5EA2035AFA300FD5EC5 /* EWCServiceRegistryLocationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5D92035AFA300FD5EC5 /* EWCServiceRegistryLocationResponse.m */; };
+		FD93E5EB2035AFA300FD5EC5 /* EWCServiceRegistryRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5DB2035AFA300FD5EC5 /* EWCServiceRegistryRegisterRequest.m */; };
+		FD93E5EC2035AFA300FD5EC5 /* EWCServiceRegistryQueryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5DD2035AFA300FD5EC5 /* EWCServiceRegistryQueryRequest.m */; };
+		FD93E5ED2035AFA300FD5EC5 /* EWCServiceRegistryAcknowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5DF2035AFA300FD5EC5 /* EWCServiceRegistryAcknowledge.m */; };
+		FD93E5EE2035AFA300FD5EC5 /* EWCServiceRegistryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5E22035AFA300FD5EC5 /* EWCServiceRegistryProtocol.m */; };
+		FD93E5EF2035AFA300FD5EC5 /* EWCServiceRegistryClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5E42035AFA300FD5EC5 /* EWCServiceRegistryClient.m */; };
+		FD93E6032035AFCC00FD5EC5 /* EWCUdpChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5F52035AFCC00FD5EC5 /* EWCUdpChannel.m */; };
+		FD93E6042035AFCC00FD5EC5 /* EWCBufferedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5F72035AFCC00FD5EC5 /* EWCBufferedPacket.m */; };
+		FD93E6052035AFCC00FD5EC5 /* EWCAddressIpv4.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5F92035AFCC00FD5EC5 /* EWCAddressIpv4.m */; };
+		FD93E6062035AFCC00FD5EC5 /* EWCStringLimiter.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5FB2035AFCC00FD5EC5 /* EWCStringLimiter.m */; };
+		FD93E6072035AFCC00FD5EC5 /* EWCPair.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5FE2035AFCC00FD5EC5 /* EWCPair.m */; };
+		FD93E6082035AFCC00FD5EC5 /* EWCCFTypeRef.c in Sources */ = {isa = PBXBuildFile; fileRef = FD93E6022035AFCC00FD5EC5 /* EWCCFTypeRef.c */; };
 		FDA5446F20341746001D0D0D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA5446E20341746001D0D0D /* AppDelegate.m */; };
 		FDA5447220341746001D0D0D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA5447120341746001D0D0D /* ViewController.m */; };
 		FDA5447420341746001D0D0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDA5447320341746001D0D0D /* Assets.xcassets */; };
 		FDA5447720341746001D0D0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDA5447520341746001D0D0D /* Main.storyboard */; };
 		FDA5447A20341746001D0D0D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA5447920341746001D0D0D /* main.m */; };
-		FDBC29972035195A007B975D /* EWCUdpChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29892035195A007B975D /* EWCUdpChannel.m */; };
-		FDBC29982035195A007B975D /* EWCBufferedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC298B2035195A007B975D /* EWCBufferedPacket.m */; };
-		FDBC29992035195A007B975D /* EWCAddressIpv4.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC298D2035195A007B975D /* EWCAddressIpv4.m */; };
-		FDBC299A2035195A007B975D /* EWCStringLimiter.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC298F2035195A007B975D /* EWCStringLimiter.m */; };
-		FDBC299B2035195A007B975D /* EWCPair.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29922035195A007B975D /* EWCPair.m */; };
-		FDBC299C2035195A007B975D /* EWCCFTypeRef.c in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29962035195A007B975D /* EWCCFTypeRef.c */; };
 		FDBC29BB20351A86007B975D /* EWCPair.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29AB20351A86007B975D /* EWCPair.m */; };
 		FDBC29BC20351A86007B975D /* EWCPair.h in Headers */ = {isa = PBXBuildFile; fileRef = FDBC29AC20351A86007B975D /* EWCPair.h */; };
 		FDBC29BD20351A86007B975D /* EWCCFTypeRef.h in Headers */ = {isa = PBXBuildFile; fileRef = FDBC29AE20351A86007B975D /* EWCCFTypeRef.h */; };
@@ -72,7 +79,6 @@
 		FDBC29F420351AA4007B975D /* EWCServiceRegistryProtocolHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = FDBC29D920351AA3007B975D /* EWCServiceRegistryProtocolHandler.h */; };
 		FDBC29F520351AA4007B975D /* EWCServiceRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = FDBC29DA20351AA3007B975D /* EWCServiceRegistry.h */; };
 		FDBC29F620351AA4007B975D /* EWCServiceRegistryProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = FDBC29DB20351AA3007B975D /* EWCServiceRegistryProtocol.h */; };
-		FDBC29F720351AA4007B975D /* EWCDataHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = FDBC29DC20351AA3007B975D /* EWCDataHelper.h */; };
 		FDBC29F920351AA4007B975D /* EWCServiceRegistryClient.h in Headers */ = {isa = PBXBuildFile; fileRef = FDBC29DE20351AA3007B975D /* EWCServiceRegistryClient.h */; };
 		FDBC29FA20351AA4007B975D /* EWCServiceRegistryPacket.h in Headers */ = {isa = PBXBuildFile; fileRef = FDBC29DF20351AA3007B975D /* EWCServiceRegistryPacket.h */; };
 		FDBC29FB20351AA4007B975D /* EWCServiceRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = FDBC29E020351AA3007B975D /* EWCServiceRegistration.h */; };
@@ -116,6 +122,13 @@
 			remoteGlobalIDString = FD93E55820351BC400FD5EC5;
 			remoteInfo = EWCServiceLocatorIOS;
 		};
+		FD93E5BD2035A7FE00FD5EC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD92444E201F119100A5B093 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDBC296E2035185D007B975D;
+			remoteInfo = EWCCore;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -157,32 +170,52 @@
 		FD92447B201F119200A5B093 /* ScreencastUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreencastUITests.m; sourceTree = "<group>"; };
 		FD92447D201F119200A5B093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD93E55920351BC400FD5EC5 /* libEWCServiceLocatorIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEWCServiceLocatorIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD93E56320351C4200FD5EC5 /* EWCServiceRegistryClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryClient.h; sourceTree = "<group>"; };
-		FD93E56420351C4200FD5EC5 /* EWCServiceRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistration.h; sourceTree = "<group>"; };
-		FD93E56520351C4200FD5EC5 /* EWCDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCDataHelper.h; sourceTree = "<group>"; };
-		FD93E56720351C4200FD5EC5 /* EWCServiceRegistryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryProtocol.h; sourceTree = "<group>"; };
-		FD93E56820351C4200FD5EC5 /* EWCServiceRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistry.m; sourceTree = "<group>"; };
-		FD93E56920351C4200FD5EC5 /* EWCServiceRegistrationBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistrationBridge.m; sourceTree = "<group>"; };
-		FD93E56A20351C4200FD5EC5 /* EWCServiceRegistryClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryClientDelegate.h; sourceTree = "<group>"; };
-		FD93E56B20351C4200FD5EC5 /* EWCServiceRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistration.m; sourceTree = "<group>"; };
-		FD93E56C20351C4200FD5EC5 /* EWCServiceRegistryClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryClient.m; sourceTree = "<group>"; };
-		FD93E56D20351C4200FD5EC5 /* ServiceRegistryProtocol.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ServiceRegistryProtocol.txt; sourceTree = "<group>"; };
-		FD93E56E20351C4200FD5EC5 /* EWCServiceRegistryProtocolOpcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryProtocolOpcode.h; sourceTree = "<group>"; };
-		FD93E56F20351C4200FD5EC5 /* EWCServiceRegistryPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryPacket.h; sourceTree = "<group>"; };
-		FD93E57120351C4200FD5EC5 /* EWCServiceRegistryProtocolHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryProtocolHandler.h; sourceTree = "<group>"; };
-		FD93E57320351C4200FD5EC5 /* EWCServiceRegistryRegisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryRegisterRequest.h; sourceTree = "<group>"; };
-		FD93E57420351C4200FD5EC5 /* EWCServiceRegistryUnregisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryUnregisterRequest.m; sourceTree = "<group>"; };
-		FD93E57520351C4200FD5EC5 /* EWCServiceRegistryQueryRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryQueryRequest.h; sourceTree = "<group>"; };
-		FD93E57620351C4200FD5EC5 /* EWCServiceRegistryLocationResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryLocationResponse.m; sourceTree = "<group>"; };
-		FD93E57720351C4200FD5EC5 /* EWCServiceRegistryAcknowledge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryAcknowledge.h; sourceTree = "<group>"; };
-		FD93E57820351C4200FD5EC5 /* EWCServiceRegistryRegisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryRegisterRequest.m; sourceTree = "<group>"; };
-		FD93E57920351C4200FD5EC5 /* EWCServiceRegistryQueryRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryQueryRequest.m; sourceTree = "<group>"; };
-		FD93E57A20351C4200FD5EC5 /* EWCServiceRegistryUnregisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryUnregisterRequest.h; sourceTree = "<group>"; };
-		FD93E57B20351C4200FD5EC5 /* EWCServiceRegistryAcknowledge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryAcknowledge.m; sourceTree = "<group>"; };
-		FD93E57C20351C4200FD5EC5 /* EWCServiceRegistryLocationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryLocationResponse.h; sourceTree = "<group>"; };
-		FD93E57D20351C4200FD5EC5 /* EWCServiceRegistrationBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistrationBridge.h; sourceTree = "<group>"; };
-		FD93E57E20351C4200FD5EC5 /* EWCServiceRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistry.h; sourceTree = "<group>"; };
-		FD93E57F20351C4200FD5EC5 /* EWCServiceRegistryProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryProtocol.m; sourceTree = "<group>"; };
+		FD93E5B22035A55100FD5EC5 /* libEWCScreencast.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEWCScreencast.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD93E5B42035A55100FD5EC5 /* EWCScreencast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCScreencast.h; sourceTree = "<group>"; };
+		FD93E5B62035A55100FD5EC5 /* EWCScreencast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCScreencast.m; sourceTree = "<group>"; };
+		FD93E5BF2035A87400FD5EC5 /* EWCScreencastProtocolHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCScreencastProtocolHandler.h; sourceTree = "<group>"; };
+		FD93E5C12035A8B600FD5EC5 /* EWCScreencastProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCScreencastProtocol.h; sourceTree = "<group>"; };
+		FD93E5C22035A8B600FD5EC5 /* EWCScreencastProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCScreencastProtocol.m; sourceTree = "<group>"; };
+		FD93E5C52035AB9C00FD5EC5 /* EWCScreencastPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCScreencastPacket.h; sourceTree = "<group>"; };
+		FD93E5CB2035AFA300FD5EC5 /* EWCServiceRegistryClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryClient.h; sourceTree = "<group>"; };
+		FD93E5CC2035AFA300FD5EC5 /* EWCServiceRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistry.m; sourceTree = "<group>"; };
+		FD93E5CE2035AFA300FD5EC5 /* EWCServiceRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistration.h; sourceTree = "<group>"; };
+		FD93E5CF2035AFA300FD5EC5 /* EWCServiceRegistryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryProtocol.h; sourceTree = "<group>"; };
+		FD93E5D02035AFA300FD5EC5 /* EWCServiceRegistrationBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistrationBridge.m; sourceTree = "<group>"; };
+		FD93E5D12035AFA300FD5EC5 /* EWCServiceRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistration.m; sourceTree = "<group>"; };
+		FD93E5D22035AFA300FD5EC5 /* ServiceRegistryProtocol.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ServiceRegistryProtocol.txt; sourceTree = "<group>"; };
+		FD93E5D32035AFA300FD5EC5 /* EWCServiceRegistryProtocolOpcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryProtocolOpcode.h; sourceTree = "<group>"; };
+		FD93E5D42035AFA300FD5EC5 /* EWCServiceRegistryProtocolHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryProtocolHandler.h; sourceTree = "<group>"; };
+		FD93E5D62035AFA300FD5EC5 /* EWCServiceRegistryRegisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryRegisterRequest.h; sourceTree = "<group>"; };
+		FD93E5D72035AFA300FD5EC5 /* EWCServiceRegistryUnregisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryUnregisterRequest.m; sourceTree = "<group>"; };
+		FD93E5D82035AFA300FD5EC5 /* EWCServiceRegistryQueryRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryQueryRequest.h; sourceTree = "<group>"; };
+		FD93E5D92035AFA300FD5EC5 /* EWCServiceRegistryLocationResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryLocationResponse.m; sourceTree = "<group>"; };
+		FD93E5DA2035AFA300FD5EC5 /* EWCServiceRegistryAcknowledge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryAcknowledge.h; sourceTree = "<group>"; };
+		FD93E5DB2035AFA300FD5EC5 /* EWCServiceRegistryRegisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryRegisterRequest.m; sourceTree = "<group>"; };
+		FD93E5DC2035AFA300FD5EC5 /* EWCServiceRegistryPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryPacket.h; sourceTree = "<group>"; };
+		FD93E5DD2035AFA300FD5EC5 /* EWCServiceRegistryQueryRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryQueryRequest.m; sourceTree = "<group>"; };
+		FD93E5DE2035AFA300FD5EC5 /* EWCServiceRegistryUnregisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryUnregisterRequest.h; sourceTree = "<group>"; };
+		FD93E5DF2035AFA300FD5EC5 /* EWCServiceRegistryAcknowledge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryAcknowledge.m; sourceTree = "<group>"; };
+		FD93E5E02035AFA300FD5EC5 /* EWCServiceRegistryLocationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryLocationResponse.h; sourceTree = "<group>"; };
+		FD93E5E12035AFA300FD5EC5 /* EWCServiceRegistrationBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistrationBridge.h; sourceTree = "<group>"; };
+		FD93E5E22035AFA300FD5EC5 /* EWCServiceRegistryProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryProtocol.m; sourceTree = "<group>"; };
+		FD93E5E32035AFA300FD5EC5 /* EWCServiceRegistryClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistryClientDelegate.h; sourceTree = "<group>"; };
+		FD93E5E42035AFA300FD5EC5 /* EWCServiceRegistryClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCServiceRegistryClient.m; sourceTree = "<group>"; };
+		FD93E5E52035AFA300FD5EC5 /* EWCServiceRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCServiceRegistry.h; sourceTree = "<group>"; };
+		FD93E5F22035AFCC00FD5EC5 /* EWCBufferedPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCBufferedPacket.h; sourceTree = "<group>"; };
+		FD93E5F32035AFCC00FD5EC5 /* EWCDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCDataHelper.h; sourceTree = "<group>"; };
+		FD93E5F42035AFCC00FD5EC5 /* EWCAddressIpv4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCAddressIpv4.h; sourceTree = "<group>"; };
+		FD93E5F52035AFCC00FD5EC5 /* EWCUdpChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCUdpChannel.m; sourceTree = "<group>"; };
+		FD93E5F62035AFCC00FD5EC5 /* EWCUdpChannel+EWCUdpChannelProtected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EWCUdpChannel+EWCUdpChannelProtected.h"; sourceTree = "<group>"; };
+		FD93E5F72035AFCC00FD5EC5 /* EWCBufferedPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCBufferedPacket.m; sourceTree = "<group>"; };
+		FD93E5F82035AFCC00FD5EC5 /* EWCUdpChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCUdpChannel.h; sourceTree = "<group>"; };
+		FD93E5F92035AFCC00FD5EC5 /* EWCAddressIpv4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCAddressIpv4.m; sourceTree = "<group>"; };
+		FD93E5FB2035AFCC00FD5EC5 /* EWCStringLimiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCStringLimiter.m; sourceTree = "<group>"; };
+		FD93E5FC2035AFCC00FD5EC5 /* EWCStringLimiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCStringLimiter.h; sourceTree = "<group>"; };
+		FD93E5FE2035AFCC00FD5EC5 /* EWCPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCPair.m; sourceTree = "<group>"; };
+		FD93E5FF2035AFCC00FD5EC5 /* EWCPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCPair.h; sourceTree = "<group>"; };
+		FD93E6012035AFCC00FD5EC5 /* EWCCFTypeRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCCFTypeRef.h; sourceTree = "<group>"; };
+		FD93E6022035AFCC00FD5EC5 /* EWCCFTypeRef.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = EWCCFTypeRef.c; sourceTree = "<group>"; };
 		FDA5446B20341746001D0D0D /* ServiceLocatorTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServiceLocatorTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDA5446D20341746001D0D0D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FDA5446E20341746001D0D0D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -195,19 +228,6 @@
 		FDA5447B20341746001D0D0D /* ServiceLocatorTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServiceLocatorTest.entitlements; sourceTree = "<group>"; };
 		FDBC296F2035185D007B975D /* libEWCCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEWCCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDBC297C20351948007B975D /* libEWCCoreIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEWCCoreIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		FDBC29872035195A007B975D /* EWCBufferedPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCBufferedPacket.h; sourceTree = "<group>"; };
-		FDBC29882035195A007B975D /* EWCAddressIpv4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCAddressIpv4.h; sourceTree = "<group>"; };
-		FDBC29892035195A007B975D /* EWCUdpChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCUdpChannel.m; sourceTree = "<group>"; };
-		FDBC298A2035195A007B975D /* EWCUdpChannel+EWCUdpChannelProtected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EWCUdpChannel+EWCUdpChannelProtected.h"; sourceTree = "<group>"; };
-		FDBC298B2035195A007B975D /* EWCBufferedPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCBufferedPacket.m; sourceTree = "<group>"; };
-		FDBC298C2035195A007B975D /* EWCUdpChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCUdpChannel.h; sourceTree = "<group>"; };
-		FDBC298D2035195A007B975D /* EWCAddressIpv4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCAddressIpv4.m; sourceTree = "<group>"; };
-		FDBC298F2035195A007B975D /* EWCStringLimiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCStringLimiter.m; sourceTree = "<group>"; };
-		FDBC29902035195A007B975D /* EWCStringLimiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCStringLimiter.h; sourceTree = "<group>"; };
-		FDBC29922035195A007B975D /* EWCPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCPair.m; sourceTree = "<group>"; };
-		FDBC29932035195A007B975D /* EWCPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCPair.h; sourceTree = "<group>"; };
-		FDBC29952035195A007B975D /* EWCCFTypeRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCCFTypeRef.h; sourceTree = "<group>"; };
-		FDBC29962035195A007B975D /* EWCCFTypeRef.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = EWCCFTypeRef.c; sourceTree = "<group>"; };
 		FDBC29A120351A3A007B975D /* libEWCServiceLocator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEWCServiceLocator.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDBC29AB20351A86007B975D /* EWCPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWCPair.m; sourceTree = "<group>"; };
 		FDBC29AC20351A86007B975D /* EWCPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCPair.h; sourceTree = "<group>"; };
@@ -281,6 +301,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FD93E5AF2035A55100FD5EC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD93E5BC2035A7EA00FD5EC5 /* libEWCCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FDA5446820341746001D0D0D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -346,6 +374,7 @@
 				FDBC297D20351948007B975D /* EWCCoreIOS */,
 				FDBC29A220351A3A007B975D /* EWCServiceLocator */,
 				FD93E55A20351BC400FD5EC5 /* EWCServiceLocatorIOS */,
+				FD93E5B32035A55100FD5EC5 /* EWCScreencast */,
 				FDA5446C20341746001D0D0D /* ServiceLocatorTest */,
 				FD18639D2035065F00233413 /* ServiceLocatorApp */,
 				FD924457201F119100A5B093 /* Products */,
@@ -364,6 +393,7 @@
 				FDBC297C20351948007B975D /* libEWCCoreIOS.a */,
 				FDBC29A120351A3A007B975D /* libEWCServiceLocator.a */,
 				FD93E55920351BC400FD5EC5 /* libEWCServiceLocatorIOS.a */,
+				FD93E5B22035A55100FD5EC5 /* libEWCScreencast.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -389,50 +419,156 @@
 		FD93E55A20351BC400FD5EC5 /* EWCServiceLocatorIOS */ = {
 			isa = PBXGroup;
 			children = (
-				FD93E56220351C4200FD5EC5 /* EWCServiceLocator */,
+				FD93E5CA2035AFA300FD5EC5 /* EWCServiceLocator */,
 			);
 			path = EWCServiceLocatorIOS;
 			sourceTree = "<group>";
 		};
-		FD93E56220351C4200FD5EC5 /* EWCServiceLocator */ = {
+		FD93E5B32035A55100FD5EC5 /* EWCScreencast */ = {
 			isa = PBXGroup;
 			children = (
-				FD93E56D20351C4200FD5EC5 /* ServiceRegistryProtocol.txt */,
-				FD93E57220351C4200FD5EC5 /* Packet */,
-				FD93E56320351C4200FD5EC5 /* EWCServiceRegistryClient.h */,
-				FD93E56C20351C4200FD5EC5 /* EWCServiceRegistryClient.m */,
-				FD93E56420351C4200FD5EC5 /* EWCServiceRegistration.h */,
-				FD93E56B20351C4200FD5EC5 /* EWCServiceRegistration.m */,
-				FD93E56520351C4200FD5EC5 /* EWCDataHelper.h */,
-				FD93E56720351C4200FD5EC5 /* EWCServiceRegistryProtocol.h */,
-				FD93E57F20351C4200FD5EC5 /* EWCServiceRegistryProtocol.m */,
-				FD93E57E20351C4200FD5EC5 /* EWCServiceRegistry.h */,
-				FD93E56820351C4200FD5EC5 /* EWCServiceRegistry.m */,
-				FD93E57D20351C4200FD5EC5 /* EWCServiceRegistrationBridge.h */,
-				FD93E56920351C4200FD5EC5 /* EWCServiceRegistrationBridge.m */,
-				FD93E56A20351C4200FD5EC5 /* EWCServiceRegistryClientDelegate.h */,
-				FD93E56E20351C4200FD5EC5 /* EWCServiceRegistryProtocolOpcode.h */,
-				FD93E56F20351C4200FD5EC5 /* EWCServiceRegistryPacket.h */,
-				FD93E57120351C4200FD5EC5 /* EWCServiceRegistryProtocolHandler.h */,
+				FD93E5C82035AF0600FD5EC5 /* Protocol */,
+				FD93E5B42035A55100FD5EC5 /* EWCScreencast.h */,
+				FD93E5B62035A55100FD5EC5 /* EWCScreencast.m */,
+			);
+			path = EWCScreencast;
+			sourceTree = "<group>";
+		};
+		FD93E5C72035AD3900FD5EC5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				FDBC29CC20351AA3007B975D /* Packet */,
+				FDBC29D720351AA3007B975D /* ServiceRegistryProtocol.txt */,
+				FDBC29E020351AA3007B975D /* EWCServiceRegistration.h */,
+				FDBC29E220351AA4007B975D /* EWCServiceRegistration.m */,
+				FDBC29E320351AA4007B975D /* EWCServiceRegistrationBridge.h */,
+				FDBC29E420351AA4007B975D /* EWCServiceRegistrationBridge.m */,
+				FDBC29DB20351AA3007B975D /* EWCServiceRegistryProtocol.h */,
+				FDBC29CA20351AA3007B975D /* EWCServiceRegistryProtocol.m */,
+				FDBC29D920351AA3007B975D /* EWCServiceRegistryProtocolHandler.h */,
+				FDBC29CB20351AA3007B975D /* EWCServiceRegistryProtocolOpcode.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		FD93E5C82035AF0600FD5EC5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				FD93E5C92035AF1000FD5EC5 /* Packet */,
+				FD93E5BF2035A87400FD5EC5 /* EWCScreencastProtocolHandler.h */,
+				FD93E5C12035A8B600FD5EC5 /* EWCScreencastProtocol.h */,
+				FD93E5C22035A8B600FD5EC5 /* EWCScreencastProtocol.m */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		FD93E5C92035AF1000FD5EC5 /* Packet */ = {
+			isa = PBXGroup;
+			children = (
+				FD93E5C52035AB9C00FD5EC5 /* EWCScreencastPacket.h */,
+			);
+			path = Packet;
+			sourceTree = "<group>";
+		};
+		FD93E5CA2035AFA300FD5EC5 /* EWCServiceLocator */ = {
+			isa = PBXGroup;
+			children = (
+				FD93E5CB2035AFA300FD5EC5 /* EWCServiceRegistryClient.h */,
+				FD93E5CC2035AFA300FD5EC5 /* EWCServiceRegistry.m */,
+				FD93E5CD2035AFA300FD5EC5 /* Protocol */,
+				FD93E5E32035AFA300FD5EC5 /* EWCServiceRegistryClientDelegate.h */,
+				FD93E5E42035AFA300FD5EC5 /* EWCServiceRegistryClient.m */,
+				FD93E5E52035AFA300FD5EC5 /* EWCServiceRegistry.h */,
 			);
 			path = EWCServiceLocator;
 			sourceTree = SOURCE_ROOT;
 		};
-		FD93E57220351C4200FD5EC5 /* Packet */ = {
+		FD93E5CD2035AFA300FD5EC5 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				FD93E57320351C4200FD5EC5 /* EWCServiceRegistryRegisterRequest.h */,
-				FD93E57420351C4200FD5EC5 /* EWCServiceRegistryUnregisterRequest.m */,
-				FD93E57520351C4200FD5EC5 /* EWCServiceRegistryQueryRequest.h */,
-				FD93E57620351C4200FD5EC5 /* EWCServiceRegistryLocationResponse.m */,
-				FD93E57720351C4200FD5EC5 /* EWCServiceRegistryAcknowledge.h */,
-				FD93E57820351C4200FD5EC5 /* EWCServiceRegistryRegisterRequest.m */,
-				FD93E57920351C4200FD5EC5 /* EWCServiceRegistryQueryRequest.m */,
-				FD93E57A20351C4200FD5EC5 /* EWCServiceRegistryUnregisterRequest.h */,
-				FD93E57B20351C4200FD5EC5 /* EWCServiceRegistryAcknowledge.m */,
-				FD93E57C20351C4200FD5EC5 /* EWCServiceRegistryLocationResponse.h */,
+				FD93E5CE2035AFA300FD5EC5 /* EWCServiceRegistration.h */,
+				FD93E5CF2035AFA300FD5EC5 /* EWCServiceRegistryProtocol.h */,
+				FD93E5D02035AFA300FD5EC5 /* EWCServiceRegistrationBridge.m */,
+				FD93E5D12035AFA300FD5EC5 /* EWCServiceRegistration.m */,
+				FD93E5D22035AFA300FD5EC5 /* ServiceRegistryProtocol.txt */,
+				FD93E5D32035AFA300FD5EC5 /* EWCServiceRegistryProtocolOpcode.h */,
+				FD93E5D42035AFA300FD5EC5 /* EWCServiceRegistryProtocolHandler.h */,
+				FD93E5D52035AFA300FD5EC5 /* Packet */,
+				FD93E5E12035AFA300FD5EC5 /* EWCServiceRegistrationBridge.h */,
+				FD93E5E22035AFA300FD5EC5 /* EWCServiceRegistryProtocol.m */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		FD93E5D52035AFA300FD5EC5 /* Packet */ = {
+			isa = PBXGroup;
+			children = (
+				FD93E5D62035AFA300FD5EC5 /* EWCServiceRegistryRegisterRequest.h */,
+				FD93E5D72035AFA300FD5EC5 /* EWCServiceRegistryUnregisterRequest.m */,
+				FD93E5D82035AFA300FD5EC5 /* EWCServiceRegistryQueryRequest.h */,
+				FD93E5D92035AFA300FD5EC5 /* EWCServiceRegistryLocationResponse.m */,
+				FD93E5DA2035AFA300FD5EC5 /* EWCServiceRegistryAcknowledge.h */,
+				FD93E5DB2035AFA300FD5EC5 /* EWCServiceRegistryRegisterRequest.m */,
+				FD93E5DC2035AFA300FD5EC5 /* EWCServiceRegistryPacket.h */,
+				FD93E5DD2035AFA300FD5EC5 /* EWCServiceRegistryQueryRequest.m */,
+				FD93E5DE2035AFA300FD5EC5 /* EWCServiceRegistryUnregisterRequest.h */,
+				FD93E5DF2035AFA300FD5EC5 /* EWCServiceRegistryAcknowledge.m */,
+				FD93E5E02035AFA300FD5EC5 /* EWCServiceRegistryLocationResponse.h */,
 			);
 			path = Packet;
+			sourceTree = "<group>";
+		};
+		FD93E5F02035AFCC00FD5EC5 /* EWCCore */ = {
+			isa = PBXGroup;
+			children = (
+				FD93E5F12035AFCC00FD5EC5 /* Network */,
+				FD93E5FA2035AFCC00FD5EC5 /* Foundation */,
+				FD93E5FD2035AFCC00FD5EC5 /* Container */,
+				FD93E6002035AFCC00FD5EC5 /* CoreFoundation */,
+			);
+			path = EWCCore;
+			sourceTree = SOURCE_ROOT;
+		};
+		FD93E5F12035AFCC00FD5EC5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FD93E5F22035AFCC00FD5EC5 /* EWCBufferedPacket.h */,
+				FD93E5F32035AFCC00FD5EC5 /* EWCDataHelper.h */,
+				FD93E5F42035AFCC00FD5EC5 /* EWCAddressIpv4.h */,
+				FD93E5F52035AFCC00FD5EC5 /* EWCUdpChannel.m */,
+				FD93E5F62035AFCC00FD5EC5 /* EWCUdpChannel+EWCUdpChannelProtected.h */,
+				FD93E5F72035AFCC00FD5EC5 /* EWCBufferedPacket.m */,
+				FD93E5F82035AFCC00FD5EC5 /* EWCUdpChannel.h */,
+				FD93E5F92035AFCC00FD5EC5 /* EWCAddressIpv4.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FD93E5FA2035AFCC00FD5EC5 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				FD93E5FB2035AFCC00FD5EC5 /* EWCStringLimiter.m */,
+				FD93E5FC2035AFCC00FD5EC5 /* EWCStringLimiter.h */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		FD93E5FD2035AFCC00FD5EC5 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				FD93E5FE2035AFCC00FD5EC5 /* EWCPair.m */,
+				FD93E5FF2035AFCC00FD5EC5 /* EWCPair.h */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		FD93E6002035AFCC00FD5EC5 /* CoreFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				FD93E6012035AFCC00FD5EC5 /* EWCCFTypeRef.h */,
+				FD93E6022035AFCC00FD5EC5 /* EWCCFTypeRef.c */,
+			);
+			path = CoreFoundation;
 			sourceTree = "<group>";
 		};
 		FDA5446C20341746001D0D0D /* ServiceLocatorTest */ = {
@@ -465,83 +601,20 @@
 		FDBC297D20351948007B975D /* EWCCoreIOS */ = {
 			isa = PBXGroup;
 			children = (
-				FDBC29852035195A007B975D /* EWCCore */,
+				FD93E5F02035AFCC00FD5EC5 /* EWCCore */,
 			);
 			path = EWCCoreIOS;
-			sourceTree = "<group>";
-		};
-		FDBC29852035195A007B975D /* EWCCore */ = {
-			isa = PBXGroup;
-			children = (
-				FDBC29862035195A007B975D /* Network */,
-				FDBC298E2035195A007B975D /* Foundation */,
-				FDBC29912035195A007B975D /* Container */,
-				FDBC29942035195A007B975D /* CoreFoundation */,
-			);
-			path = EWCCore;
-			sourceTree = SOURCE_ROOT;
-		};
-		FDBC29862035195A007B975D /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				FDBC29872035195A007B975D /* EWCBufferedPacket.h */,
-				FDBC29882035195A007B975D /* EWCAddressIpv4.h */,
-				FDBC29892035195A007B975D /* EWCUdpChannel.m */,
-				FDBC298A2035195A007B975D /* EWCUdpChannel+EWCUdpChannelProtected.h */,
-				FDBC298B2035195A007B975D /* EWCBufferedPacket.m */,
-				FDBC298C2035195A007B975D /* EWCUdpChannel.h */,
-				FDBC298D2035195A007B975D /* EWCAddressIpv4.m */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		FDBC298E2035195A007B975D /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				FDBC298F2035195A007B975D /* EWCStringLimiter.m */,
-				FDBC29902035195A007B975D /* EWCStringLimiter.h */,
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
-		FDBC29912035195A007B975D /* Container */ = {
-			isa = PBXGroup;
-			children = (
-				FDBC29922035195A007B975D /* EWCPair.m */,
-				FDBC29932035195A007B975D /* EWCPair.h */,
-			);
-			path = Container;
-			sourceTree = "<group>";
-		};
-		FDBC29942035195A007B975D /* CoreFoundation */ = {
-			isa = PBXGroup;
-			children = (
-				FDBC29952035195A007B975D /* EWCCFTypeRef.h */,
-				FDBC29962035195A007B975D /* EWCCFTypeRef.c */,
-			);
-			path = CoreFoundation;
 			sourceTree = "<group>";
 		};
 		FDBC29A220351A3A007B975D /* EWCServiceLocator */ = {
 			isa = PBXGroup;
 			children = (
-				FDBC29D720351AA3007B975D /* ServiceRegistryProtocol.txt */,
-				FDBC29CC20351AA3007B975D /* Packet */,
-				FDBC29DC20351AA3007B975D /* EWCDataHelper.h */,
-				FDBC29E020351AA3007B975D /* EWCServiceRegistration.h */,
-				FDBC29E220351AA4007B975D /* EWCServiceRegistration.m */,
-				FDBC29E320351AA4007B975D /* EWCServiceRegistrationBridge.h */,
-				FDBC29E420351AA4007B975D /* EWCServiceRegistrationBridge.m */,
+				FD93E5C72035AD3900FD5EC5 /* Protocol */,
 				FDBC29DA20351AA3007B975D /* EWCServiceRegistry.h */,
 				FDBC29D820351AA3007B975D /* EWCServiceRegistry.m */,
 				FDBC29DE20351AA3007B975D /* EWCServiceRegistryClient.h */,
 				FDBC29C820351AA2007B975D /* EWCServiceRegistryClient.m */,
 				FDBC29E120351AA3007B975D /* EWCServiceRegistryClientDelegate.h */,
-				FDBC29DF20351AA3007B975D /* EWCServiceRegistryPacket.h */,
-				FDBC29DB20351AA3007B975D /* EWCServiceRegistryProtocol.h */,
-				FDBC29CA20351AA3007B975D /* EWCServiceRegistryProtocol.m */,
-				FDBC29D920351AA3007B975D /* EWCServiceRegistryProtocolHandler.h */,
-				FDBC29CB20351AA3007B975D /* EWCServiceRegistryProtocolOpcode.h */,
 			);
 			path = EWCServiceLocator;
 			sourceTree = "<group>";
@@ -583,6 +656,7 @@
 				FDBC29B820351A86007B975D /* EWCBufferedPacket.m */,
 				FDBC29B920351A86007B975D /* EWCUdpChannel.h */,
 				FDBC29BA20351A86007B975D /* EWCAddressIpv4.m */,
+				FDBC29DC20351AA3007B975D /* EWCDataHelper.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -590,6 +664,7 @@
 		FDBC29CC20351AA3007B975D /* Packet */ = {
 			isa = PBXGroup;
 			children = (
+				FDBC29DF20351AA3007B975D /* EWCServiceRegistryPacket.h */,
 				FDBC29CD20351AA3007B975D /* EWCServiceRegistryRegisterRequest.h */,
 				FDBC29D220351AA3007B975D /* EWCServiceRegistryRegisterRequest.m */,
 				FDBC29D620351AA3007B975D /* EWCServiceRegistryLocationResponse.h */,
@@ -607,6 +682,17 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		FD93E5B02035A55100FD5EC5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD93E5C02035A87400FD5EC5 /* EWCScreencastProtocolHandler.h in Headers */,
+				FD93E5C62035AB9C00FD5EC5 /* EWCScreencastPacket.h in Headers */,
+				FD93E5B52035A55100FD5EC5 /* EWCScreencast.h in Headers */,
+				FD93E5C32035A8B600FD5EC5 /* EWCScreencastProtocol.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FDBC296D2035185D007B975D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -625,7 +711,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDBC29F720351AA4007B975D /* EWCDataHelper.h in Headers */,
 				FDBC29E920351AA4007B975D /* EWCServiceRegistryRegisterRequest.h in Headers */,
 				FDBC29E820351AA4007B975D /* EWCServiceRegistryProtocolOpcode.h in Headers */,
 				FDBC29F020351AA4007B975D /* EWCServiceRegistryUnregisterRequest.h in Headers */,
@@ -715,6 +800,24 @@
 			name = EWCServiceLocatorIOS;
 			productName = EWCServiceLocatorIOS;
 			productReference = FD93E55920351BC400FD5EC5 /* libEWCServiceLocatorIOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FD93E5B12035A55100FD5EC5 /* EWCScreencast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD93E5B82035A55100FD5EC5 /* Build configuration list for PBXNativeTarget "EWCScreencast" */;
+			buildPhases = (
+				FD93E5AE2035A55100FD5EC5 /* Sources */,
+				FD93E5AF2035A55100FD5EC5 /* Frameworks */,
+				FD93E5B02035A55100FD5EC5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD93E5BE2035A7FE00FD5EC5 /* PBXTargetDependency */,
+			);
+			name = EWCScreencast;
+			productName = EWCScreencat;
+			productReference = FD93E5B22035A55100FD5EC5 /* libEWCScreencast.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		FDA5446A20341746001D0D0D /* ServiceLocatorTest */ = {
@@ -814,6 +917,10 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
+					FD93E5B12035A55100FD5EC5 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					FDA5446A20341746001D0D0D = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -853,6 +960,7 @@
 				FDBC297B20351948007B975D /* EWCCoreIOS */,
 				FDBC29A020351A3A007B975D /* EWCServiceLocator */,
 				FD93E55820351BC400FD5EC5 /* EWCServiceLocatorIOS */,
+				FD93E5B12035A55100FD5EC5 /* EWCScreencast */,
 			);
 		};
 /* End PBXProject section */
@@ -924,16 +1032,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD93E59920353F0D00FD5EC5 /* EWCServiceRegistry.m in Sources */,
-				FD93E59A20353F0D00FD5EC5 /* EWCServiceRegistrationBridge.m in Sources */,
-				FD93E59B20353F0D00FD5EC5 /* EWCServiceRegistration.m in Sources */,
-				FD93E59C20353F0D00FD5EC5 /* EWCServiceRegistryClient.m in Sources */,
-				FD93E59E20353F0D00FD5EC5 /* EWCServiceRegistryUnregisterRequest.m in Sources */,
-				FD93E59F20353F0D00FD5EC5 /* EWCServiceRegistryLocationResponse.m in Sources */,
-				FD93E5A020353F0D00FD5EC5 /* EWCServiceRegistryRegisterRequest.m in Sources */,
-				FD93E5A120353F0D00FD5EC5 /* EWCServiceRegistryQueryRequest.m in Sources */,
-				FD93E5A220353F0D00FD5EC5 /* EWCServiceRegistryAcknowledge.m in Sources */,
-				FD93E5A320353F0D00FD5EC5 /* EWCServiceRegistryProtocol.m in Sources */,
+				FD93E5EA2035AFA300FD5EC5 /* EWCServiceRegistryLocationResponse.m in Sources */,
+				FD93E5EB2035AFA300FD5EC5 /* EWCServiceRegistryRegisterRequest.m in Sources */,
+				FD93E5E62035AFA300FD5EC5 /* EWCServiceRegistry.m in Sources */,
+				FD93E5E82035AFA300FD5EC5 /* EWCServiceRegistration.m in Sources */,
+				FD93E5E92035AFA300FD5EC5 /* EWCServiceRegistryUnregisterRequest.m in Sources */,
+				FD93E5EF2035AFA300FD5EC5 /* EWCServiceRegistryClient.m in Sources */,
+				FD93E5E72035AFA300FD5EC5 /* EWCServiceRegistrationBridge.m in Sources */,
+				FD93E5EC2035AFA300FD5EC5 /* EWCServiceRegistryQueryRequest.m in Sources */,
+				FD93E5ED2035AFA300FD5EC5 /* EWCServiceRegistryAcknowledge.m in Sources */,
+				FD93E5EE2035AFA300FD5EC5 /* EWCServiceRegistryProtocol.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD93E5AE2035A55100FD5EC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD93E5C42035A8B600FD5EC5 /* EWCScreencastProtocol.m in Sources */,
+				FD93E5B72035A55100FD5EC5 /* EWCScreencast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,12 +1081,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDBC29982035195A007B975D /* EWCBufferedPacket.m in Sources */,
-				FDBC299A2035195A007B975D /* EWCStringLimiter.m in Sources */,
-				FDBC299B2035195A007B975D /* EWCPair.m in Sources */,
-				FDBC29992035195A007B975D /* EWCAddressIpv4.m in Sources */,
-				FDBC299C2035195A007B975D /* EWCCFTypeRef.c in Sources */,
-				FDBC29972035195A007B975D /* EWCUdpChannel.m in Sources */,
+				FD93E6042035AFCC00FD5EC5 /* EWCBufferedPacket.m in Sources */,
+				FD93E6062035AFCC00FD5EC5 /* EWCStringLimiter.m in Sources */,
+				FD93E6072035AFCC00FD5EC5 /* EWCPair.m in Sources */,
+				FD93E6052035AFCC00FD5EC5 /* EWCAddressIpv4.m in Sources */,
+				FD93E6082035AFCC00FD5EC5 /* EWCCFTypeRef.c in Sources */,
+				FD93E6032035AFCC00FD5EC5 /* EWCUdpChannel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,6 +1134,11 @@
 			isa = PBXTargetDependency;
 			target = FD93E55820351BC400FD5EC5 /* EWCServiceLocatorIOS */;
 			targetProxy = FD93E59520351CEC00FD5EC5 /* PBXContainerItemProxy */;
+		};
+		FD93E5BE2035A7FE00FD5EC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FDBC296E2035185D007B975D /* EWCCore */;
+			targetProxy = FD93E5BD2035A7FE00FD5EC5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1279,6 +1401,28 @@
 			};
 			name = Release;
 		};
+		FD93E5B92035A55100FD5EC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = .;
+			};
+			name = Debug;
+		};
+		FD93E5BA2035A55100FD5EC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = .;
+			};
+			name = Release;
+		};
 		FDA5447D20341746001D0D0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1430,6 +1574,15 @@
 			buildConfigurations = (
 				FD93E56020351BC400FD5EC5 /* Debug */,
 				FD93E56120351BC400FD5EC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD93E5B82035A55100FD5EC5 /* Build configuration list for PBXNativeTarget "EWCScreencast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD93E5B92035A55100FD5EC5 /* Debug */,
+				FD93E5BA2035A55100FD5EC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

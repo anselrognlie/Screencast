@@ -252,8 +252,6 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     field.stringValue = [NSString stringWithFormat:@"%@", newId];
     [self changedServiceIdTextField:field];
 }
-- (IBAction)serviceIdChanged:(UITextField *)sender {
-}
 
 - (IBAction)registerButtonClicked:(NSButton *)sender {
     [self publishService];

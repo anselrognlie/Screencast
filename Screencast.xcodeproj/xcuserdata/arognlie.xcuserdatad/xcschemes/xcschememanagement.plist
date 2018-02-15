@@ -12,7 +12,7 @@
 		<key>EWCCoreIOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
 		<key>EWCLib copy.xcscheme</key>
 		<dict>
@@ -24,15 +24,20 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>EWCScreencast.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>EWCServiceLocator.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>6</integer>
 		</dict>
 		<key>EWCServiceLocatorIOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Screencast.xcscheme</key>
 		<dict>
