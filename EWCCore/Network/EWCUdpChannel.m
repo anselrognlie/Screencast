@@ -13,6 +13,7 @@
 #import <netinet/in.h>
 #import "EWCBufferedPacket.h"
 #import "../CoreFoundation/EWCCFTypeRef.h"
+#import "EWCAddressIpv4.h"
 
 static void HandleSocketCallback(CFSocketRef s,
                                  CFSocketCallBackType type,
@@ -74,15 +75,8 @@ static void HandleSocketCallback(CFSocketRef s,
     [self stopSocket];
 }
 
-- (void)getBoundAddress:(struct sockaddr *)address length:(socklen_t *)length {
-    // make sure the passed in addr has at least the length required for
-    // a sockaddr_in
-
-    if (*length < sizeof(boundAddr_)) { return; }
-
-    // update out params
-    *length = sizeof(boundAddr_);
-    *(struct sockaddr_in *)address = boundAddr_;
+- (EWCAddressIpv4 *)getBoundAddress {
+    return [EWCAddressIpv4 addressWithAddress:&boundAddr_];
 }
 
 // private methods ///////////////////////////////////////////////////////

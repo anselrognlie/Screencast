@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class EWCAddressIpv4;
+
 @interface EWCUdpChannel : NSObject
 
 - (void)start;
 - (void)startOnRunLoop:(NSRunLoop *)runLoop;
 - (void)stop;
 
-- (void)getBoundAddress:(struct sockaddr *)address length:(socklen_t *)length;
+- (EWCAddressIpv4 *)getBoundAddress;
 
 @end
