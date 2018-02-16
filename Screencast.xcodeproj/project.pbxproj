@@ -56,6 +56,10 @@
 		FD93E60D2036434700FD5EC5 /* EWCScreencastScreenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E60B2036434700FD5EC5 /* EWCScreencastScreenRequest.m */; };
 		FD93E61120364DBD00FD5EC5 /* EWCScreencastPrepareForData.h in Headers */ = {isa = PBXBuildFile; fileRef = FD93E60F20364DBD00FD5EC5 /* EWCScreencastPrepareForData.h */; };
 		FD93E61220364DBD00FD5EC5 /* EWCScreencastPrepareForData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E61020364DBD00FD5EC5 /* EWCScreencastPrepareForData.m */; };
+		FD93E615203655DE00FD5EC5 /* EWCScreencastAcknowledge.h in Headers */ = {isa = PBXBuildFile; fileRef = FD93E613203655DE00FD5EC5 /* EWCScreencastAcknowledge.h */; };
+		FD93E616203655DE00FD5EC5 /* EWCScreencastAcknowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E614203655DE00FD5EC5 /* EWCScreencastAcknowledge.m */; };
+		FD93E61920365CBF00FD5EC5 /* EWCScreencastData.h in Headers */ = {isa = PBXBuildFile; fileRef = FD93E61720365CBF00FD5EC5 /* EWCScreencastData.h */; };
+		FD93E61A20365CBF00FD5EC5 /* EWCScreencastData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E61820365CBF00FD5EC5 /* EWCScreencastData.m */; };
 		FDA5446F20341746001D0D0D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA5446E20341746001D0D0D /* AppDelegate.m */; };
 		FDA5447220341746001D0D0D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA5447120341746001D0D0D /* ViewController.m */; };
 		FDA5447420341746001D0D0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDA5447320341746001D0D0D /* Assets.xcassets */; };
@@ -226,6 +230,10 @@
 		FD93E60E2036480A00FD5EC5 /* EWCScreencastProtocolOpcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCScreencastProtocolOpcode.h; sourceTree = "<group>"; };
 		FD93E60F20364DBD00FD5EC5 /* EWCScreencastPrepareForData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCScreencastPrepareForData.h; sourceTree = "<group>"; };
 		FD93E61020364DBD00FD5EC5 /* EWCScreencastPrepareForData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCScreencastPrepareForData.m; sourceTree = "<group>"; };
+		FD93E613203655DE00FD5EC5 /* EWCScreencastAcknowledge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCScreencastAcknowledge.h; sourceTree = "<group>"; };
+		FD93E614203655DE00FD5EC5 /* EWCScreencastAcknowledge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCScreencastAcknowledge.m; sourceTree = "<group>"; };
+		FD93E61720365CBF00FD5EC5 /* EWCScreencastData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCScreencastData.h; sourceTree = "<group>"; };
+		FD93E61820365CBF00FD5EC5 /* EWCScreencastData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCScreencastData.m; sourceTree = "<group>"; };
 		FDA5446B20341746001D0D0D /* ServiceLocatorTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServiceLocatorTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDA5446D20341746001D0D0D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FDA5446E20341746001D0D0D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -482,6 +490,10 @@
 				FD93E60B2036434700FD5EC5 /* EWCScreencastScreenRequest.m */,
 				FD93E60F20364DBD00FD5EC5 /* EWCScreencastPrepareForData.h */,
 				FD93E61020364DBD00FD5EC5 /* EWCScreencastPrepareForData.m */,
+				FD93E613203655DE00FD5EC5 /* EWCScreencastAcknowledge.h */,
+				FD93E614203655DE00FD5EC5 /* EWCScreencastAcknowledge.m */,
+				FD93E61720365CBF00FD5EC5 /* EWCScreencastData.h */,
+				FD93E61820365CBF00FD5EC5 /* EWCScreencastData.m */,
 			);
 			path = Packet;
 			sourceTree = "<group>";
@@ -703,9 +715,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD93E5C02035A87400FD5EC5 /* EWCScreencastProtocolHandler.h in Headers */,
+				FD93E615203655DE00FD5EC5 /* EWCScreencastAcknowledge.h in Headers */,
 				FD93E60C2036434700FD5EC5 /* EWCScreencastScreenRequest.h in Headers */,
 				FD93E5C62035AB9C00FD5EC5 /* EWCScreencastPacket.h in Headers */,
 				FD93E5B52035A55100FD5EC5 /* EWCScreencast.h in Headers */,
+				FD93E61920365CBF00FD5EC5 /* EWCScreencastData.h in Headers */,
 				FD93E5C32035A8B600FD5EC5 /* EWCScreencastProtocol.h in Headers */,
 				FD93E61120364DBD00FD5EC5 /* EWCScreencastPrepareForData.h in Headers */,
 			);
@@ -1068,8 +1082,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD93E5C42035A8B600FD5EC5 /* EWCScreencastProtocol.m in Sources */,
+				FD93E616203655DE00FD5EC5 /* EWCScreencastAcknowledge.m in Sources */,
 				FD93E5B72035A55100FD5EC5 /* EWCScreencast.m in Sources */,
 				FD93E61220364DBD00FD5EC5 /* EWCScreencastPrepareForData.m in Sources */,
+				FD93E61A20365CBF00FD5EC5 /* EWCScreencastData.m in Sources */,
 				FD93E60D2036434700FD5EC5 /* EWCScreencastScreenRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

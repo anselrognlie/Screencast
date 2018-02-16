@@ -10,6 +10,8 @@
 
 @class EWCScreencastScreenRequest;
 @class EWCScreencastPrepareForData;
+@class EWCScreencastAcknowledge;
+@class EWCScreencastData;
 @class EWCAddressIpv4;
 
 @protocol EWCScreencastProtocolHandler <NSObject>
@@ -17,6 +19,10 @@
 - (void)processScreenRequest:(EWCScreencastScreenRequest *)packet
                  fromAddress:(EWCAddressIpv4 *)address;
 - (void)processPrepareForData:(EWCScreencastPrepareForData *)packet
-                  fromAddress:(EWCAddressIpv4 *)address; 
+                  fromAddress:(EWCAddressIpv4 *)address;
+- (void)processAcknowledge:(EWCScreencastAcknowledge *)packet
+               fromAddress:(EWCAddressIpv4 *)address;
+- (void)processData:(EWCScreencastData *)packet
+        fromAddress:(EWCAddressIpv4 *)address;
 
 @end

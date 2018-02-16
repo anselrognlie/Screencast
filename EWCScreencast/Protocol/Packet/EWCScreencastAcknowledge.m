@@ -1,22 +1,22 @@
 //
-//  EWCServiceRegistryAcknowledge.m
-//  Screencast
+//  EWCScreencastAcknowledge.m
+//  EWCScreencast
 //
-//  Created by Ansel Rognlie on 2018/02/07.
+//  Created by Ansel Rognlie on 2018/02/16.
 //  Copyright © 2018 Ansel Rognlie. All rights reserved.
 //
 
-#import "EWCServiceRegistryAcknowledge.h"
+#import "EWCScreencastAcknowledge.h"
 
-#import "EWCServiceRegistryProtocol.h"
-#import "EWCServiceRegistryProtocolHandler.h"
-#import "EWCServiceRegistryProtocolOpcode.h"
-#import "EWCDataHelper.h"
+#import "EWCScreencastProtocol.h"
+#import "EWCScreencastProtocolHandler.h"
+#import "EWCScreencastProtocolOpcode.h"
+#import "EWCCore/Network/EWCDataHelper.h"
 #import "EWCCore/Network/EWCAddressIpv4.h"
 
 struct EWCRawAcknowledge {
     uint16_t operation;
-    uint16_t blockOrTimeout;
+    uint16_t blockId;
     uint8_t checksum;
 };
 
@@ -28,38 +28,30 @@ static size_t GetRawPacketSize(void);
 
 static int registrationToken = 0;
 
-@implementation EWCServiceRegistryAcknowledge {
-    uint16_t blockOrTimeout_;
+@implementation EWCScreencastAcknowledge {
 }
 
-+ (void)registerPacket:(EWCServiceRegistryProtocol *)protocol {
++ (void)registerPacket:(EWCScreencastProtocol *)protocol {
     registrationToken = [protocol registerPacketParser:^(NSData *data, EWCAddressIpv4 *address){
-        return [EWCServiceRegistryAcknowledge parsePacketData:data fromAddress:address];
+        return [EWCScreencastAcknowledge parsePacketData:data fromAddress:address];
     }
                         recognizer:^(NSData *data){
-                            return [EWCServiceRegistryAcknowledge isAcknowledge:data];
+                            return [EWCScreencastAcknowledge isAcknowledge:data];
                         }];
 }
 
-+ (void)unregisterPacket:(EWCServiceRegistryProtocol *)protocol {
++ (void)unregisterPacket:(EWCScreencastProtocol *)protocol {
     [protocol unregisterPacketParser:registrationToken];
 }
 
-+ (instancetype)packetWithTimeout:(NSTimeInterval)timeout {
-    return [[EWCServiceRegistryAcknowledge alloc] initWithTimeout:timeout];
++ (instancetype)packetWithBlock:(uint16_t)blockId {
+    return [[EWCScreencastAcknowledge alloc] initWithBlock:blockId];
+
 }
 
-- (instancetype)initWithTimeout:(NSTimeInterval)timeout {
-    self = [super init];
-
-    self.timeout = timeout;
-
-    return self;
-}
-
-+ (NSObject<EWCServiceRegistryPacket> *)parsePacketData:(NSData *)data
++ (NSObject<EWCScreencastPacket> *)parsePacketData:(NSData *)data
                                   fromAddress:(EWCAddressIpv4 *)address {
-    EWCServiceRegistryAcknowledge *packet = nil;
+    EWCScreencastAcknowledge *packet = nil;
 
     // perform trivial check again
     if (! IsRawPacket(data)) { return packet; }
@@ -69,21 +61,20 @@ static int registrationToken = 0;
     EWCRawPacket *ack = malloc(sizeof(*ack));
     EWC_EXTRACT_BEGIN
     EWC_EXTRACT_DATA(ack->operation, data);
-    EWC_EXTRACT_DATA(ack->blockOrTimeout, data);
+    EWC_EXTRACT_DATA(ack->blockId, data);
     EWC_EXTRACT_DATA(ack->checksum, data);
     EWC_EXTRACT_END
 
     // fix the byte order where necessary
     EWC_NTOHS(ack->operation);
-    EWC_NTOHS(ack->blockOrTimeout);
+    EWC_NTOHS(ack->blockId);
 
     // perform and verify the checksum calculation
     uint8_t checksum = CalculateChecksum(ack);
 
     if (checksum == ack->checksum) {
         // we have a valid packet, so we need to create a packet instance and populate it
-        packet = [EWCServiceRegistryAcknowledge new];
-        packet.timeout = ack->blockOrTimeout;
+        packet = [EWCScreencastAcknowledge packetWithBlock:ack->blockId];
     }
 
     // free the work memory
@@ -98,27 +89,15 @@ static int registrationToken = 0;
 }
 
 - (instancetype)init {
+    return [self initWithBlock:0];
+}
+
+- (instancetype)initWithBlock:(uint16_t)blockId {
     self = [super init];
 
-    blockOrTimeout_ = 0;
+    self.block = blockId;
 
     return self;
-}
-
-- (uint16_t)block {
-    return blockOrTimeout_;
-}
-
-- (void)setBlock:(uint16_t)block {
-    blockOrTimeout_ = block;
-}
-
-- (uint16_t)timeout {
-    return blockOrTimeout_;
-}
-
-- (void)setTimeout:(uint16_t)timeout {
-    blockOrTimeout_ = timeout;
 }
 
 - (uint16_t) opcode {
@@ -130,15 +109,15 @@ static int registrationToken = 0;
     EWCRawPacket *ack = malloc(sizeof(*ack));
 
     ack->operation = self.opcode;
-    ack->blockOrTimeout = self.block;
+    ack->blockId = self.block;
     ack->checksum = CalculateChecksum(ack);
 
     EWC_HTONS(ack->operation);
-    EWC_HTONS(ack->blockOrTimeout);
+    EWC_HTONS(ack->blockId);
 
     NSMutableData *data = [NSMutableData dataWithCapacity:GetRawPacketSize()];
     EWC_APPEND_DATA(data, ack->operation);
-    EWC_APPEND_DATA(data, ack->blockOrTimeout);
+    EWC_APPEND_DATA(data, ack->blockId);
     EWC_APPEND_DATA(data, ack->checksum);
 
     free(ack);
@@ -146,7 +125,7 @@ static int registrationToken = 0;
     return data;
 }
 
-- (void)processWithHandler:(NSObject<EWCServiceRegistryProtocolHandler> *)handler
+- (void)processWithHandler:(NSObject<EWCScreencastProtocolHandler> *)handler
                fromAddress:(EWCAddressIpv4 *)address {
     [handler processAcknowledge:self fromAddress:address];
 }
@@ -158,16 +137,12 @@ static uint8_t CalculateChecksum(EWCRawPacket const *data) {
     uint8_t checksum = 0;
 
     EWC_UPDATE_CHECKSUM(checksum, data->operation);
-    EWC_UPDATE_CHECKSUM(checksum, data->blockOrTimeout);
+    EWC_UPDATE_CHECKSUM(checksum, data->blockId);
 
     return checksum;
 }
 
 static BOOL IsRawPacket(NSData * data) {
-    // if the opcode field is 1 and the length is correct,
-    // then it can only be a register request
-    // note that the packet may still be malformed and return an invalid packet
-
     NSLog(@"is acknowledge?");
 
     // check length
@@ -187,7 +162,7 @@ static size_t GetRawPacketSize(void) {
     size_t size = 0;
 
     EWC_UPDATE_SIZE(size, EWCRawPacket, operation);
-    EWC_UPDATE_SIZE(size, EWCRawPacket, blockOrTimeout);
+    EWC_UPDATE_SIZE(size, EWCRawPacket, blockId);
     EWC_UPDATE_SIZE(size, EWCRawPacket, checksum);
 
     return size;

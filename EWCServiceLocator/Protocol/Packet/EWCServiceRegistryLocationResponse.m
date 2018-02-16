@@ -74,7 +74,7 @@ static int registrationToken = 0;
 
     // unpack the bytes
     // must not return between here and free
-    struct EWCRawLocationResponse *request = malloc(sizeof(*request));
+    EWCRawPacket *request = malloc(sizeof(*request));
     EWC_EXTRACT_BEGIN
     EWC_EXTRACT_DATA(request->operation, data);
     EWC_EXTRACT_DATA(request->serviceUuid, data);
@@ -189,7 +189,7 @@ static int registrationToken = 0;
 
 - (NSData *)getData {
     // fill in raw packet structure with available data
-    struct EWCRawLocationResponse *request = malloc(sizeof(*request) + rawProviderNameLength_);
+    EWCRawPacket *request = malloc(sizeof(*request) + rawProviderNameLength_);
 
     request->operation = self.opcode;
     [self.serviceId getUUIDBytes:request->serviceUuid];
@@ -206,7 +206,7 @@ static int registrationToken = 0;
     size_t minCapacity = GetMinRawPacketSize();
     minCapacity += rawProviderNameLength_;
 
-    NSMutableData *data = [NSMutableData dataWithCapacity:GetMinRawPacketSize()];
+    NSMutableData *data = [NSMutableData dataWithCapacity:minCapacity];
     EWC_APPEND_DATA(data, request->operation);
     EWC_APPEND_DATA(data, request->serviceUuid);
     EWC_APPEND_DATA(data, request->addressIpv4);

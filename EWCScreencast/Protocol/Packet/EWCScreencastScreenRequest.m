@@ -186,7 +186,7 @@ static int registrationToken = 0;
     size_t minCapacity = GetMinRawPacketSize();
     minCapacity += rawProviderNameLength_;
 
-    NSMutableData *data = [NSMutableData dataWithCapacity:GetMinRawPacketSize()];
+    NSMutableData *data = [NSMutableData dataWithCapacity:minCapacity];
     EWC_APPEND_DATA(data, request->operation);
     EWC_APPEND_DATA(data, request->screenId);
     EWC_APPEND_DATA(data, request->nameByteCount);
