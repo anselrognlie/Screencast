@@ -63,6 +63,13 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
     [self removeRecordForRequest:request];
 }
 
+- (EWCRegistrationList *)queryForService:(NSUUID *)serviceId {
+    // cleanup anything expired
+    [self cleanupRecords];
+
+    return [self getEntryForService:serviceId];
+}
+
 - (void)cleanupRecords {
     NSMutableArray<NSUUID *> *emptyServices = [NSMutableArray<NSUUID *> array];
     NSDate *now = [NSDate date];
@@ -243,7 +250,7 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
     NSLog(@"query request");
 
     // get registered records for the supplied service id
-    EWCRegistrationList *records = [self getEntryForService:packet.serviceId];
+    EWCRegistrationList * records = [self queryForService:packet.serviceId];
 
     // send results to the client
     [self sendServiceRecords:records toAddress:address];
