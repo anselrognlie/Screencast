@@ -33,7 +33,7 @@
     __weak EWCServiceRegistryClient *me = self;
 
     // allow a brief time frame for an ack, otherwise we'll try again
-    [self repeatWithTimeout:.1 upTo:3 action:^{
+    [self repeatWithTimeout:1 upTo:3 action:^{
         NSLog(@"registering...");
         [me broadcastPacketData:data port:EWCServiceRegistryPort];
     }];
