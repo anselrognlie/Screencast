@@ -30,8 +30,13 @@
     // convert to data
     NSData *data = [request getData];
 
-    // send it
-    [self broadcastPacketData:data port:EWCServiceRegistryPort];
+    __weak EWCServiceRegistryClient *me = self;
+
+    // allow a brief time frame for an ack, otherwise we'll try again
+    [self repeatWithTimeout:.1 upTo:3 action:^{
+        NSLog(@"registering...");
+        [me broadcastPacketData:data port:EWCServiceRegistryPort];
+    }];
 }
 
 - (void)unregisterService:(NSUUID *)serviceId
@@ -60,11 +65,6 @@
     [self broadcastPacketData:data port:EWCServiceRegistryPort];
 }
 
-- (uint16_t) listenerPort {
-    // just use a dynamic port
-    return 0;
-}
-
 - (BOOL)enableBroadcast {
     // service registry client uses broadcast
     return YES;
@@ -75,9 +75,20 @@
     [protocol handlePacketData:data fromAddress:address handler:self];
 }
 
+- (void)handleTimeout {
+    NSLog(@"timeout");
+}
+
+- (void)handleRetriesExceeded {
+    NSLog(@"too many retries");
+}
+
 - (void)processAcknowledge:(EWCServiceRegistryAcknowledge *)packet
                fromAddress:(EWCAddressIpv4 *)address {
     NSLog(@"registered. will expire in %d seconds", packet.timeout);
+
+    // prevent further retries
+    [self completeAction];
 
     [self.clientHandler receivedRegistrationAcknowledgementPacket:packet
                                                       fromAddress:address];

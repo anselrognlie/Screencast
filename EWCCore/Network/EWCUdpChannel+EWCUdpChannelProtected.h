@@ -16,6 +16,11 @@
               toAddress:(EWCAddressIpv4 *)address;
 - (void)broadcastPacketData:(NSData *)data
               port:(uint16_t)port;
+- (void)setTimeout:(CFTimeInterval)interval;
+- (void)repeatWithTimeout:(CFTimeInterval)timeout
+                     upTo:(int)times
+                   action:(void(^)(void))action;
+- (void)completeAction;
 
 @end
 

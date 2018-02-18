@@ -37,10 +37,6 @@ typedef NSMutableDictionary<NSUUID *, EWCRegistrationList *> EWCServiceDictionar
     return EWCServiceRegistryPort;
 }
 
-- (BOOL)enableBroadcast {
-    return NO;
-}
-
 - (void)handlePacketData:(NSData *)data fromAddress:(EWCAddressIpv4 *)address {
     EWCServiceRegistryProtocol *protocol = EWCServiceRegistryProtocol.protocol;
     [protocol handlePacketData:data fromAddress:address handler:self];

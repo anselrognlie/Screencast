@@ -21,18 +21,25 @@ static void HandleSocketCallback(CFSocketRef s,
                                  const void *data,
                                  void *info);
 
+static void HandleTimerCallBack(CFRunLoopTimerRef timer, void *info);
+
 @interface EWCUdpChannel()
 @property NSRunLoop *runLoop;
 @property (nonatomic) CFSocketRef localSocket;
 @property (nonatomic) CFRunLoopSourceRef socketSource;
+@property (nonatomic) CFRunLoopTimerRef timeoutTimer;
 @property NSMutableArray<EWCBufferedPacket *> *transmitBuffer;
 @property (readonly) uint16_t listenerPort;
 @property (readonly) BOOL enableBroadcast;
+@property void(^timeoutOperation)(void);
 @end
 
 @implementation EWCUdpChannel {
     BOOL canWrite_;
     struct sockaddr_in boundAddr_;
+    CFTimeInterval timerInterval_;
+    BOOL timerEnabled_;
+    int timeoutRepeatCount_;
 }
 
 // initializer /////////////////////////////////////////////////
@@ -42,8 +49,11 @@ static void HandleSocketCallback(CFSocketRef s,
     
     _localSocket = nil;
     _socketSource = nil;
+    _timeoutTimer = nil;
     _runLoop = nil;
     canWrite_ = NO;
+    timerInterval_ = 0;
+    timerEnabled_ = NO;
     self.transmitBuffer = [NSMutableArray<EWCBufferedPacket *> array];
 
     memset(&boundAddr_, 0, sizeof(boundAddr_));
@@ -52,8 +62,8 @@ static void HandleSocketCallback(CFSocketRef s,
 }
 
 - (void)dealloc {
-    self.localSocket = nil;
-    self.socketSource = nil;
+    [self stopSocket];
+
     self.runLoop = nil;
     self.transmitBuffer = nil;
 }
@@ -113,19 +123,24 @@ static void HandleSocketCallback(CFSocketRef s,
     
     // add the source to the run loop
     CFRunLoopAddSource([self.runLoop getCFRunLoop], socksrc, kCFRunLoopDefaultMode);
+
+    // schedule a timer to detect timeouts
+    [self startTimeoutTimer];
     
     NSLog(@"listening...");
 }
 
 - (void)stopSocket {
     NSLog(@"shutting down...");
-    
-    // invalidate (and free) listening socket
-    if (self.localSocket) {
-        CFSocketInvalidate(self.localSocket);
-        self.localSocket = nil;
+
+    // invalidate (and free) timer
+    if (self.timeoutTimer) {
+        CFRunLoopRemoveTimer([self.runLoop getCFRunLoop],
+                             self.timeoutTimer,
+                             kCFRunLoopDefaultMode);
+        self.timeoutTimer = nil;
     }
-    
+
     // remove and release the run loop source
     if (self.socketSource) {
         CFRunLoopRemoveSource([self.runLoop getCFRunLoop],
@@ -133,7 +148,13 @@ static void HandleSocketCallback(CFSocketRef s,
                               kCFRunLoopDefaultMode);
         self.socketSource = nil;
     }
-    
+
+    // invalidate (and free) listening socket
+    if (self.localSocket) {
+        CFSocketInvalidate(self.localSocket);
+        self.localSocket = nil;
+    }
+
     NSLog(@"stopped.");
 }
 
@@ -143,6 +164,10 @@ static void HandleSocketCallback(CFSocketRef s,
 
 - (void)setSocketSource:(CFRunLoopSourceRef)value {
     EWCSwapCFTypeRef(&_socketSource, &value);
+}
+
+- (void)setTimeoutTimer:(CFRunLoopTimerRef)value {
+    EWCSwapCFTypeRef(&_timeoutTimer, &value);
 }
 
 - (int)prepareSocket {
@@ -210,12 +235,34 @@ static void HandleSocketCallback(CFSocketRef s,
 
         EWCAddressIpv4 *address = [EWCAddressIpv4 addressWithAddress:&remoteSocket];
 
+        // we got a packet, so disable the timer until the next send
+        timerEnabled_ = NO;
+
         // notify overridden handler
         [self handlePacketData:bytes fromAddress:address];
     } else if (type == kCFSocketWriteCallBack) {
         canWrite_ = YES;
         
         [self sendBufferedData];
+    }
+}
+
+- (void)handleCallbackWithTimer:(CFRunLoopTimerRef)timer {
+    // if the interval is 0, then the client isn't interested in timeouts
+    if (! timerEnabled_) { return; }
+
+    // are we automatically handling the timeout?
+    if (self.timeoutOperation) {
+        if (timeoutRepeatCount_) {
+            --timeoutRepeatCount_;
+            self.timeoutOperation();
+        } else {
+            [self completeAction];
+            [self handleRetriesExceeded];
+        }
+    } else {
+        // we don't have any registered handler, so pass this on to the subclass
+        [self handleTimeout];
     }
 }
 
@@ -231,11 +278,52 @@ static void HandleSocketCallback(CFSocketRef s,
     if (error == kCFSocketSuccess) {
         // remove the data so that it isn't sent again
         [self.transmitBuffer removeObjectAtIndex:0];
+
+        // reset the timeout interval
+        [self rescheduleTimeout];
     } else {
         // mark that we're not ready to send
         canWrite_ = NO;
     }
 }
+
+- (void)startTimeoutTimer {
+    NSLog(@"starting timer...");
+
+    // initialize a context to hold our self reference for event handling
+    CFRunLoopTimerContext ctx = {0, (__bridge void *)(self), NULL, NULL, NULL};
+
+    // get a core foundation socket with our callback handler
+    CFTimeInterval tenYear = (CFTimeInterval)(60 * 60 * 24 * 365 * 10);
+    CFAbsoluteTime firstFire = CFAbsoluteTimeGetCurrent();
+    firstFire += tenYear;  // we don't really want it to fire, so schedule ten years
+    CFRunLoopTimerRef timer = CFRunLoopTimerCreate(kCFAllocatorDefault,
+                                                   firstFire,
+                                                   tenYear,
+                                                   0,
+                                                   0,
+                                                   &HandleTimerCallBack,
+                                                   &ctx);
+
+    self.timeoutTimer = timer;
+    CFRelease(timer);
+
+    // add the timer to the run loop
+    CFRunLoopAddTimer([self.runLoop getCFRunLoop], timer, kCFRunLoopDefaultMode);
+}
+
+- (void)rescheduleTimeout {
+    // if the interval is non zero, schedule the next firing
+    if (timerInterval_ > 0) {
+        timerEnabled_ = YES;
+        CFRunLoopTimerSetNextFireDate(self.timeoutTimer,
+                                      CFAbsoluteTimeGetCurrent() + timerInterval_);
+    } else {
+        timerEnabled_ = NO;
+    }
+}
+
+// EWCUdpChannelProtected interface ///////////////////////////////////////////////////////
 
 - (void)sendPacketData:(NSData *)data toAddress:(EWCAddressIpv4 *)address {
     // populate the subsystem format address
@@ -269,15 +357,45 @@ static void HandleSocketCallback(CFSocketRef s,
     [self sendPacketData:data toAddress:address];
 }
 
+- (void)setTimeout:(CFTimeInterval)interval {
+    timerInterval_ = interval;
+
+    [self rescheduleTimeout];
+}
+
+- (void)repeatWithTimeout:(CFTimeInterval)timeout
+                     upTo:(int)times
+                   action:(void(^)(void))action {
+    timeoutRepeatCount_ = times;
+    self.timeoutOperation = action;
+    [self setTimeout:timeout];
+
+    self.timeoutOperation();
+}
+
+- (void)completeAction {
+    self.timeoutOperation = nil;
+    timeoutRepeatCount_ = 0;
+    [self setTimeout:0];
+}
+
 // protected overrides //////////////////////////////////////////////
 
 - (uint16_t)listenerPort {
-    NSLog(@"subclass must override (uint16_t)getListeningPort");
+    // does not require override if any local port is ok
     return 0;
 }
 
 - (void)handlePacketData:(NSData *)data fromAddress:(EWCAddressIpv4 *)address {
     NSLog(@"subclass must override (void)handlePacketData:fromAddress:");
+}
+
+- (void)handleTimeout {
+    // does not require override if no timeout handling required
+}
+
+- (void)handleRetriesExceeded {
+    // does not require override if no timeout handling required
 }
 
 - (BOOL)enableBroadcast {
@@ -296,4 +414,9 @@ static void HandleSocketCallback(CFSocketRef s,
                                  void *info) {
     EWCUdpChannel *listener = (__bridge EWCUdpChannel *)(info);
     [listener handleCallbackWithSocket:s callbackType:type address:address data:data];
+}
+
+static void HandleTimerCallBack(CFRunLoopTimerRef timer, void *info) {
+    EWCUdpChannel *listener = (__bridge EWCUdpChannel *)(info);
+    [listener handleCallbackWithTimer:timer];
 }
