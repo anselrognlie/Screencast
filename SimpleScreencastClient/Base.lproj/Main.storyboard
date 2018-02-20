@@ -749,10 +749,19 @@
                                     <action selector="stopButtonClicked:" target="XfG-lQ-9wD" id="TzZ-ru-D0z"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iy4-8d-axI" userLabel="Continuous Check">
+                                <rect key="frame" x="176" y="231" width="110" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Continuous" bezelStyle="regularSquare" imagePosition="left" inset="2" id="AGE-CU-4CZ">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="addressLabel" destination="FVV-Dd-tRF" id="Mih-mC-RTE"/>
+                        <outlet property="continuousCheckbox" destination="Iy4-8d-axI" id="zud-71-sbd"/>
                         <outlet property="receivedCount" destination="GKv-fk-Tp7" id="rCd-46-Nei"/>
                     </connections>
                 </viewController>

@@ -22,6 +22,7 @@ static const NSInteger TAG_REQUEST_BUTTON  = 1;
 @property EWCAddressIpv4 *screencastAddress;
 @property (weak) IBOutlet NSTextField *addressLabel;
 @property (weak) IBOutlet NSTextField *receivedCount;
+@property (weak) IBOutlet NSButton *continuousCheckbox;
 @end
 
 @implementation ViewController {
@@ -132,7 +133,7 @@ static const NSInteger TAG_REQUEST_BUTTON  = 1;
     ++screensReceived_;
     self.receivedCount.intValue = screensReceived_;
 
-    if (running_) {
+    if (self.continuousCheckbox.state == NSControlStateValueOn) {
         [self locateServiceAndRequestScreen];
     }
 }
