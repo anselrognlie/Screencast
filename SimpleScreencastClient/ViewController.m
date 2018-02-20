@@ -133,7 +133,7 @@ static const NSInteger TAG_REQUEST_BUTTON  = 1;
     ++screensReceived_;
     self.receivedCount.intValue = screensReceived_;
 
-    if (self.continuousCheckbox.state == NSControlStateValueOn) {
+    if (running_ && self.continuousCheckbox.state == NSControlStateValueOn) {
         [self locateServiceAndRequestScreen];
     }
 }
