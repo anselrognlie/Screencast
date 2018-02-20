@@ -143,7 +143,7 @@ static uint8_t CalculateChecksum(EWCRawPacket const *data) {
 }
 
 static BOOL IsRawPacket(NSData * data) {
-    NSLog(@"is acknowledge?");
+//    NSLog(@"is acknowledge?");
 
     // check length
     if (data.length != GetRawPacketSize()) { return NO; }

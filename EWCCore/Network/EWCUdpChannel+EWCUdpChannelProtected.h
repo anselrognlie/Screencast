@@ -21,6 +21,7 @@
                      upTo:(int)times
                    action:(void(^)(void))action;
 - (void)completeAction;
+- (void)resumeAction;
 
 @end
 

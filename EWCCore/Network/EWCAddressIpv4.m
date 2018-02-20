@@ -62,4 +62,16 @@ _Static_assert((sizeof(uint32_t) == sizeof(in_addr_t)), "sizeof(uint32_t) != siz
     return [EWCAddressIpv4 addressWithAddressIpv4:self.addressIpv4 port:self.port];
 }
 
+- (NSString *)description {
+    uint32_t addr = self.addressIpv4;
+    uint8_t *bytes = (uint8_t *)&addr;
+    return [NSString stringWithFormat:@"%d.%d.%d.%d:%d",
+        bytes[3], bytes[2], bytes[1], bytes[0],
+        self.port];
+}
+
+- (NSString *)debugDescription {
+    return [self description];
+}
+
 @end

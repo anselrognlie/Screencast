@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "EWCCore/Network/EWCAddressIpv4.h"
+#import "EWCCore/Device/EWCDevice.h"
 #import "EWCServiceLocator/EWCServiceRegistry.h"
 #import "EWCServiceLocator/EWCServiceRegistryClient.h"
 
@@ -45,7 +47,9 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     self.machineName = nil;
 
     // schedule a local name lookup
-    [self scheduleNameLookupAndThen:^{}];
+    [EWCDevice scheduleNameLookupThen:^(NSString *machineName) {
+        self.machineName = machineName;
+    }];
 
     [self populateUI];
     
@@ -75,17 +79,19 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 
 - (void)start {
     if (! stopped_) { return; }
-    
+
     self.registry = [EWCServiceRegistry new];
     [self.registry start];
     self.publisher = [EWCServiceRegistryClient new];
     self.publisher.clientHandler = self;
     [self.publisher start];
+
+    stopped_ = NO;
 }
 
 - (void)stop {
     if (stopped_) { return; }
-    
+
     EWCServiceRegistry *tmp = self.registry;
     self.registry = nil;
     if (tmp) {
@@ -97,6 +103,8 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     if (tmpClient) {
         [tmpClient stop];
     }
+
+    stopped_ = YES;
 }
 
 - (void)publishService {
@@ -134,21 +142,6 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 
     [self.publisher queryService:serviceId];
     NSLog(@"queried");
-}
-
-- (void)scheduleNameLookupAndThen:(void(^)(void))continuation {
-    dispatch_queue_t dq = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-
-    dispatch_async(dq, ^{
-        NSHost *host = [NSHost currentHost];
-        NSString *hostName = host.localizedName;
-        NSLog(@"got hostname");
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.machineName = hostName;
-            continuation();
-        });
-    });
 }
 
 - (void)updateQueryResult {

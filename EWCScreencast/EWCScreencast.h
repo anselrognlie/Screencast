@@ -10,8 +10,13 @@
 
 #import "EWCCore/Network/EWCUdpChannel.h"
 #import "EWCScreencastProtocolHandler.h"
+#import "EWCScreencastDataChannelDelegate.h"
 
-@interface EWCScreencast : EWCUdpChannel <EWCScreencastProtocolHandler>
+@protocol EWCScreencastDelegate;
+
+@interface EWCScreencast : EWCUdpChannel<EWCScreencastProtocolHandler, EWCScreencastDataChannelDelegate>
+
+@property (weak) NSObject<EWCScreencastDelegate> *screencastDelegate;
 
 @end
 

@@ -32,11 +32,16 @@ static BOOL IsRawPacket(NSData * data);
 static size_t GetMinRawPacketSize(void);
 
 @interface EWCScreencastData()
+@property NSData *data;
 @end
 
 static int registrationToken = 0;
 
 @implementation EWCScreencastData {
+}
+
++ (NSUInteger)maxDataLength {
+    return EWCMaxDataLength;
 }
 
 + (void)registerPacket:(EWCScreencastProtocol *)protocol {
@@ -75,6 +80,7 @@ static int registrationToken = 0;
     EWC_EXTRACT_DATA(request->dataByteCount, data);
     EWC_EXTRACT_DATA(request->checksum, data);
 
+    EWC_NTOHS(request->dataByteCount);  // flip the byte order before we grab the bytes
     request = realloc(request, sizeof(*request) + request->dataByteCount);
     EWC_EXTRACT_DATA_LEN(request->data, data, request->dataByteCount);
 
@@ -83,7 +89,6 @@ static int registrationToken = 0;
     // fix the byte order where necessary
     EWC_NTOHS(request->operation);
     EWC_NTOHS(request->blockId);
-    EWC_NTOHS(request->dataByteCount);
 
     // perform and verify the checksum calculation
     uint8_t checksum = CalculateChecksum(request);
@@ -121,6 +126,15 @@ static int registrationToken = 0;
     self.blockId = blockId;
     self.data = [data copy];
 
+    if (data) {
+        if (data.length > EWCMaxDataLength) {
+            self.data = nil;
+            NSLog(@"supplied data exceeds max length (%lu, %lu)",
+                  (unsigned long)data.length,
+                  (unsigned long)EWCMaxDataLength);
+        }
+    }
+
     return self;
 }
 
@@ -151,7 +165,7 @@ static int registrationToken = 0;
     EWC_APPEND_DATA(data, request->blockId);
     EWC_APPEND_DATA(data, request->dataByteCount);
     EWC_APPEND_DATA(data, request->checksum);
-    EWC_APPEND_DATA_LEN(data, request->data, request->dataByteCount);
+    EWC_APPEND_DATA_LEN(data, request->data, dataLength);
 
     free(request);
 
@@ -179,7 +193,7 @@ static uint8_t CalculateChecksum(EWCRawPacket const *data) {
 }
 
 static BOOL IsRawPacket(NSData * data) {
-    NSLog(@"is data?");
+//    NSLog(@"is data?");
 
     // check length
     if (data.length < GetMinRawPacketSize()) { return NO; }

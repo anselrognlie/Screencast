@@ -9,6 +9,8 @@
 #import "ViewController.h"
 
 #import "EWCServiceLocator/EWCServiceRegistryClient.h"
+#import "EWCCore/Device/EWCDevice.h"
+#import "EWCCore/Network/EWCAddressIpv4.h"
 
 static const NSInteger TAG_SERVICEID_TEXTFIELD  = 1;
 static const NSInteger TAG_PORT_TEXTFIELD  = 2;
@@ -26,6 +28,8 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 @property (unsafe_unretained) IBOutlet UITextView *resultText;
 @property NSString *queryResult;
 @property UIColor *textColor;
+@property (weak) IBOutlet NSTextField *successCount;
+@property (weak) IBOutlet NSTextField *failureCount;
 
 @end
 
@@ -43,7 +47,10 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     self.machineName = nil;
 
     // schedule a local name lookup
-    [self scheduleNameLookupAndThen:^{}];
+    [EWCDevice scheduleNameLookupThen:^(NSString *machineName) {
+        self.machineName = machineName;
+        // could wait to enable UI until this point
+    }];
 
     [self populateUI];
 
@@ -121,28 +128,12 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     NSLog(@"queried");
 }
 
-- (void)scheduleNameLookupAndThen:(void(^)(void))continuation {
-    dispatch_queue_t dq = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-
-    dispatch_async(dq, ^{
-        UIDevice *host = UIDevice.currentDevice;
-        NSString *hostName = host.name;
-        NSLog(@"got hostname");
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.machineName = hostName;
-            continuation();
-        });
-    });
-}
-
 - (void)updateQueryResult {
     UITextView *resultField = self.resultText;
     NSString *msg = self.queryResult;
     if (! msg) {
         msg = [NSString string];
     }
-
 
     if (resultField) {
         resultField.text = msg;

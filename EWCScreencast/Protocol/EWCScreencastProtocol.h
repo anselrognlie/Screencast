@@ -25,6 +25,8 @@ typedef NSObject<EWCScreencastPacket> *(^EWCScreencastParser)(NSData* data,
 
 @property (class, readonly) EWCScreencastProtocol *protocol;
 
+@property (readonly) NSUUID *serviceId;
+
 - (void)handlePacketData:(NSData *)data
              fromAddress:(EWCAddressIpv4 *)address
                  handler:(NSObject<EWCScreencastProtocolHandler> *)handler;

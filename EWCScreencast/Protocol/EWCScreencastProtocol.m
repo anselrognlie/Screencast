@@ -11,11 +11,19 @@
 #import "EWCCore/Container/EWCPair.h"
 #import "EWCScreencastProtocolHandler.h"
 #import "EWCScreencastPacket.h"
+#import "EWCScreencastScreenRequest.h"
+#import "EWCScreencastPrepareForData.h"
+#import "EWCScreencastAcknowledge.h"
+#import "EWCScreencastData.h"
+
+static const char PROTOCOL_SERVICEID_STRING[] = "892BA8F1-1E59-469C-8FB1-C0F1E4E926D6";
 
 typedef EWCPair<EWCScreencastParser, EWCScreencastRecognizer> EWCRegistryPair;
 
 @interface EWCScreencastProtocol()
 @property NSMutableDictionary<NSNumber *, EWCRegistryPair *> *protocolHandlers;
+@property NSUUID *serviceId;
+
 @end
 
 @implementation EWCScreencastProtocol {
@@ -27,6 +35,10 @@ static int registeredProtocols = 0;
 + (EWCScreencastProtocol *)protocol {
     if (! singleton) {
         singleton = [[EWCScreencastProtocol alloc] initPrivate];
+        [EWCScreencastScreenRequest registerPacket:singleton];
+        [EWCScreencastPrepareForData registerPacket:singleton];
+        [EWCScreencastAcknowledge registerPacket:singleton];
+        [EWCScreencastData registerPacket:singleton];
     }
     return singleton;
 }
@@ -39,6 +51,7 @@ static int registeredProtocols = 0;
     self = [super init];
 
     self.protocolHandlers = [NSMutableDictionary<NSNumber *, EWCRegistryPair *> dictionary];
+    self.serviceId = [[NSUUID alloc] initWithUUIDString:[NSString stringWithUTF8String:PROTOCOL_SERVICEID_STRING]];
 
     return self;
 }

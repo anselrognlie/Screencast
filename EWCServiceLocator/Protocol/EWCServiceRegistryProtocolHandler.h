@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "EWCCore/Network/EWCAddressIpv4.h"
 #import "Packet/EWCServiceRegistryRegisterRequest.h"
 #import "Packet/EWCServiceRegistryAcknowledge.h"
 #import "Packet/EWCServiceRegistryUnregisterRequest.h"
 #import "Packet/EWCServiceRegistryQueryRequest.h"
 #import "Packet/EWCServiceRegistryLocationResponse.h"
+
+@class EWCAddressIpv4;
 
 @protocol EWCServiceRegistryProtocolHandler <NSObject>
 

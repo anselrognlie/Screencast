@@ -15,6 +15,8 @@
 
 @interface EWCScreencastData : NSObject<EWCScreencastPacket>
 
+@property (class, readonly) NSUInteger maxDataLength;
+
 + (void)registerPacket:(EWCScreencastProtocol *)protocol;
 + (void)unregisterPacket:(EWCScreencastProtocol *)protocol;
 
@@ -25,7 +27,7 @@
                          data:(NSData *)data;
 
 @property uint16_t blockId;
-@property NSData *data;
+@property (readonly) NSData *data;
 
 - (NSData *)getData;
 

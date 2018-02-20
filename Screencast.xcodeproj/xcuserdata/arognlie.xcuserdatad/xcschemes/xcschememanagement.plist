@@ -7,12 +7,12 @@
 		<key>EWCCore.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>5</integer>
 		</dict>
 		<key>EWCCoreIOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>6</integer>
 		</dict>
 		<key>EWCLib copy.xcscheme</key>
 		<dict>
@@ -27,17 +27,17 @@
 		<key>EWCScreencast.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>3</integer>
 		</dict>
 		<key>EWCServiceLocator.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>7</integer>
 		</dict>
 		<key>EWCServiceLocatorIOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Screencast.xcscheme</key>
 		<dict>
@@ -47,12 +47,22 @@
 		<key>ServiceLocatorApp.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>ServiceLocatorTest.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+		<key>SimpleScreencastClient.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>SimpleScreencastServer.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -78,6 +88,11 @@
 			<true/>
 		</dict>
 		<key>FD924476201F119200A5B093</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD93E55820351BC400FD5EC5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

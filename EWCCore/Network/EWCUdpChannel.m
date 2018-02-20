@@ -141,6 +141,8 @@ static void HandleTimerCallBack(CFRunLoopTimerRef timer, void *info);
         self.timeoutTimer = nil;
     }
 
+    self.timeoutOperation = nil;
+
     // remove and release the run loop source
     if (self.socketSource) {
         CFRunLoopRemoveSource([self.runLoop getCFRunLoop],
@@ -377,6 +379,14 @@ static void HandleTimerCallBack(CFRunLoopTimerRef timer, void *info);
     self.timeoutOperation = nil;
     timeoutRepeatCount_ = 0;
     [self setTimeout:0];
+}
+
+// used if we got a packet, which halts timeouts, but it turns out to be invalid
+- (void)resumeAction {
+    if (self.timeoutOperation) {
+        timerEnabled_ = YES;
+        self.timeoutOperation();
+    }
 }
 
 // protected overrides //////////////////////////////////////////////

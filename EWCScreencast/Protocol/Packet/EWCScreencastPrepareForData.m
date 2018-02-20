@@ -122,7 +122,8 @@ static int registrationToken = 0;
 
     request->operation = self.opcode;
     request->screenId = self.screenId;
-    request->byteCount = CalculateChecksum(request);
+    request->byteCount = self.byteCount;
+    request->checksum = CalculateChecksum(request);
 
     EWC_HTONS(request->operation);
     EWC_HTONS(request->screenId);
@@ -159,7 +160,7 @@ static uint8_t CalculateChecksum(EWCRawPacket const *data) {
 }
 
 static BOOL IsRawPacket(NSData * data) {
-    NSLog(@"is prepare for data?");
+//    NSLog(@"is prepare for data?");
 
     // check length
     if (data.length != GetRawPacketSize()) { return NO; }

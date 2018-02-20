@@ -223,7 +223,7 @@ static BOOL IsRawPacket(NSData * data) {
     // then it can only be a sreen request
     // note that the packet may still be malformed and return an invalid packet
 
-    NSLog(@"is screen request?");
+//    NSLog(@"is screen request?");
 
     // check length
     if (data.length < GetMinRawPacketSize()) { return NO; }
