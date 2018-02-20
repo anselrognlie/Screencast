@@ -35,20 +35,20 @@ typedef NSMutableArray<EWCScreencastDataChannel *> EWCChannelArray;
 }
 
 - (void)fakeInit {
-//    NSMutableData *data = [NSMutableData dataWithCapacity:256 * 400 * sizeof(uint8_t)];
-//    for (int i = 0; i < 400; ++i) {
-//        for (int j = 0; j <= 255; ++j) {
-//            uint8_t byte = j;
-//            [data appendBytes:&byte length:sizeof(byte)];
-//        }
-//    }
-//    self.fakeDataToSend = data;
-    NSMutableData *data = [NSMutableData dataWithCapacity:5 * sizeof(uint8_t)];
-    for (int i = 0; i < 5; ++i) {
-        uint8_t byte = i + 'a';
-        [data appendBytes:&byte length:sizeof(byte)];
+    NSMutableData *data = [NSMutableData dataWithCapacity:256 * 400 * sizeof(uint8_t)];
+    for (int i = 0; i < 400; ++i) {
+        for (int j = 0; j <= 255; ++j) {
+            uint8_t byte = j;
+            [data appendBytes:&byte length:sizeof(byte)];
+        }
     }
     self.fakeDataToSend = data;
+//    NSMutableData *data = [NSMutableData dataWithCapacity:5 * sizeof(uint8_t)];
+//    for (int i = 0; i < 5; ++i) {
+//        uint8_t byte = i + 'a';
+//        [data appendBytes:&byte length:sizeof(byte)];
+//    }
+//    self.fakeDataToSend = data;
 }
 
 - (void)removeChannel:(EWCScreencastDataChannel *)channel {

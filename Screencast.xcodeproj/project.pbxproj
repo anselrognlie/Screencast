@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FD01B174203BDE0600B0AC06 /* EWCScreencastDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = FD01B173203BDE0600B0AC06 /* EWCScreencastDelegate.h */; };
+		FD01C6C6203CDB110095CBD1 /* EWCScreenCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = FD01C6C4203CDB110095CBD1 /* EWCScreenCapture.h */; };
+		FD01C6C7203CDB110095CBD1 /* EWCScreenCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01C6C5203CDB110095CBD1 /* EWCScreenCapture.m */; };
 		FD1863A02035065F00233413 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD18639F2035065F00233413 /* AppDelegate.m */; };
 		FD1863A32035065F00233413 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1863A22035065F00233413 /* ViewController.m */; };
 		FD1863A62035065F00233413 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD1863A42035065F00233413 /* Main.storyboard */; };
@@ -230,6 +232,8 @@
 
 /* Begin PBXFileReference section */
 		FD01B173203BDE0600B0AC06 /* EWCScreencastDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCScreencastDelegate.h; sourceTree = "<group>"; };
+		FD01C6C4203CDB110095CBD1 /* EWCScreenCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EWCScreenCapture.h; path = EWCScreencast/EWCScreenCapture.h; sourceTree = SOURCE_ROOT; };
+		FD01C6C5203CDB110095CBD1 /* EWCScreenCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = EWCScreenCapture.m; path = EWCScreencast/EWCScreenCapture.m; sourceTree = SOURCE_ROOT; };
 		FD18639C2035065E00233413 /* ServiceLocatorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServiceLocatorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD18639E2035065F00233413 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD18639F2035065F00233413 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -593,6 +597,8 @@
 		FD93E61B2036D9B100FD5EC5 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				FD01C6C4203CDB110095CBD1 /* EWCScreenCapture.h */,
+				FD01C6C5203CDB110095CBD1 /* EWCScreenCapture.m */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -759,6 +765,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD2534A6203A587600A19B32 /* EWCDevice.h in Headers */,
+				FD01C6C6203CDB110095CBD1 /* EWCScreenCapture.h in Headers */,
 				FDBC29BC20351A86007B975D /* EWCPair.h in Headers */,
 				FDBC29BD20351A86007B975D /* EWCCFTypeRef.h in Headers */,
 				FDBC29C620351A86007B975D /* EWCUdpChannel.h in Headers */,
@@ -1244,6 +1251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD01C6C7203CDB110095CBD1 /* EWCScreenCapture.m in Sources */,
 				FDBC29BF20351A86007B975D /* EWCStringLimiter.m in Sources */,
 				FDBC29C720351A86007B975D /* EWCAddressIpv4.m in Sources */,
 				FDBC29BE20351A86007B975D /* EWCCFTypeRef.c in Sources */,
