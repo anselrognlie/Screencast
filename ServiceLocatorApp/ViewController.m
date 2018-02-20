@@ -28,8 +28,6 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
 @property (unsafe_unretained) IBOutlet UITextView *resultText;
 @property NSString *queryResult;
 @property UIColor *textColor;
-@property (weak) IBOutlet NSTextField *successCount;
-@property (weak) IBOutlet NSTextField *failureCount;
 
 @end
 
