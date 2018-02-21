@@ -750,18 +750,24 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iy4-8d-axI" userLabel="Continuous Check">
-                                <rect key="frame" x="176" y="231" width="110" height="18"/>
+                                <rect key="frame" x="18" y="193" width="110" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Continuous" bezelStyle="regularSquare" imagePosition="left" inset="2" id="AGE-CU-4CZ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fR7-Yb-dnX" userLabel="Received Image">
+                                <rect key="frame" x="178" y="20" width="282" height="230"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="xof-10-Q7o"/>
+                            </imageView>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="addressLabel" destination="FVV-Dd-tRF" id="Mih-mC-RTE"/>
                         <outlet property="continuousCheckbox" destination="Iy4-8d-axI" id="zud-71-sbd"/>
+                        <outlet property="imageView" destination="fR7-Yb-dnX" id="dKH-uf-44A"/>
                         <outlet property="receivedCount" destination="GKv-fk-Tp7" id="rCd-46-Nei"/>
                     </connections>
                 </viewController>

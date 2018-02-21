@@ -23,6 +23,7 @@ static const NSInteger TAG_REQUEST_BUTTON  = 1;
 @property (weak) IBOutlet NSTextField *addressLabel;
 @property (weak) IBOutlet NSTextField *receivedCount;
 @property (weak) IBOutlet NSButton *continuousCheckbox;
+@property (weak) IBOutlet NSImageView *imageView;
 @end
 
 @implementation ViewController {
@@ -130,6 +131,8 @@ static const NSInteger TAG_REQUEST_BUTTON  = 1;
 // EWCScreencastClientDelegate methods ///////////////////////////////////////
 
 - (void)receivedScreenFromClient:(EWCScreencastClient *)client {
+    [self.imageView setImage:client.screen];
+
     ++screensReceived_;
     self.receivedCount.intValue = screensReceived_;
 

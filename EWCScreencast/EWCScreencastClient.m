@@ -18,6 +18,8 @@
 #import "Protocol/Packet/EWCScreencastAcknowledge.h"
 #import "Protocol/Packet/EWCScreencastData.h"
 
+#import <AppKit/AppKit.h>
+
 enum EWCClientState {
     EWC_CS_STARTED,
     EWC_CS_AWAIT_PREPARE,
@@ -29,6 +31,7 @@ enum EWCClientState {
 @property uint16_t currentScreenId;
 @property uint16_t completedScreenId;
 @property NSMutableData *data;
+@property (nonatomic) NSImage *screen;
 @property uint32_t expectedBytes;
 @property uint32_t receivedBytes;
 @property EWCAddressIpv4 *channelAddress;
@@ -93,6 +96,15 @@ enum EWCClientState {
         }];
     } else {
         [self sendPacketData:data toAddress:self.channelAddress];
+    }
+}
+
+- (void)completeData {
+    // generate image from received data
+    self.screen = [[NSImage alloc] initWithData:self.data];
+
+    if (self.clientDelegate) {
+        [self.clientDelegate receivedScreenFromClient:self];
     }
 }
 
@@ -168,9 +180,7 @@ enum EWCClientState {
         [self sendAcknowledgement:packet.blockId withRetries:0];
 
         NSLog(@"data complete.");
-        if (self.clientDelegate) {
-            [self.clientDelegate receivedScreenFromClient:self];
-        }
+        [self completeData];
     } else {
         // advance expected block and send ack
         ++expectedBlock_;
