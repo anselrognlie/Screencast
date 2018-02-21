@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+#import "EWCServiceLocator/EWCServiceRegistryClientDelegate.h"
+#import "EWCScreencast/EWCScreencastClientDelegate.h"
+
+@interface ViewController : UIViewController<EWCServiceRegistryClientDelegate, EWCScreencastClientDelegate>
 
 
 @end
