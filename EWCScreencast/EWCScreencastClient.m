@@ -18,7 +18,11 @@
 #import "Protocol/Packet/EWCScreencastAcknowledge.h"
 #import "Protocol/Packet/EWCScreencastData.h"
 
+#if TARGET_OS_IOS == 1
+#import <UIKit/UIKit.h>
+#else
 #import <AppKit/AppKit.h>
+#endif
 
 enum EWCClientState {
     EWC_CS_STARTED,
@@ -32,10 +36,15 @@ enum EWCClientState {
 @property uint16_t currentScreenId;
 @property uint16_t completedScreenId;
 @property NSMutableData *data;
-@property (nonatomic) NSImage *screen;
 @property uint32_t expectedBytes;
 @property uint32_t receivedBytes;
 @property EWCAddressIpv4 *channelAddress;
+
+#if TARGET_OS_IOS == 1
+@property (nonatomic) UIImage *screen;
+#else
+@property (nonatomic) NSImage *screen;
+#endif
 @end
 
 @implementation EWCScreencastClient {
@@ -98,7 +107,11 @@ enum EWCClientState {
 
 - (void)completeData {
     // generate image from received data
+#if TARGET_OS_IOS == 1
+    self.screen = [[UIImage alloc] initWithData:self.data];
+#else
     self.screen = [[NSImage alloc] initWithData:self.data];
+#endif
     self.completedScreenId = self.currentScreenId;
 
     if (self.clientDelegate) {

@@ -8,14 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "EWCCore/Network/EWCAddressIpv4.h"
-
 // service port
 static const uint16_t EWCScreencastPort = 13888;
 
 // forward decls
 @protocol EWCScreencastPacket;
 @protocol EWCScreencastProtocolHandler;
+@class EWCAddressIpv4;
 
 typedef BOOL (^EWCScreencastRecognizer)(NSData* data);
 typedef NSObject<EWCScreencastPacket> *(^EWCScreencastParser)(NSData* data,

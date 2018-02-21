@@ -11,6 +11,10 @@
 #import "EWCCore/Network/EWCUdpChannel.h"
 #import "Protocol/EWCScreencastProtocolHandler.h"
 
+#if TARGET_OS_IOS == 1
+@class UIImage;
+#endif
+
 @class EWCAddressIpv4;
 @protocol EWCScreencastClientDelegate;
 
@@ -21,6 +25,11 @@
 @property NSString *providerName;
 @property EWCAddressIpv4 *remoteAddress;
 @property (weak) NSObject<EWCScreencastClientDelegate> *clientDelegate;
+
+#if TARGET_OS_IOS == 1
+@property (readonly) UIImage *screen;
+#else
 @property (readonly) NSImage *screen;
+#endif
 
 @end

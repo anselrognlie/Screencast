@@ -47,6 +47,24 @@
 		FD2534D5203A648600A19B32 /* EWCCFTypeRef.c in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29AF20351A86007B975D /* EWCCFTypeRef.c */; };
 		FD45C5C7203D44ED00EDDFCB /* EWCScreenCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01C6C9203CEF020095CBD1 /* EWCScreenCapture.m */; };
 		FD45C5C8203D450000EDDFCB /* EWCImageSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01C6CE203CEFB10095CBD1 /* EWCImageSerializer.m */; };
+		FD45C5D3203D48CA00EDDFCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45C5D2203D48CA00EDDFCB /* AppDelegate.m */; };
+		FD45C5D6203D48CA00EDDFCB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45C5D5203D48CA00EDDFCB /* ViewController.m */; };
+		FD45C5D9203D48CA00EDDFCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD45C5D7203D48CA00EDDFCB /* Main.storyboard */; };
+		FD45C5DB203D48CA00EDDFCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD45C5DA203D48CA00EDDFCB /* Assets.xcassets */; };
+		FD45C5DE203D48CA00EDDFCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD45C5DC203D48CA00EDDFCB /* LaunchScreen.storyboard */; };
+		FD45C5E1203D48CA00EDDFCB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45C5E0203D48CA00EDDFCB /* main.m */; };
+		FD45C5F2203D49B900EDDFCB /* EWCScreencastScreenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E60B2036434700FD5EC5 /* EWCScreencastScreenRequest.m */; };
+		FD45C5F3203D49B900EDDFCB /* EWCScreencastPrepareForData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E61020364DBD00FD5EC5 /* EWCScreencastPrepareForData.m */; };
+		FD45C5F4203D49B900EDDFCB /* EWCScreencastAcknowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E614203655DE00FD5EC5 /* EWCScreencastAcknowledge.m */; };
+		FD45C5F5203D49B900EDDFCB /* EWCScreencastData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E61820365CBF00FD5EC5 /* EWCScreencastData.m */; };
+		FD45C5F6203D49B900EDDFCB /* EWCScreencastProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5C22035A8B600FD5EC5 /* EWCScreencastProtocol.m */; };
+		FD45C5F7203D49B900EDDFCB /* EWCScreencast.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E5B62035A55100FD5EC5 /* EWCScreencast.m */; };
+		FD45C5F8203D49B900EDDFCB /* EWCScreencastDataChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD93E6932037B16D00FD5EC5 /* EWCScreencastDataChannel.m */; };
+		FD45C5F9203D49B900EDDFCB /* EWCScreencastClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2534A0203991BA00A19B32 /* EWCScreencastClient.m */; };
+		FD45C5FA203D49B900EDDFCB /* EWCCapturedScreenRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01C6D2203D01110095CBD1 /* EWCCapturedScreenRecord.m */; };
+		FD45C603203D49EB00EDDFCB /* libEWCCoreIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBC297C20351948007B975D /* libEWCCoreIOS.a */; };
+		FD45C604203D49EB00EDDFCB /* libEWCScreencastIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD45C5E9203D496100EDDFCB /* libEWCScreencastIOS.a */; };
+		FD45C605203D49EB00EDDFCB /* libEWCServiceLocatorIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD93E55920351BC400FD5EC5 /* libEWCServiceLocatorIOS.a */; };
 		FD461B21203BAE42003F047B /* EWCScreencastClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = FD461B20203BAE42003F047B /* EWCScreencastClientDelegate.h */; };
 		FD924471201F119200A5B093 /* ScreencastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD924470201F119200A5B093 /* ScreencastTests.m */; };
 		FD92447C201F119200A5B093 /* ScreencastUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92447B201F119200A5B093 /* ScreencastUITests.m */; };
@@ -150,6 +168,34 @@
 			remoteGlobalIDString = FD93E5B12035A55100FD5EC5;
 			remoteInfo = EWCScreencast;
 		};
+		FD45C5FB203D49CB00EDDFCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD92444E201F119100A5B093 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDBC297B20351948007B975D;
+			remoteInfo = EWCCoreIOS;
+		};
+		FD45C5FD203D49E000EDDFCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD92444E201F119100A5B093 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDBC297B20351948007B975D;
+			remoteInfo = EWCCoreIOS;
+		};
+		FD45C5FF203D49E000EDDFCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD92444E201F119100A5B093 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD93E55820351BC400FD5EC5;
+			remoteInfo = EWCServiceLocatorIOS;
+		};
+		FD45C601203D49E000EDDFCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD92444E201F119100A5B093 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD45C5E8203D496100EDDFCB;
+			remoteInfo = EWCScreencastIOS;
+		};
 		FD93E58B20351C6700FD5EC5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FD92444E201F119100A5B093 /* Project object */;
@@ -216,6 +262,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		FD45C5E7203D496100EDDFCB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD93E55720351BC400FD5EC5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,6 +316,17 @@
 		FD2534A5203A587600A19B32 /* EWCDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCDevice.m; sourceTree = "<group>"; };
 		FD2534D6203A672600A19B32 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		FD45C5C9203D461400EDDFCB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		FD45C5CF203D48CA00EDDFCB /* SimpleScreencastApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleScreencastApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD45C5D1203D48CA00EDDFCB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FD45C5D2203D48CA00EDDFCB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FD45C5D4203D48CA00EDDFCB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		FD45C5D5203D48CA00EDDFCB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FD45C5D8203D48CA00EDDFCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FD45C5DA203D48CA00EDDFCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FD45C5DD203D48CA00EDDFCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FD45C5DF203D48CA00EDDFCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD45C5E0203D48CA00EDDFCB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FD45C5E9203D496100EDDFCB /* libEWCScreencastIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEWCScreencastIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD461B1F203A6A70003F047B /* ServiceLocatorApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServiceLocatorApp.entitlements; sourceTree = "<group>"; };
 		FD461B20203BAE42003F047B /* EWCScreencastClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCScreencastClientDelegate.h; sourceTree = "<group>"; };
 		FD92446C201F119200A5B093 /* ScreencastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreencastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -370,6 +436,23 @@
 			files = (
 				FD93E59720351CF400FD5EC5 /* libEWCCoreIOS.a in Frameworks */,
 				FD93E59820351CF400FD5EC5 /* libEWCServiceLocatorIOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD45C5CC203D48CA00EDDFCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD45C603203D49EB00EDDFCB /* libEWCCoreIOS.a in Frameworks */,
+				FD45C604203D49EB00EDDFCB /* libEWCScreencastIOS.a in Frameworks */,
+				FD45C605203D49EB00EDDFCB /* libEWCServiceLocatorIOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD45C5E6203D496100EDDFCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +584,22 @@
 			path = Device;
 			sourceTree = "<group>";
 		};
+		FD45C5D0203D48CA00EDDFCB /* SimpleScreencastApp */ = {
+			isa = PBXGroup;
+			children = (
+				FD45C5D1203D48CA00EDDFCB /* AppDelegate.h */,
+				FD45C5D2203D48CA00EDDFCB /* AppDelegate.m */,
+				FD45C5D4203D48CA00EDDFCB /* ViewController.h */,
+				FD45C5D5203D48CA00EDDFCB /* ViewController.m */,
+				FD45C5D7203D48CA00EDDFCB /* Main.storyboard */,
+				FD45C5DA203D48CA00EDDFCB /* Assets.xcassets */,
+				FD45C5DC203D48CA00EDDFCB /* LaunchScreen.storyboard */,
+				FD45C5DF203D48CA00EDDFCB /* Info.plist */,
+				FD45C5E0203D48CA00EDDFCB /* main.m */,
+			);
+			path = SimpleScreencastApp;
+			sourceTree = "<group>";
+		};
 		FD92444D201F119100A5B093 = {
 			isa = PBXGroup;
 			children = (
@@ -509,6 +608,7 @@
 				FDBC29A220351A3A007B975D /* EWCServiceLocator */,
 				FD93E69B20397A8900FD5EC5 /* SimpleScreencastServer */,
 				FD93E6B320397AA100FD5EC5 /* SimpleScreencastClient */,
+				FD45C5D0203D48CA00EDDFCB /* SimpleScreencastApp */,
 				FD1863922034616500233413 /* Frameworks */,
 				FD924457201F119100A5B093 /* Products */,
 				FD92446F201F119200A5B093 /* ScreencastTests */,
@@ -532,6 +632,8 @@
 				FD93E5B22035A55100FD5EC5 /* libEWCScreencast.a */,
 				FD93E69A20397A8900FD5EC5 /* SimpleScreencastServer.app */,
 				FD93E6B220397AA000FD5EC5 /* SimpleScreencastClient.app */,
+				FD45C5CF203D48CA00EDDFCB /* SimpleScreencastApp.app */,
+				FD45C5E9203D496100EDDFCB /* libEWCScreencastIOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -837,6 +939,44 @@
 			productReference = FD18639C2035065E00233413 /* ServiceLocatorApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FD45C5CE203D48CA00EDDFCB /* SimpleScreencastApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD45C5E2203D48CA00EDDFCB /* Build configuration list for PBXNativeTarget "SimpleScreencastApp" */;
+			buildPhases = (
+				FD45C5CB203D48CA00EDDFCB /* Sources */,
+				FD45C5CC203D48CA00EDDFCB /* Frameworks */,
+				FD45C5CD203D48CA00EDDFCB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD45C5FE203D49E000EDDFCB /* PBXTargetDependency */,
+				FD45C600203D49E000EDDFCB /* PBXTargetDependency */,
+				FD45C602203D49E000EDDFCB /* PBXTargetDependency */,
+			);
+			name = SimpleScreencastApp;
+			productName = SimpleScreencastApp;
+			productReference = FD45C5CF203D48CA00EDDFCB /* SimpleScreencastApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FD45C5E8203D496100EDDFCB /* EWCScreencastIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD45C5EF203D496100EDDFCB /* Build configuration list for PBXNativeTarget "EWCScreencastIOS" */;
+			buildPhases = (
+				FD45C5E5203D496100EDDFCB /* Sources */,
+				FD45C5E6203D496100EDDFCB /* Frameworks */,
+				FD45C5E7203D496100EDDFCB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD45C5FC203D49CB00EDDFCB /* PBXTargetDependency */,
+			);
+			name = EWCScreencastIOS;
+			productName = EWCScreencastIOS;
+			productReference = FD45C5E9203D496100EDDFCB /* libEWCScreencastIOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		FD92446B201F119200A5B093 /* ScreencastTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD924483201F119200A5B093 /* Build configuration list for PBXNativeTarget "ScreencastTests" */;
@@ -1035,6 +1175,14 @@
 							};
 						};
 					};
+					FD45C5CE203D48CA00EDDFCB = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					FD45C5E8203D496100EDDFCB = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					FD92446B201F119200A5B093 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -1118,6 +1266,8 @@
 				FD93E5B12035A55100FD5EC5 /* EWCScreencast */,
 				FD93E69920397A8900FD5EC5 /* SimpleScreencastServer */,
 				FD93E6B120397AA000FD5EC5 /* SimpleScreencastClient */,
+				FD45C5CE203D48CA00EDDFCB /* SimpleScreencastApp */,
+				FD45C5E8203D496100EDDFCB /* EWCScreencastIOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1130,6 +1280,16 @@
 				FD1863AB2035065F00233413 /* LaunchScreen.storyboard in Resources */,
 				FD1863A82035065F00233413 /* Assets.xcassets in Resources */,
 				FD1863A62035065F00233413 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD45C5CD203D48CA00EDDFCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD45C5DE203D48CA00EDDFCB /* LaunchScreen.storyboard in Resources */,
+				FD45C5DB203D48CA00EDDFCB /* Assets.xcassets in Resources */,
+				FD45C5D9203D48CA00EDDFCB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1184,6 +1344,32 @@
 				FD1863A32035065F00233413 /* ViewController.m in Sources */,
 				FD1863AE2035065F00233413 /* main.m in Sources */,
 				FD1863A02035065F00233413 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD45C5CB203D48CA00EDDFCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD45C5D6203D48CA00EDDFCB /* ViewController.m in Sources */,
+				FD45C5E1203D48CA00EDDFCB /* main.m in Sources */,
+				FD45C5D3203D48CA00EDDFCB /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD45C5E5203D496100EDDFCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD45C5F2203D49B900EDDFCB /* EWCScreencastScreenRequest.m in Sources */,
+				FD45C5F3203D49B900EDDFCB /* EWCScreencastPrepareForData.m in Sources */,
+				FD45C5F4203D49B900EDDFCB /* EWCScreencastAcknowledge.m in Sources */,
+				FD45C5F5203D49B900EDDFCB /* EWCScreencastData.m in Sources */,
+				FD45C5F6203D49B900EDDFCB /* EWCScreencastProtocol.m in Sources */,
+				FD45C5F7203D49B900EDDFCB /* EWCScreencast.m in Sources */,
+				FD45C5F8203D49B900EDDFCB /* EWCScreencastDataChannel.m in Sources */,
+				FD45C5F9203D49B900EDDFCB /* EWCScreencastClient.m in Sources */,
+				FD45C5FA203D49B900EDDFCB /* EWCCapturedScreenRecord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1333,6 +1519,26 @@
 			target = FD93E5B12035A55100FD5EC5 /* EWCScreencast */;
 			targetProxy = FD25349A20398F5700A19B32 /* PBXContainerItemProxy */;
 		};
+		FD45C5FC203D49CB00EDDFCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FDBC297B20351948007B975D /* EWCCoreIOS */;
+			targetProxy = FD45C5FB203D49CB00EDDFCB /* PBXContainerItemProxy */;
+		};
+		FD45C5FE203D49E000EDDFCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FDBC297B20351948007B975D /* EWCCoreIOS */;
+			targetProxy = FD45C5FD203D49E000EDDFCB /* PBXContainerItemProxy */;
+		};
+		FD45C600203D49E000EDDFCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD93E55820351BC400FD5EC5 /* EWCServiceLocatorIOS */;
+			targetProxy = FD45C5FF203D49E000EDDFCB /* PBXContainerItemProxy */;
+		};
+		FD45C602203D49E000EDDFCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD45C5E8203D496100EDDFCB /* EWCScreencastIOS */;
+			targetProxy = FD45C601203D49E000EDDFCB /* PBXContainerItemProxy */;
+		};
 		FD93E58C20351C6700FD5EC5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FDBC297B20351948007B975D /* EWCCoreIOS */;
@@ -1397,6 +1603,22 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		FD45C5D7203D48CA00EDDFCB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FD45C5D8203D48CA00EDDFCB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FD45C5DC203D48CA00EDDFCB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FD45C5DD203D48CA00EDDFCB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		FD93E6A420397A8900FD5EC5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1455,6 +1677,72 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ebbyware.ServiceLocatorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = .;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FD45C5E3203D48CA00EDDFCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				INFOPLIST_FILE = SimpleScreencastApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ebbyware.SimpleScreencastApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = .;
+			};
+			name = Debug;
+		};
+		FD45C5E4203D48CA00EDDFCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				INFOPLIST_FILE = SimpleScreencastApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ebbyware.SimpleScreencastApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = .;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FD45C5F0203D496100EDDFCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = .;
+			};
+			name = Debug;
+		};
+		FD45C5F1203D496100EDDFCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RU9C9DUDK9;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = .;
 				VALIDATE_PRODUCT = YES;
@@ -1858,6 +2146,24 @@
 			buildConfigurations = (
 				FD1863B02035065F00233413 /* Debug */,
 				FD1863B12035065F00233413 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD45C5E2203D48CA00EDDFCB /* Build configuration list for PBXNativeTarget "SimpleScreencastApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD45C5E3203D48CA00EDDFCB /* Debug */,
+				FD45C5E4203D48CA00EDDFCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD45C5EF203D496100EDDFCB /* Build configuration list for PBXNativeTarget "EWCScreencastIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD45C5F0203D496100EDDFCB /* Debug */,
+				FD45C5F1203D496100EDDFCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
