@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#if TARGET_OS_IOS == 1
+#import <CoreGraphics/CoreGraphics.h>
+#endif
+
 @interface EWCImageSerializer : NSObject
 
 + (NSData *)createPngFromImage:(CGImageRef)image;

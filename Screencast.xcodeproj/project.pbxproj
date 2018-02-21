@@ -45,6 +45,8 @@
 		FD2534D3203A647F00A19B32 /* EWCBufferedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29B820351A86007B975D /* EWCBufferedPacket.m */; };
 		FD2534D4203A647F00A19B32 /* EWCUdpChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29B620351A86007B975D /* EWCUdpChannel.m */; };
 		FD2534D5203A648600A19B32 /* EWCCFTypeRef.c in Sources */ = {isa = PBXBuildFile; fileRef = FDBC29AF20351A86007B975D /* EWCCFTypeRef.c */; };
+		FD45C5C7203D44ED00EDDFCB /* EWCScreenCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01C6C9203CEF020095CBD1 /* EWCScreenCapture.m */; };
+		FD45C5C8203D450000EDDFCB /* EWCImageSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01C6CE203CEFB10095CBD1 /* EWCImageSerializer.m */; };
 		FD461B21203BAE42003F047B /* EWCScreencastClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = FD461B20203BAE42003F047B /* EWCScreencastClientDelegate.h */; };
 		FD924471201F119200A5B093 /* ScreencastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD924470201F119200A5B093 /* ScreencastTests.m */; };
 		FD92447C201F119200A5B093 /* ScreencastUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92447B201F119200A5B093 /* ScreencastUITests.m */; };
@@ -258,6 +260,7 @@
 		FD2534A4203A587600A19B32 /* EWCDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCDevice.h; sourceTree = "<group>"; };
 		FD2534A5203A587600A19B32 /* EWCDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCDevice.m; sourceTree = "<group>"; };
 		FD2534D6203A672600A19B32 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		FD45C5C9203D461400EDDFCB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		FD461B1F203A6A70003F047B /* ServiceLocatorApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServiceLocatorApp.entitlements; sourceTree = "<group>"; };
 		FD461B20203BAE42003F047B /* EWCScreencastClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCScreencastClientDelegate.h; sourceTree = "<group>"; };
 		FD92446C201F119200A5B093 /* ScreencastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreencastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -455,8 +458,8 @@
 		FD01C6C8203CEF020095CBD1 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				FD01C6C9203CEF020095CBD1 /* EWCScreenCapture.m */,
 				FD01C6CA203CEF020095CBD1 /* EWCScreenCapture.h */,
+				FD01C6C9203CEF020095CBD1 /* EWCScreenCapture.m */,
 				FD01C6CD203CEFB10095CBD1 /* EWCImageSerializer.h */,
 				FD01C6CE203CEFB10095CBD1 /* EWCImageSerializer.m */,
 			);
@@ -466,6 +469,7 @@
 		FD1863922034616500233413 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD45C5C9203D461400EDDFCB /* CoreGraphics.framework */,
 				FD2534D6203A672600A19B32 /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -1282,6 +1286,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD45C5C8203D450000EDDFCB /* EWCImageSerializer.m in Sources */,
+				FD45C5C7203D44ED00EDDFCB /* EWCScreenCapture.m in Sources */,
 				FD2534D5203A648600A19B32 /* EWCCFTypeRef.c in Sources */,
 				FD2534CF203A647F00A19B32 /* EWCDevice.m in Sources */,
 				FD2534D0203A647F00A19B32 /* EWCPair.m in Sources */,

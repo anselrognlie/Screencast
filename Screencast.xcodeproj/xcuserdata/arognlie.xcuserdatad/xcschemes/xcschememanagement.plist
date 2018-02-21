@@ -7,7 +7,7 @@
 		<key>EWCCore.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
 		<key>EWCCoreIOS.xcscheme</key>
 		<dict>
@@ -47,7 +47,7 @@
 		<key>ServiceLocatorApp.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
 		</dict>
 		<key>ServiceLocatorTest.xcscheme</key>
 		<dict>

@@ -10,15 +10,19 @@
 
 @implementation EWCScreenCapture
 
+#if TARGET_OS_IOS != 1
 static CGContextRef EWCCreateBitmapContext(size_t width, size_t height);
+#endif
 
 + (CGImageRef)createScreenCapture {
     return [EWCScreenCapture createScreenCaptureWithMaxWidth:0 maxHeight:0];
 }
 
+// this method only works under macos
 + (CGImageRef)createScreenCaptureWithMaxWidth:(size_t)maxWidth
                                     maxHeight:(size_t)maxHeight {
 
+#if TARGET_OS_IOS != 1
     CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite,
                                                     kCGWindowListOptionOnScreenOnly,
                                                     kCGNullWindowID,
@@ -71,10 +75,14 @@ static CGContextRef EWCCreateBitmapContext(size_t width, size_t height);
     CFRelease(screenShot);  // safe since we're returning the resized version
 
     return resizedImage;
+#else
+    return NULL;
+#endif
 }
 
 @end
 
+#if TARGET_OS_IOS != 1
 static CGContextRef EWCCreateBitmapContext(size_t width, size_t height) {
     CGContextRef context;
     CGColorSpaceRef colorSpace;
@@ -92,3 +100,5 @@ static CGContextRef EWCCreateBitmapContext(size_t width, size_t height) {
 
     return context;
 }
+#endif
+
