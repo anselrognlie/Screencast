@@ -188,6 +188,11 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     [self updateQueryResult];
 }
 
+- (void)noServiceLocated:(NSUUID *)serviceId {
+    NSLog(@"no service found: %@", serviceId);
+}
+
+
 // control accessors /////////////////////////////////////////////////////////
 
 - (NSTextField *)getServiceIdTextField {
@@ -206,11 +211,11 @@ static const char DEFAULT_SERVICEID_STRING[] = "C4015E7D-CCC5-49E7-954B-0036D8C2
     switch (field.tag) {
         case TAG_SERVICEID_TEXTFIELD:
             [self changedServiceIdTextField:field];
-        break;
+            break;
 
         case TAG_PORT_TEXTFIELD:
             [self changedPortTextField:field];
-        break;
+            break;
     }
 }
 

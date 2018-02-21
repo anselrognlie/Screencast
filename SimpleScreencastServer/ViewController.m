@@ -111,6 +111,11 @@
     // possibly re-register self when timeout approaches
 }
 
+- (void)noServiceLocated:(NSUUID *)serviceId {
+    // not used, since we just register, not query
+}
+
+
 // ui methods /////////////////////////////////////////////////////////////////
 
 - (IBAction)startButtonClicked:(NSButton *)sender {

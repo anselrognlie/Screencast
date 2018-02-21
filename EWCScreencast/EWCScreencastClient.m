@@ -24,7 +24,8 @@ enum EWCClientState {
     EWC_CS_STARTED,
     EWC_CS_AWAIT_PREPARE,
     EWC_CS_AWAIT_DATA,
-    EWC_CS_DONE
+    EWC_CS_DONE,
+    EWC_CS_TIMEOUT,
 };
 
 @interface EWCScreencastClient()
@@ -110,6 +111,16 @@ enum EWCClientState {
 - (void)handlePacketData:(NSData *)data fromAddress:(EWCAddressIpv4 *)address {
     EWCScreencastProtocol *protocol = EWCScreencastProtocol.protocol;
     [protocol handlePacketData:data fromAddress:address handler:self];
+}
+
+- (void)handleTimeout {
+}
+
+- (void)handleRetriesExceeded {
+    // couldn't complete the transmission
+    NSLog(@"lost connection.");
+    state_ = EWC_CS_TIMEOUT;
+    [self.clientDelegate clientRetriesExceeded:self];
 }
 
 // protocol methods ///////////////////////////////////////////////////////////

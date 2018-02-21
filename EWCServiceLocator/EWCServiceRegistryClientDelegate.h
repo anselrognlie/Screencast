@@ -11,6 +11,7 @@
 @class EWCAddressIpv4;
 @class EWCServiceRegistryAcknowledge;
 @class EWCServiceRegistryLocationResponse;
+@class EWCServiceRegistryClient;
 
 @protocol EWCServiceRegistryClientDelegate <NSObject>
 
@@ -19,5 +20,7 @@
 
 - (void)receivedLocationResponsePacket:(EWCServiceRegistryLocationResponse *)packet
                            fromAddress:(EWCAddressIpv4 *)address;
+
+- (void)noServiceLocated:(NSUUID *)serviceId;
 
 @end

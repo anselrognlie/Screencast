@@ -13,6 +13,7 @@
 @protocol EWCScreencastClientDelegate <NSObject>
 
 - (void)receivedScreenFromClient:(EWCScreencastClient *)client;
+- (void)clientRetriesExceeded:(EWCScreencastClient *)client;
 
 @end
 

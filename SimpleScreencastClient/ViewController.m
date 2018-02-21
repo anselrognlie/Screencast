@@ -18,7 +18,7 @@ static const NSInteger TAG_REQUEST_BUTTON  = 1;
 @interface ViewController()
 @property NSString *machineName;
 @property EWCScreencastClient *screencast;
-@property EWCServiceRegistryClient *publisher;
+@property EWCServiceRegistryClient *locator;
 @property EWCAddressIpv4 *screencastAddress;
 @property (weak) IBOutlet NSTextField *addressLabel;
 @property (weak) IBOutlet NSTextField *receivedCount;
@@ -57,9 +57,9 @@ static const NSInteger TAG_REQUEST_BUTTON  = 1;
     self.screencast = [EWCScreencastClient new];
     self.screencast.clientDelegate = self;
     [self.screencast start];
-    self.publisher = [EWCServiceRegistryClient new];
-    self.publisher.clientHandler = self;
-    [self.publisher start];
+    self.locator = [EWCServiceRegistryClient new];
+    self.locator.clientHandler = self;
+    [self.locator start];
 
     self.addressLabel.stringValue = [[self.screencast getBoundAddress] description];
 
@@ -77,8 +77,8 @@ static const NSInteger TAG_REQUEST_BUTTON  = 1;
         [tmp stop];
     }
 
-    EWCServiceRegistryClient *tmpClient = self.publisher;
-    self.publisher = nil;
+    EWCServiceRegistryClient *tmpClient = self.locator;
+    self.locator = nil;
     if (tmpClient) {
         [tmpClient stop];
     }
@@ -88,7 +88,7 @@ static const NSInteger TAG_REQUEST_BUTTON  = 1;
 
 - (void)locateServiceAndRequestScreen {
     if (! self.screencastAddress) {
-        [self.publisher queryService:EWCScreencastProtocol.protocol.serviceId];
+        [self.locator queryService:EWCScreencastProtocol.protocol.serviceId];
     } else {
         // just do a request
         [self.screencast requestScreen];
@@ -128,6 +128,14 @@ static const NSInteger TAG_REQUEST_BUTTON  = 1;
     // no implementation required since we aren't registering
 }
 
+- (void)noServiceLocated:(NSUUID *)serviceId {
+    // if we failed while running, reset the remote address and try again
+    if (running_ && self.continuousCheckbox.state == NSControlStateValueOn) {
+        self.screencastAddress = nil;
+        [self locateServiceAndRequestScreen];
+    }
+}
+
 // EWCScreencastClientDelegate methods ///////////////////////////////////////
 
 - (void)receivedScreenFromClient:(EWCScreencastClient *)client {
@@ -137,6 +145,14 @@ static const NSInteger TAG_REQUEST_BUTTON  = 1;
     self.receivedCount.intValue = screensReceived_;
 
     if (running_ && self.continuousCheckbox.state == NSControlStateValueOn) {
+        [self locateServiceAndRequestScreen];
+    }
+}
+
+- (void)clientRetriesExceeded:(EWCScreencastClient *)client {
+    // if we lost the connection while running, reset the remote address and try again
+    if (running_ && self.continuousCheckbox.state == NSControlStateValueOn) {
+        self.screencastAddress = nil;
         [self locateServiceAndRequestScreen];
     }
 }
