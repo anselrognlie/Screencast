@@ -21,7 +21,6 @@
 @property NSString *providerName;
 @property EWCAddressIpv4 *remoteAddress;
 @property (weak) NSObject<EWCScreencastClientDelegate> *clientDelegate;
-@property (readonly) NSData *receivedDataDELETEME;
 @property (readonly) NSImage *screen;
 
 @end

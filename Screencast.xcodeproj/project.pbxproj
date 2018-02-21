@@ -12,6 +12,8 @@
 		FD01C6CC203CEF020095CBD1 /* EWCScreenCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = FD01C6CA203CEF020095CBD1 /* EWCScreenCapture.h */; };
 		FD01C6CF203CEFB10095CBD1 /* EWCImageSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = FD01C6CD203CEFB10095CBD1 /* EWCImageSerializer.h */; };
 		FD01C6D0203CEFB10095CBD1 /* EWCImageSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01C6CE203CEFB10095CBD1 /* EWCImageSerializer.m */; };
+		FD01C6D3203D01110095CBD1 /* EWCCapturedScreenRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = FD01C6D1203D01110095CBD1 /* EWCCapturedScreenRecord.h */; };
+		FD01C6D4203D01110095CBD1 /* EWCCapturedScreenRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01C6D2203D01110095CBD1 /* EWCCapturedScreenRecord.m */; };
 		FD1863A02035065F00233413 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD18639F2035065F00233413 /* AppDelegate.m */; };
 		FD1863A32035065F00233413 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1863A22035065F00233413 /* ViewController.m */; };
 		FD1863A62035065F00233413 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD1863A42035065F00233413 /* Main.storyboard */; };
@@ -238,6 +240,8 @@
 		FD01C6CA203CEF020095CBD1 /* EWCScreenCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWCScreenCapture.h; sourceTree = "<group>"; };
 		FD01C6CD203CEFB10095CBD1 /* EWCImageSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCImageSerializer.h; sourceTree = "<group>"; };
 		FD01C6CE203CEFB10095CBD1 /* EWCImageSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCImageSerializer.m; sourceTree = "<group>"; };
+		FD01C6D1203D01110095CBD1 /* EWCCapturedScreenRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWCCapturedScreenRecord.h; sourceTree = "<group>"; };
+		FD01C6D2203D01110095CBD1 /* EWCCapturedScreenRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWCCapturedScreenRecord.m; sourceTree = "<group>"; };
 		FD18639C2035065E00233413 /* ServiceLocatorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServiceLocatorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD18639E2035065F00233413 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD18639F2035065F00233413 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -559,6 +563,8 @@
 				FD25349F203991BA00A19B32 /* EWCScreencastClient.h */,
 				FD2534A0203991BA00A19B32 /* EWCScreencastClient.m */,
 				FD461B20203BAE42003F047B /* EWCScreencastClientDelegate.h */,
+				FD01C6D1203D01110095CBD1 /* EWCCapturedScreenRecord.h */,
+				FD01C6D2203D01110095CBD1 /* EWCCapturedScreenRecord.m */,
 			);
 			path = EWCScreencast;
 			sourceTree = "<group>";
@@ -755,6 +761,7 @@
 				FD93E615203655DE00FD5EC5 /* EWCScreencastAcknowledge.h in Headers */,
 				FD93E60C2036434700FD5EC5 /* EWCScreencastScreenRequest.h in Headers */,
 				FD93E5C62035AB9C00FD5EC5 /* EWCScreencastPacket.h in Headers */,
+				FD01C6D3203D01110095CBD1 /* EWCCapturedScreenRecord.h in Headers */,
 				FD93E5B52035A55100FD5EC5 /* EWCScreencast.h in Headers */,
 				FD93E61920365CBF00FD5EC5 /* EWCScreencastData.h in Headers */,
 				FD2534A1203991BA00A19B32 /* EWCScreencastClient.h in Headers */,
@@ -1215,6 +1222,7 @@
 			files = (
 				FD93E5C42035A8B600FD5EC5 /* EWCScreencastProtocol.m in Sources */,
 				FD2534A2203991BA00A19B32 /* EWCScreencastClient.m in Sources */,
+				FD01C6D4203D01110095CBD1 /* EWCCapturedScreenRecord.m in Sources */,
 				FD93E6952037B16D00FD5EC5 /* EWCScreencastDataChannel.m in Sources */,
 				FD93E616203655DE00FD5EC5 /* EWCScreencastAcknowledge.m in Sources */,
 				FD93E5B72035A55100FD5EC5 /* EWCScreencast.m in Sources */,

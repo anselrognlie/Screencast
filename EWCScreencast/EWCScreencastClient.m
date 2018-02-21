@@ -77,10 +77,6 @@ enum EWCClientState {
     }];
 }
 
-- (NSData *)receivedDataDELETEME {
-    return self.data;
-}
-
 - (void)sendAcknowledgement:(uint16_t)blockId withRetries:(uint8_t)retry {
     // send acknowledgement
     EWCScreencastAcknowledge *packet;
@@ -102,6 +98,7 @@ enum EWCClientState {
 - (void)completeData {
     // generate image from received data
     self.screen = [[NSImage alloc] initWithData:self.data];
+    self.completedScreenId = self.currentScreenId;
 
     if (self.clientDelegate) {
         [self.clientDelegate receivedScreenFromClient:self];

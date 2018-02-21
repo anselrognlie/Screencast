@@ -12,54 +12,45 @@
 #import "EWCScreencastProtocol.h"
 #import "EWCScreencastDataChannel.h"
 #import "EWCScreencastDelegate.h"
+#import "EWCCapturedScreenRecord.h"
+#import "Protocol/Packet/EWCScreencastScreenRequest.h"
 #import "EWCCore/Graphics/EWCScreenCapture.h"
 #import "EWCCore/Graphics/EWCImageSerializer.h"
 
 typedef NSMutableArray<EWCScreencastDataChannel *> EWCChannelArray;
 
 @interface EWCScreencast()
-@property NSData *fakeDataToSend;
 @property EWCChannelArray *activeChannels;
+@property EWCCapturedScreenRecord *lastScreen;
 @end
 
 @implementation EWCScreencast {
 }
 
+- (void)startOnRunLoop:(NSRunLoop *)runLoop {
+    _lastScreen = 0;
+
+    [super startOnRunLoop:runLoop];
+}
+
 - (instancetype)init {
     self = [super init];
-
-    // initialize cached screenshot manager
-    [self fakeInit];
 
     self.activeChannels = [EWCChannelArray array];
 
     return self;
 }
 
-- (void)fakeInit {
-//    // simulate large-ish data
-//    NSMutableData *data = [NSMutableData dataWithCapacity:256 * 400 * sizeof(uint8_t)];
-//    for (int i = 0; i < 400; ++i) {
-//        for (int j = 0; j <= 255; ++j) {
-//            uint8_t byte = j;
-//            [data appendBytes:&byte length:sizeof(byte)];
-//        }
-//    }
-//    self.fakeDataToSend = data;
+- (NSData *)captureScreen {
 
-//    // simulate small-ish data
-//    NSMutableData *data = [NSMutableData dataWithCapacity:5 * sizeof(uint8_t)];
-//    for (int i = 0; i < 5; ++i) {
-//        uint8_t byte = i + 'a';
-//        [data appendBytes:&byte length:sizeof(byte)];
-//    }
-//    self.fakeDataToSend = data;
-
-    // get an actual image
+    // consider ways of tuning the target size to the available bandwidth?
     size_t targetWidth = 1920 / 8;
+//    size_t targetWidth = 0;
     CGImageRef image = [EWCScreenCapture createScreenCaptureWithMaxWidth:targetWidth maxHeight:0];
-    self.fakeDataToSend = [EWCImageSerializer createPngFromImage:image];
+    NSData *data = [EWCImageSerializer createPngFromImage:image];
     CFRelease(image);
+
+    return data;
 }
 
 - (void)removeChannel:(EWCScreencastDataChannel *)channel {
@@ -103,6 +94,36 @@ typedef NSMutableArray<EWCScreencastDataChannel *> EWCChannelArray;
     }];
 }
 
+- (EWCCapturedScreenRecord *)nextScreenRecordFromId:(uint16_t)screenId {
+    // determine the screenshot to deliver
+        // if client passes 0, use most current screenshot
+        // if there is no current screenshot, or client already has most current
+        //   then generate a new screenshot, log it, and make it the target.
+        //   Be sure to account for screen id wrap at 65535, skipping 0
+
+    EWCCapturedScreenRecord *record = self.lastScreen;
+
+    if (record && screenId != record.screenId) {
+        return record;
+    }
+
+    uint16_t nextScreenId = 1;
+    if (record) {
+        if (record.screenId < 65535) {
+            nextScreenId = record.screenId + 1;
+        }
+    }
+
+    // need a new screen
+    record = [EWCCapturedScreenRecord new];
+    record.imageData = [self captureScreen];
+    record.screenId = nextScreenId;
+
+    self.lastScreen = record;
+
+    return record;
+}
+
 // protected overrides ////////////////////////////////////////////////////////
 
 - (void)handlePacketData:(NSData *)data fromAddress:(EWCAddressIpv4 *)address {
@@ -120,14 +141,7 @@ typedef NSMutableArray<EWCScreencastDataChannel *> EWCChannelArray;
 - (void)processScreenRequest:(EWCScreencastScreenRequest *)packet
                  fromAddress:(EWCAddressIpv4 *)address {
     // received a request for a screen from the client at address
-    // determine the screenshot to deliver
-        // if client passes 0, use most current screenshot
-        // if there is no current screenshot, or client already has most current
-        //   then generate a new screenshot, log it, and make it the target.
-        //   Be sure to account for screen id wrap at 65535, skipping 0
-    // create a data channel to serve the specified screen (ref counted) to the client
-    //   the data channel will handle the prepare, data, and acks
-    //   data channel will callback when complete, whether success or failure
+    EWCCapturedScreenRecord *record = [self nextScreenRecordFromId:packet.screenId];
 
     // if there is a new request from an address that we've already got
     // a channel for, then assume that the client didn't get the prepare
@@ -136,10 +150,14 @@ typedef NSMutableArray<EWCScreencastDataChannel *> EWCChannelArray;
 
     [self removeChannelForAddress:address];
 
+    // create a data channel to serve the specified screen (ref counted) to the client
+    //   the data channel will handle the prepare, data, and acks
+    //   data channel will callback when complete, whether success or failure
+
     EWCScreencastDataChannel *channel;
     channel = [EWCScreencastDataChannel channelToAddress:address
-                                                  screen:0
-                                                    data:self.fakeDataToSend
+                                                  screen:record.screenId
+                                                    data:record.imageData
                                                  handler:self];
     [self.activeChannels addObject:channel];
 
